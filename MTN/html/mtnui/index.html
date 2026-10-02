@@ -1,0 +1,44 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=0.5, maximum-scale=2.0, user-scalable=yes" />
+
+<style>
+  .classname{
+    width:500px;
+    height:500px;
+  }
+</style>
+
+<link rel="stylesheet" href="file/bootstrap/css/bootstrap.min.css">
+<script src="file/bootstrap/js/bootstrap.min.js"></script>
+<script src="file/js/mtn_server.js"></script>
+<script src="file/js/divdrag.js"></script>
+<script src="file/js/interact.min.js"></script>
+<script src="file/js/DigitalClock.js"></script>
+
+</head>
+
+<body>
+
+    <div id="id_name" class="classname" >
+    </div>
+
+
+<script>
+  async function mtn_init(){
+
+          new DigitalClock("id_name", {
+            color: "#ff0000",
+            bgColor: "#000000",
+            fontRatio: 0.1,
+            showDate: true
+          });
+
+  }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,317 @@
+<!-- type="company" 
+     block="block/mdrobot.js"
+	 generator="generator/mdrobot.js" 
+	 language="language/mdrobot" -->
+<script type="text/javascript" src="../../blocks/company/mdrobot.js"></script>
+<script type="text/javascript" src="../../generators/arduino/company/mdrobot.js"></script>
+<!--引用所有写好的模块-->
+
+
+<!-- 加入自定义菜单 -->
+<category name="铭迪机器人" colour="100">
+
+
+
+<category name="执行模块" colour="100">
+
+<!-- LED灯 -->
+<block type="mdbot_led">
+    <value name="STAT">
+      <shadow type="inout_highlow"></shadow>
+    </value>
+</block>
+<!-- LED灯颜色调节 -->
+<block type="mdbot_RGB">
+	<value name="RGB_value1">
+		<shadow type="math_number">
+				<field name="NUM">0</field>
+		</shadow>
+	</value>
+	<value name="RGB_value2">
+		<shadow type="math_number">
+				<field name="NUM">0</field>
+		</shadow>
+	</value>
+	<value name="RGB_value3">
+		<shadow type="math_number">
+				<field name="NUM">0</field>
+		</shadow>
+	</value>
+</block>
+<!-- 蜂鸣器播放 -->
+<block type="mdbot_tone_notes">
+ <value name="FREQUENCY">
+    <shadow type="tone_notes"></shadow>
+  </value>
+</block>
+<!--蜂鸣器停止  -->
+<block type="mdbot_tone_not"></block>
+	<!-- 马达 -->
+	<block type="mdbot_motor_A">
+		<value name="speed">
+			<shadow type="math_number">
+				<field name="NUM">255</field>
+			</shadow>
+		</value>
+	</block>
+
+	
+	
+	<!-- 舵机 -->
+	<block type="mdbot_servo_move_A">
+	<value name="DEGREE">
+<shadow type="math_number">
+<field name="NUM">0</field>
+</shadow>
+</value>
+<value name="DELAY_TIME">
+<shadow type="math_number">
+<field name="NUM">0</field>
+</shadow>
+</value>
+	</block>
+	<!--计时器初始化  -->
+<block type="mdbot_jishiqi_chushi"></block>
+		<!--计时器  -->
+<block type="mdbot_jishiqi_jishi"></block>
+<!--获取时钟时间-->
+<block type="mdbot_d1302_get"></block>
+<!--时钟设置年月日-->
+<block type="mdbot_d1302_nyr">
+  <value name="year">
+    <shadow type="math_number">
+      <field name="NUM">2000</field>
+    </shadow>
+  </value>
+  <value name="month">
+    <shadow type="math_number">
+      <field name="NUM">1</field>
+    </shadow>
+  </value>
+  <value name="day">
+    <shadow type="math_number">
+      <field name="NUM">1</field>
+    </shadow>
+  </value>
+</block>
+<!--时钟设置分秒时-->
+<block type="mdbot_d1302_fms">
+  <value name="hour">
+    <shadow type="math_number">
+      <field name="NUM">8</field>
+    </shadow>
+  </value>
+  <value name="minute">
+    <shadow type="math_number">
+      <field name="NUM">0</field>
+    </shadow>
+  </value>
+  <value name="second">
+    <shadow type="math_number">
+      <field name="NUM">0</field>
+    </shadow>
+  </value>
+</block>
+
+</category>
+
+<category name="传感器模块" colour="100">
+
+<!-- 陀螺仪 -->
+<block type="mdbot_tuoluo"></block>
+
+<!--超声波  -->
+<block type="mdbot_chaoshengbo"></block>
+<!--电位器  -->
+<block type="mdbot_dianweiqi"></block>
+<!--摇杆  -->
+<block type="mdbot_yaogan"></block>
+<!--红外传感器  -->
+<block type="mdbot_hongwai"></block>
+<!--声音传感器  -->
+<block type="mdbot_shengyin"></block>
+<!--按钮1-->
+<block type="mdbot_anniu1"></block>
+<!--按钮2-->
+<block type="mdbot_anniu2"></block>
+<!--光敏电阻-->
+<block type="mdbot_guangmin"></block>
+<!--土壤湿度传感器-->
+<block type="mdbot_turang"></block>
+<!--温度传感器-->
+<block type="mdbot_wendu"></block>
+<!--激光发射-->
+<block type="mdbot_jiguangf">
+<value name="STAT">
+      <shadow type="inout_highlow"></shadow>
+    </value>
+</block>
+<!--激光接收-->
+<block type="mdbot_jiguangj"></block>
+</category>
+
+<category name="显示模块" colour="100">
+
+<!--lcd1602显示-->
+<block type="mdbot_lcd1602_xianshi">
+	<value name="lcd_row">
+		<shadow type="math_number">
+				<field name="NUM">1</field>
+		</shadow>
+	</value>
+	<value name="lcd_column">
+		<shadow type="math_number">
+				<field name="NUM">1</field>
+		</shadow>
+	</value>
+	<value name="lcd_TEXT">
+		<shadow type="text">
+				<field name="TEXT">mdbot</field>
+		</shadow>
+	</value>
+</block>
+<!--lcd1602图案显示-->
+	<block type="mdbot_lcd_print2">
+  <value name="row">
+   <shadow type="math_number">
+    <field name="NUM">1</field>
+  </shadow>
+</value>
+<value name="column">
+ <shadow type="math_number">
+  <field name="NUM">1</field>
+</shadow>
+</value>
+<value name="bianhao">
+ <shadow type="math_number">
+  <field name="NUM">0</field>
+</shadow>
+</value>
+</block>
+	
+<!--lcd1602画图-->
+<block type="mdbot_Matrix_LedArray"></block>
+
+<!--lcd162清屏-->
+<block type="mdbot_lcd1602_qingping"></block>
+<!--8*8点阵屏幕显示-->
+<block type="mdbot_dianzhen_xianshi1">
+<value name="XVALUE">
+      <shadow type="math_number">
+        <field name="NUM">1</field>
+      </shadow>
+    </value>
+    <value name="YVALUE">
+      <shadow type="math_number">
+        <field name="NUM">1</field>
+      </shadow>
+    </value>
+    <value name="STAT">
+      <shadow type="inout_highlow"></shadow>
+    </value>
+</block>
+
+<!--8*8点阵屏幕旋转-->
+<block type="mdbot_dianzhen_xuanzhuan"></block>
+
+<!--8*8点阵屏幕滚动-->
+ <block type="mdbot_dianzhen_gundong">
+    <value name="TEXT">
+      <shadow type="text">
+        <field name="TEXT">mdbot</field>
+      </shadow>
+    </value>
+    <value name="Speed">
+      <shadow type="math_number">
+        <field name="NUM">300</field>
+      </shadow>
+    </value>
+  </block>
+<!--8*8点阵屏幕图案-->
+  <block type="mdbot_dianzhen_tuan">
+    <value name="NO">
+      <shadow type="math_number">
+        <field name="NUM">0</field>
+      </shadow>
+    </value>
+    <value name="LEDArray">
+      <block type="mdbot_dianzhen_shuzu"></block>
+    </value>
+  </block>
+ <!--8*8点阵屏幕图案设置-->
+<block type="mdbot_dianzhen_img"></block>
+
+ <!--8*8点阵屏幕亮灭控制-->
+ <block type="mdbot_display_Matrix_fillScreen"></block>
+<!--8*8点阵屏幕亮度设置-->
+ <block type="mdbot_dianzhen_liangdu">
+   <value name="Brightness">
+    <shadow type="math_number">
+      <field name="NUM">5</field>
+    </shadow>
+  </value>
+</block>
+
+
+
+</category>
+
+<category name="通讯模块" colour="100">
+
+<!-- nrf2401发送 -->
+	<block type="nrf24l01_f">
+	<value name="ftext">
+			<shadow type="text">
+				<field name="TEXT">mdbot</field>
+			</shadow>
+		</value>
+	</block>
+	
+	<!-- NRF2401接收 -->
+	<block type="nrf24l01_j"></block>
+
+<!--红外接收-->
+<block type="mdbot_ir_recv">
+    <field name="VAR">ir_item</field>
+    
+    <statement name="DO">
+      <block type="serial_print_num">
+        <field name="serial_select">Serial</field>
+        <field name="STAT">HEX</field>
+        <value name="CONTENT">
+          <block type="variables_get">
+            <field name="VAR">ir_item</field>
+          </block>
+        </value>
+      </block>
+    </statement>
+  </block>
+<!--红外发送-->
+<block type="ir_send_nec">
+    <value name="data">
+      <shadow type="math_number">
+        <field name="NUM">0x89ABCDEF</field>
+      </shadow>
+    </value>
+    <value name="bits">
+      <shadow type="math_number">
+        <field name="NUM">32</field>
+      </shadow>
+    </value>
+  </block>
+
+
+</category>
+<category name="手柄模块" colour="100">
+<!--手柄摇杆-->
+<block type="mdbot_yaogan_anjian">
+
+</block>
+<!--手柄摇杆-->
+<block type="mdbot_shoubing_yaogan">
+
+</block>
+</category>
+</category>
+
+<!-- 结束位置 -->

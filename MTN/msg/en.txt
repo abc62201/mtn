@@ -1,0 +1,43 @@
+[NavList]
+game_index=Back to Game
+Basic_set=Basic Settings
+classify_set=Category Settings
+game_set=Game Settings
+ui_set=Theme Manager
+joystick_set=Controller & Keyboard Settings
+mtn_reader_set=Personal Classics
+mtn_luntan=MTN Forum
+mtn_help=Help
+mtn_web=Bookmarked Pages
+MsgBox3=No boot file found
+MsgBox4=Boot file or ROM does not exist
+MsgBox5=This list does not exist
+MsgBox6=Are you sure you want to delete this?
+MsgBox7=Rename
+
+[submenu_list]
+mtn_start_set=Boot Settings
+mtn_emu_set=Emulator Settings
+mtn_emu_args=Boot Arguments
+mtn_emu_dw=Download Emulator
+mtn_emu_up=Upload Emulator
+mtn_user_set=User Login
+mtn_dw_set=Download List
+mtn_repeat_game=Check Duplicate Files
+mtn_addclassify_set=Category Settings
+mtn_gamepath_set=Path Settings
+mtn_gamefile_set=Scan Settings
+mtn_ui_make=Create Theme
+mtn_set_ai=AI Settings
+
+[csv_column]
+column1=English Name
+column2=Chinese Name
+column3=Tags
+column4=Version
+column5=Players
+column6=Release Date
+column7=Developer
+column8=Publisher
+column9=Language
+column10=Rating

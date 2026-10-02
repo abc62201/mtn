@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fullscreen Video Background</title>
+    <style>
+        /* 全屏样式 */
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        /* 视频样式 */
+        #fullscreenVideo {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* 视频尺寸与容器尺寸一致 */
+            z-index: -1; /* 确保视频位于所有内容的后面 */
+        }
+
+        /* 确保其他内容显示在视频上方 */
+        #content {
+            position: relative;
+            z-index: 1;
+        }
+    </style>
+    <script src="set_js/mtnc.js"></script>
+</head>
+<body>
+    <!-- 视频元素 -->
+    <div id="content">
+        <video id="fullscreenVideo" muted autoplay>
+        </video>
+    </div>
+
+    <script>
+        let videoEnded = false;
+        // 检测窗口是否获取了焦点
+        async function get_window_Activat() {
+            await CefSharp.BindObjectAsync('indexViewBinding');
+            const result = await window.indexViewBinding.get_window_Activat();
+            return result;
+        }
+
+        // 初始化视频
+        async function mtn_init() {
+            await CefSharp.BindObjectAsync('indexViewBinding');
+            await window.indexViewBinding.recovery_window();
+            try {
+                var videoPath = await gei_mtn_video(); // 调用 gei_mtn_video 函数获取视频路径
+                setVideoSource(videoPath);
+            } catch (error) {
+                await CefSharp.BindObjectAsync('indexViewBinding');
+                const result = await window.indexViewBinding.video_onended();
+            }
+        }
+
+        // 设置视频源
+        async function setVideoSource(videoPath) {
+            videoPath = videoPath.replace(/\\/g, "/");
+            // 获取视频元素
+            var video = document.getElementById('fullscreenVideo');
+            video.src = videoPath;
+            video.controls = false;
+            var window_act = await get_window_Activat();
+            if (window_act == true) {
+                await new Promise(resolve => setTimeout(resolve, 100));
+                video.muted = false;
+            }
+
+            // 添加事件监听器，监听 'stalled' 事件
+            video.addEventListener('stalled', async () => {
+                console.log('Video stalled, attempting to handle...');
+                await handleVideoEnd();
+            });
+        }
+
+        // 视频播放结束事件处理
+        document.getElementById("fullscreenVideo").onended = async function() {
+            videoEnded = true;
+            await handleVideoEnd();
+        };
+
+        // 处理视频结束或卡顿的通用函数
+        async function handleVideoEnd() {
+            await CefSharp.BindObjectAsync('indexViewBinding');
+            const result = await window.indexViewBinding.video_onended();
+            // 如果需要，可以在这里添加额外的逻辑
+        }
+        // 初始化页面时调用 mtn_init
+        window.onload = mtn_init;
+    </script>
+</body>
+</html>

@@ -1,0 +1,15 @@
+2024_4_26
+=======================================================
+
+2024年4月26日
+    今天来更新同步下载的功能因为已经有一个依靠xml文件的下载模块了希望能顺利简单完成今天的任务。
+    下载没遇到任何问题。上传好像系添加的内容不行了。
+    找到原因了，原来是因为sql命令错了书写错误了该加逗号的地方加错误了。...这顿找啊。
+    
+::
+
+     错误的语句
+     sql = "UPDATE  mtn_update SET update_time=@update_time file_md5=@file_md5,  WHERE id = @id"
+     正确的语句
+     sql = "UPDATE  mtn_update SET update_time=@update_time,file_md5=@file_md5  WHERE id = @id"
+

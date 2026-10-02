@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>网站标题</title>
+<link rel="stylesheet" type="text/css" href="set_js/mtn_set.css">
+<link rel="stylesheet" type="text/css" href="set_js/mtn_classify_set.css">
+<link rel="stylesheet" type="text/css" href="set_js/gamepath_set_web.css">
+<link rel="stylesheet" type="text/css" href="set_js/ui_set.css">
+<link rel="stylesheet" type="text/css" href="set_js/createDropdownMenu.css">
+<link rel="stylesheet" type="text/css" href="set_js/gamehtml/js/mtn_ai_char_roast.css">
+</head>
+<body>
+    <audio id="backgroundMusic" controls style="display:none;">
+        您的浏览器不支持 audio 元素。
+    </audio>
+    <div class="container">
+        <!-- 顶部导航栏 -->
+        <div class="header">
+            <img src="../theme/logo.png" alt="Logo" class="logo">
+            <ul id="NavList" class="nav">
+                <li><a href="#1">基础设置</a></li>
+                <li><a href="#2">模拟器设置</a></li>
+                <li><a href="#3">分类设置</a></li>
+                <li><a href="#4">主题设置</a></li>
+                <li><a href="#5">默认值设置</a></li>
+                <li><a href="#6">游戏（软件）设置</a></li>
+                <li><a href="#7">辅助软件设置</a></li>
+                <li><a href="#8">收藏设置</a></li>
+                <li><a href="#9">历史记录设置</a></li>
+            </ul>
+        </div>
+ <div class="content-container">
+        <!-- 左侧菜单栏 -->
+        <div class="sidebar">
+            <!-- 这里填充左侧菜单的具体内容 -->
+			            <h3>选项内容</h3>
+            <ul id="NavList_submenu" class="NavList_submenu">
+
+            </ul>
+        </div>
+
+        <!-- 中间主要内容区域 -->
+        <div class="main-content" id="main_content">
+
+        </div>
+ </div>
+        <!-- 底部信息 -->
+        <div class="footer">
+            <!-- 这里填充底部内容，如版权信息等 -->
+			            <p>版权所有 © 2023 您的公司名</p>
+            <p>联系方式：电话：1234567890 邮箱：info@yourcompany.com</p>
+        </div>
+    </div>
+    <div id="myDropdown" class="dropdown-content"></div>
+    <!-- 可能需要添加JavaScript以处理左侧菜单栏的响应式行为 -->
+    <script>
+        var int_music_value = 0;
+        // JavaScript 代码举例，用于响应式切换左侧菜单栏的显示隐藏
+        window.addEventListener('resize', function() {
+            const sidebar = document.querySelector('.sidebar');
+            if (window.innerWidth <= 768) {
+                sidebar.style.width = '0';
+            } else {
+                sidebar.style.width = '250px';
+            }
+        });
+    </script>
+     <script src="set_js/mtnc.js"></script>
+    <script src="set_js/mtn_set.js"></script>
+    <script src="set_js/mtn_set_switch.js"></script>
+    <script src="set_js/mtn_set_content11.js"></script>
+    <script src="set_js/mtn_set_content12.js"></script>
+    <script src="set_js/mtn_set_content13.js"></script>
+    <script src="set_js/mtn_set_content14.js"></script>
+    <script src="set_js/mtn_set_content15.js"></script>
+    <script src="set_js/mtn_set_content16.js"></script>
+    <script src="set_js/mtn_set_content17.js"></script>
+    <script src="set_js/mtn_set_content18.js"></script>
+    <script src="set_js/mtn_set_content19.js"></script>
+    <script src="set_js/mtn_classify_set.js"></script>
+    <script src="set_js/mtn_set_content21.js"></script>
+    <script src="set_js/mtn_set_content21_1.js"></script>
+    <script src="set_js/mtn_set_content21_2.js"></script>
+    <script src="set_js/mtn_set_content22.js"></script>
+    <script src="set_js/mtn_set_content23.js"></script>
+    <script src="set_js/mtn_set_content41.js"></script>
+    <script src="set_js/mtn_set_content71.js"></script>
+    <script src="set_js/gamehtml/js/mtn_ai_char_roast.js"></script>
+</body>
+</html>

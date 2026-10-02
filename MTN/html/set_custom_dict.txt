@@ -1,0 +1,4 @@
+[dict]
+key_name=value
+鼠标激活了窗口=1
+bjcolor=#ff0000

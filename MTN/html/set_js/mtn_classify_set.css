@@ -1,0 +1,149 @@
+/* 基础表格样式 */
+.styled-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    font-family: Arial, sans-serif;
+    min-width: 400px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+/* 表头样式 */
+.styled-table thead tr {
+    background-color: #009879;
+    color: #ffffff;
+    text-align: left;
+}
+
+/* 表头单元格边框 */
+.styled-table th,
+.styled-table td {
+    padding: 12px 15px;
+    border: 1px solid #dddddd;
+}
+
+/* 行间颜色 */
+.classify_table_row0 td {
+    background-color: #ffffff;
+}
+
+/* 鼠标悬停效果 */
+.classify_table_row0 td:hover {
+    background-color: #ddd;
+}
+
+/* 改进阅读性 */
+.styled-table tbody tr td:first-child,
+.styled-table thead th:first-child {
+    border-left: none;
+}
+
+.styled-table tbody tr td:last-child,
+.styled-table thead th:last-child {
+    border-right: none;
+}
+
+.styled-table tbody tr:last-child td,
+.styled-table tfoot tr:last-child td {
+    border-bottom: none;
+}
+
+.classify_add_button {
+    background-color: #4CAF50; /* 绿色背景 */
+    border: none; /* 移除边框 */
+    color: white; /* 文本颜色为白色 */
+    padding: 10px 20px; /* 内边距，控制按钮大小 */
+    text-align: center; /* 文本居中 */
+    text-decoration: none; /* 移除下划线 */
+    display: inline-block; /* 使按钮表现得像内联元素 */
+    font-size: 16px; /* 字体大小 */
+    margin: 4px 2px; /* 外边距，控制按钮间距 */
+    cursor: pointer; /* 改变鼠标指针为手型 */
+    border-radius: 4px; /* 圆角效果 */
+    transition: 0.3s; /* 过渡效果，使更改更加平滑 */
+}
+
+/* 当鼠标悬停在按钮上时改变背景色 */
+.classify_add_button:hover {
+    background-color: #45a049; /* 深绿色，作为悬停时的颜色变化 */
+}
+
+.classify_up_button {
+    background-color: #b1b3b1; /* 绿色背景 */
+    border: none; /* 移除边框 */
+    color: #000000; /* 文本颜色为白色 */
+    text-align: center; /* 文本居中 */
+    text-decoration: none; /* 移除下划线 */
+    display: inline-block; /* 使按钮表现得像内联元素 */
+    font-size: 16px; /* 字体大小 */
+    margin: 4px 2px; /* 外边距，控制按钮间距 */
+    cursor: pointer; /* 改变鼠标指针为手型 */
+    border-radius: 4px; /* 圆角效果 */
+    transition: 0.3s; /* 过渡效果，使更改更加平滑 */
+}
+
+/* 当鼠标悬停在按钮上时改变背景色 */
+.classify_up_button:hover {
+    background-color: #ffffff; /* 深绿色，作为悬停时的颜色变化 */
+}
+.classify_form{
+    height: auto;
+    overflow-y: none;
+}
+.classify_emu_ico {
+  margin: 10px 0 10px 20px;
+    display: none;
+    white-space: nowrap;
+    overflow-x: auto;
+    scrollbar-width: thin; /* Firefox */
+    -ms-overflow-style: -ms-autohiding-scrollbar; /* IE and Edge */
+  }
+  .classify_emu_ico_img{
+    width: 60px;
+    height: 60px;
+  }
+
+  .classify_core_ico {
+    margin: 10px 0 10px 20px;
+    display: none;
+    white-space: nowrap;
+    overflow-x: auto;
+    scrollbar-width: thin; /* Firefox */
+    -ms-overflow-style: -ms-autohiding-scrollbar; /* IE and Edge */
+  }
+  .classify_core_ico_img{
+    width: 60px;
+    height: 60px;
+  }
+  .classify_ui_img {
+    margin: 10px 0 10px 20px;
+    display: none;
+    white-space: nowrap;
+    overflow-x: auto;
+    scrollbar-width: thin; /* Firefox */
+    -ms-overflow-style: -ms-autohiding-scrollbar; /* IE and Edge */
+  }
+  .classify_ui_img_img{
+    width: 200px;
+    height: 200px;
+  }
+.classify_ui_img_s{
+  margin: 10px 0 10px 20px;
+    width: 192px;
+    height: 108px;
+}
+  .classify_down{
+    width: 100%;
+    height: 100px;
+  }
+  .classify_level_name_item{
+    margin: 10px 0 10px 20px;
+    background-color: #45a049;
+    color: #ffffff;
+    width: 100px;
+    text-align: center;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 4px;
+  }

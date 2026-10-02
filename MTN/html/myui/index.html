@@ -1,0 +1,1296 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=0.5, maximum-scale=2.0, user-scalable=yes" />
+
+<style>
+  html, body{
+    margin:0px 0px 0px 0px;
+    padding:0px 0px 0px 0px;
+    width:100%;
+    height:100%;
+
+  }
+  .游戏导航{
+    display:flex;
+    margin:0px 0px 0px 0px;
+    padding:0px 0px 0px 0px;
+    width:100%;
+    height:7%;
+    align-items:center;
+    background-color:#ffcc66;
+  }
+  .导航列表{
+    margin:0px 0px 0px 0px;
+    padding:0px 0px 0px 0px;
+    display:flex;
+    list-style-type:none;
+    width:100%;
+    height:80%;
+    justify-content:center;
+    align-items:center;
+    flex-wrap:nowrap;
+  }
+  .导航li{
+    display:flex;
+    font-size:16pt;
+    text-align:center;
+    justify-content:center;
+    align-items:center;
+    margin:0px 20px 0px 0px;
+    border-style:solid solid solid solid;
+    width:7%;
+    height:100%;
+    cursor:pointer;
+    border-radius:20px 20px 20px 20px;
+    color:#ffffff;
+    background-color:#c0c0c0;
+  }
+  .导航li:hover{
+    background-color:#333333;
+  }
+  .导航图片{
+    width:100%;
+    height:100%;
+  }
+  .导航被选中{
+    background-color:#cc9933;
+  }
+  .链接{
+    text-decoration:none;
+    font-size:16pt;
+    cursor:pointer;
+    color:#ffffff;
+    margin:0px 5px 0px 5px;
+  }
+  .搜素设置{
+    position:absolute;
+    z-index:1;
+    display:flex;
+    justify-content:space-evenly;
+    align-items:center;
+    flex-wrap:nowrap;
+    width:100%;
+    height:3.5%;
+    background-color:#333333;
+  }
+  .搜索层{
+    width:20%;
+    margin:0px 5px 0px 5px;
+  }
+  .搜索框{
+    width:90%;
+    border-radius:5px 5px 5px 5px;
+  }
+  .搜索按钮{
+    position:absolute;
+    width:50px;
+    border-radius:5px 5px 5px 5px;
+    background-color:#c0c0c0;
+  }
+  .游戏列表{
+    position:absolute;
+    z-index:1;
+    top:8.4%;
+    width:100%;
+    height:91.6%;
+    background-color:#ffffff;
+    overflow:auto;
+  }
+  .游戏列表::-webkit-scrollbar{
+    width:0%;
+  }
+  .游戏列表ul{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-wrap:wrap;
+    list-style-type:none;
+    margin:0px 0px 0px 0px;
+    padding:0px 0px 0px 0px;
+    width:100%;
+    opacity:1;
+    background-size:100% 100%;
+    background-image:url("file/bkg1.png");
+    background-color:#ffcccc;
+  }
+  .游戏列表li{
+    border-style:solid solid solid solid;
+    border-radius:15px 15px 15px 15px;
+    border-width:5px 5px 5px 5px;
+    border-color:#000000 #000000 #000000 #000000;
+    box-shadow:10px 10px 5px #888888;
+    cursor:pointer;
+    width:20%;
+    height:10%;
+    background-color:#c0c0c0;
+    margin:25px 40px 25px 40px;
+    overflow:hidden;
+  }
+  .游戏列表li:hover{
+    border-color:#ffffff #ffffff #ffffff #ffffff;
+    opacity:0.8;
+  }
+  .激活选择{
+    border-color:#ffffff #ffffff #ffffff #ffffff;
+    opacity:0.8;
+    transform:
+      scale(1.1,1.1)
+    ;
+  }
+  .游戏名图层{
+    font-size:16pt;
+    width:100%;
+    background-color:#ff9900;
+    white-space: nowrap;
+    overflow:hidden;
+  }
+  .游戏副标题{
+    display:flex;
+    width:100%;
+    height:25px;
+    background-color:#ff9900;
+    white-space: nowrap;
+    overflow:hidden;
+    flex-direction:row;
+    justify-content:flex-end;
+    align-items:stretch;
+    flex-wrap:nowrap;
+  }
+  .游戏图片图层{
+    width:100%;
+    height:200px;
+  }
+  .游戏旗帜{
+    width:30px;
+    height:25px;
+  }
+  .淡出{
+    transition:
+      opacity 2s linear;
+    opacity:0;
+  }
+  .游戏资料{
+    display:none;
+    position:absolute;
+    z-index:0;
+    top:8.4%;
+    width:100%;
+    height:91.6%;
+    background-color:#000000;
+    justify-content:flex-start;
+    overflow:hidden;
+  }
+  .视频图层{
+    width:80%;
+    height:100%;
+    overflow:hidden;
+    margin:0px 0px 0px 0px;
+    padding:0px 0px 0px 0px;
+  }
+  .视频{
+    width:100%;
+    height:100%;
+    object-fit: fill;
+  }
+  .图文资料{
+    width:20%;
+    height:100%;
+    overflow:hidden;
+    margin:0px 0px 0px 0px;
+    padding:0px 0px 0px 0px;
+    text-align:center;
+  }
+  .游戏名{
+    height:4.5%;
+    color:#ffffff;
+    white-space:none;
+    white-space: nowrap;
+    overflow:hidden;
+    margin:0px 0px 0px 0px;
+    padding:0px 0px 0px 0px;
+  }
+  .图片曾{
+    width:100%;
+    height:20%;
+    margin:0px 0px 0px 0px;
+    padding:0px 0px 0px 0px;
+  }
+  .游戏文本{
+    width:100%;
+    margin:0px 0px 0px 0px;
+    padding:0px 0px 0px 0px;
+    direction:ltr;
+    color:#ffffff;
+    font-size:12pt;
+    text-align:left;
+    white-space: nowrap;
+    overflow:hidden;
+  }
+  .文本{
+    margin:0px 0px 0px 0px;
+    padding:0px 0px 0px 0px;
+  }
+  .简介{
+    width:100%;
+    margin:0px 0px 0px 0px;
+    padding:0px 0px 0px 0px;
+    direction:ltr;
+    color:#ffffff;
+    font-size:12pt;
+    text-align:left;
+    overflow:auto;
+  }
+  .右键菜单{
+    position:absolute;
+    background-image:url("file/yj.png");
+    z-index:999;
+    width:250px;
+    background-color:#ffffff;
+    display:none;
+    border-radius:7px 7px 7px 7px;
+    opacity:1;
+  }
+  .右键菜单ul{
+    width:200px;
+    list-style-type:none;
+    text-align:left;
+    margin:0px 0px 0px 50px;
+    padding:0px 0px 1px 0px;
+  }
+  .右键菜单li{
+    background-image:url("file/ce4e65fa-92fa-46ec-b169-820e81fdfe6b-removebg-preview.png");
+    direction:ltr;
+    text-align:center;
+    height:30px;
+    font-size:16pt;
+    color:#000000;
+    border-radius:5px 5px 5px 5px;
+    cursor:pointer;
+  }
+  .右键菜单li:hover{
+    background-color:#660000;
+    color:#ffffff;
+  }
+  .超链接{
+    color:#000000;
+    text-decoration:none;
+  }
+  .超链接:hover{
+    background-color:#660000;
+    color:#ffffff;
+  }
+</style>
+
+<link rel="stylesheet" href="file/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" href="file/css/roast_toggle_btn.css">
+<script src="file/bootstrap/js/bootstrap.min.js"></script>
+<script src="file/js/mtn_server.js"></script>
+<script src="file/js/divdrag.js"></script>
+<script src="file/js/interact.min.js"></script>
+<script src="file/js/DigitalClock.js"></script>
+
+</head>
+
+<body>
+
+    <div id="ui界面" class="ui界面" >
+      <div id="游戏导航" class="游戏导航" >
+        <ul id="导航列表" class="导航列表" >
+        </ul>
+      </div>
+      <div id="搜素设置" class="搜素设置" >
+        <a id="设置" class="链接"   onclick="设置MTN()"
+        >
+          设置
+        </a>
+        <a id="下载游戏" class="链接"   onclick="打开下载页面()"
+        >
+          下载游戏
+        </a>
+        <a id="使用说明" class="链接"   onclick="打开帮助页面()"
+        >
+          使用说明
+        </a>
+        <a id="论坛" class="链接"   onclick="打开论坛()"
+        >
+          论坛
+        </a>
+        <a id="全屏" class="链接"   onclick="全屏显示()"
+        >
+          全屏模式
+        </a>
+        <a id="窗口" class="链接"   onclick="窗口显示()"
+        >
+          窗口模式
+        </a>
+        <div id="搜索层" class="搜索层" >
+          <input id="搜索框" class="搜索框" name="搜索框" type="text" ></input>
+          <button type="button" class="搜索按钮"   onclick="搜索游戏()"
+          >搜索</button>
+        </div>
+      </div>
+      <div id="游戏列表" class="游戏列表" >
+        <ul id="游戏列表ul" class="游戏列表ul" >
+        </ul>
+      </div>
+      <div id="游戏资料" class="游戏资料" >
+        <div id="视频图层" class="视频图层" >
+          <video id="视频" class="视频"   muted autoplay loop ></video>
+        </div>
+        <div id="图文资料" class="图文资料" >
+          <h2 id="游戏名" class="游戏名">
+          </h2>
+          <div id="图片曾" class="图片曾" >
+            <img id="图片" class="导航图片" src=""></img>
+          </div>
+          <div id="游戏文本" class="游戏文本" >
+            <p id="游戏类型" class="文本">
+            </p>
+            <p id="游戏版本" class="文本">
+            </p>
+            <p id="游戏评分" class="文本">
+            </p>
+            <p id="游戏简介" class="文本">
+              游戏简介:
+            </p>
+          </div>
+          <div id="简介" class="简介" >
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="右键菜单" class="右键菜单" >
+      <ul id="右键菜单ul" class="右键菜单ul" >
+        <li id="右键菜单1" class="右键菜单li"   onclick="运行游戏()"
+        >
+          运行游戏
+        </li>
+        <li id="右键菜单2" class="右键菜单li"   onclick="设置游戏()"
+        >
+          设置游戏
+        </li>
+        <li id="右键菜单3" class="右键菜单li"   onclick="隐藏游戏()"
+        >
+          隐藏游戏
+        </li>
+        <li id="右键菜单4" class="右键菜单li"   onclick="设置MTN()"
+        >
+          设置MTN软件
+        </li>
+        <li id="右键菜单5" class="右键菜单li" >
+          <a id="下载游戏" class="超链接" >
+            下载游戏
+          </a>
+        </li>
+        <li id="右键菜单6" class="右键菜单li" >
+          <a id="主题制作" class="超链接" >
+            主题制作
+          </a>
+        </li>
+        <li id="右键菜单7" class="右键菜单li"   onclick="打开路径()"
+        >
+          打开rom目录
+        </li>
+        <li id="右键菜单8" class="右键菜单li"   onclick="刷新内容()"
+        >
+          刷新
+        </li>
+        <li id="右键菜单9" class="右键菜单li"   onclick="全屏显示()"
+        >
+          全屏显示
+        </li>
+        <li id="右键菜单10" class="右键菜单li"   onclick="窗口显示()"
+        >
+          窗口显示
+        </li>
+        <li id="右键菜单11" class="右键菜单li"   onclick="打开帮助页面()"
+        >
+          使用说明
+        </li>
+      </ul>
+    </div>
+
+
+<script>
+  var 当前分类总游戏数=0;
+  var rom列表;
+  var 总游戏列表=[];
+  var 每页显示数量=24;
+  var 第几页=1;
+  var 数据搜索="";
+  var 激活的分类=0;
+  var 选择的游戏id=-1;
+  var 被选中的游戏列表项=-1;
+  var 键盘摇杆值表={};
+  var 移动一格=0;
+  var 换行=false;
+  var 避免重复加载监听事件=true;
+  var 是否播放视频=false;
+  var 游戏已启动=false;
+  var 视频定时器=null;
+  var 文本定时器=null;
+  var 是否禁用键盘=false;
+  async function mtn_init(){
+    var 键盘摇杆=await get_joytokey();
+    键盘摇杆值表 = JSON.parse(键盘摇杆);
+    joy_start(1);
+    是否禁用键盘 = false;
+    var 列表=await await get_classify_table();
+    var 导航列表数据=JSON.parse(列表);
+    创建导航列表(导航列表数据);
+    当前分类总游戏数 = await get_classify_game_no(webno);
+    rom列表 = await 获取游戏列表(数据搜索, 每页显示数量, 第几页);
+    创建游戏列表(rom列表);
+    if (避免重复加载监听事件) {
+      避免重复加载监听事件 = false;
+      鼠标滚轮翻页();
+      document.addEventListener('mousemove', (event) => {
+          取消淡入();
+
+      });
+
+      视频定时器 = setInterval(function(){启动淡入定时器()}, 1000);
+      if (await get_custom_dict("鼠标激活了窗口") != "1") {
+        await set_custom_dict("鼠标激活了窗口","1");
+        await new Promise(resolve => setTimeout(resolve, 200));
+        await mouse_click_ds(20,200);
+
+      }
+      document.addEventListener("click",async function(event){
+        关闭右键菜单();
+
+      });
+      var 搜索框=document.getElementById("搜索框");
+      搜索框.addEventListener("focus",async function(event){
+        是否禁用键盘 = true;
+
+      });
+      搜索框.addEventListener("blur",async function(event){
+        是否禁用键盘 = false;
+
+      });
+
+    }
+    document.getElementById("下载游戏").href=ispath("html/set_js/gamehtml/game_index.html");
+    document.getElementById("主题制作").href=ispath("html/blockly/apps/mixly/index.html");
+    requestAnimationFrame(() => {
+         requestAnimationFrame(() => {
+
+              simulateKeyPress("`");
+
+
+        });
+
+    });
+
+  }
+</script>
+
+  <script>
+async function 创建导航列表(导航列表数据) {
+  var 表长度=导航列表数据.length;
+  var 当前分类是否存在=false;
+  var 分类ul=document.getElementById("导航列表");
+  for (var i = (0); i <= (表长度 - 1); i = i + (1)) {
+    var 分类id=导航列表数据[i].id;
+    if (分类id == webno) {
+      当前分类是否存在 = true;
+
+    }
+  }
+  if (!当前分类是否存在) {
+    webno=导航列表数据[0].id;
+
+  }
+  for (var i = (0); i <= (表长度 - 1); i = i + (1)) {
+    var 分类id=导航列表数据[i].id;
+    var 分类名称=导航列表数据[i].daohang_name;
+    var 分类图片路径=导航列表数据[i].daohang_img;
+    var 分类li=document.createElement("li");
+    var 分类图片=document.createElement("img");
+    分类图片.className="导航图片";
+    分类li.className="导航li";
+    分类li.value=分类id;
+    分类li.value1=i;
+    分类图片路径 = ispath(分类图片路径);
+    if (await check_file_exist(分类图片路径)) {
+      分类图片.src=分类图片路径;
+      分类li.appendChild(分类图片);
+
+    } else {
+      分类li.innerText=分类名称;
+
+    }
+    if (分类id == webno) {
+      分类li.classList.add("导航被选中");
+      激活的分类 = i;
+
+    }
+    分类li.addEventListener("click",async function(event){
+      await change_theme(this.getAttribute("value"));
+
+    });
+    分类ul.appendChild(分类li);
+  }
+}
+</script>
+
+  <script>
+async function 创建游戏列表(游戏列表) {
+  var 表长度=游戏列表.length;
+  var 游戏ul=document.getElementById("游戏列表ul");
+  var 全部列表样式=document.querySelectorAll(".游戏列表li");
+  var 全部列表样式长度=全部列表样式.length;
+  总游戏列表.push(...游戏列表);
+  for (var i = (0); i <= (表长度 - 1); i = i + (1)) {
+    var 游戏id=游戏列表[i].id;
+    var 游戏名称=游戏列表[i].game_name;
+    var 游戏版本文本=游戏列表[i].game_ver;
+    var 缩略图路径=游戏列表[i].game_thumb_path;
+    var 游戏旗帜路径=游戏列表[i].national_flag;
+    var 游戏li=document.createElement("li");
+    var 游戏图片=document.createElement("img");
+    var 游戏名图层=document.createElement("div");
+    var 游戏图片图层=document.createElement("div");
+    var 游戏副标题=document.createElement("div");
+    var 游戏版本=document.createElement("p");
+    var 游戏旗帜=document.createElement("img");
+    游戏li.className="游戏列表li";
+    游戏图片.className="导航图片";
+    游戏名图层.className="游戏名图层";
+    游戏图片图层.className="游戏图片图层";
+    游戏副标题.className="游戏副标题";
+    游戏旗帜.className="游戏旗帜";
+    游戏li.value=游戏id;
+    游戏li.setAttribute("value1",String((i + 全部列表样式长度)));
+    缩略图路径 = ispath(缩略图路径);
+    游戏旗帜路径 = ispath(游戏旗帜路径);
+    游戏名图层.innerText=游戏名称;
+    游戏版本.innerText=游戏版本文本;
+    if (await check_file_exist(缩略图路径)) {
+      游戏图片.src=缩略图路径;
+
+    } else {
+      游戏图片.src="";
+
+    }
+    if (await check_file_exist(游戏旗帜路径)) {
+      游戏旗帜.src=游戏旗帜路径;
+
+    } else {
+      游戏旗帜.src=ispath("theme/national_flag/no_pic.png");
+
+    }
+    游戏li.addEventListener("click",async function(event){
+      被选中的游戏列表项 = Number(this.getAttribute("value1"));
+      选择的游戏id = Number(this.getAttribute("value"));
+      选择游戏();
+
+    });
+    游戏li.addEventListener("dblclick",async function(event){
+      启动游戏(this.getAttribute("value"));
+
+    });
+    游戏li.addEventListener("contextmenu",async function(event){
+      被选中的游戏列表项 = Number(this.getAttribute("value1"));
+      选择的游戏id = Number(this.getAttribute("value"));
+      鼠标右键列表();
+      选择游戏();
+
+    });
+    游戏图片图层.appendChild(游戏图片);
+    游戏li.appendChild(游戏图片图层);
+    游戏li.appendChild(游戏名图层);
+    游戏副标题.appendChild(游戏版本);
+    游戏副标题.appendChild(游戏旗帜);
+    游戏li.appendChild(游戏副标题);
+    游戏ul.appendChild(游戏li);
+  }
+}
+</script>
+
+  <script>
+async function 显示游戏评分() {
+  var 游戏评分=document.getElementById("游戏评分");
+  if (被选中的游戏列表项 >= 0) {
+    var 文本=总游戏列表[被选中的游戏列表项].game_score;
+    文本 = "游戏评分：" + 文本;
+    游戏评分.textContent=文本;
+
+  }
+}
+</script>
+
+  <script>
+async function 显示游戏版本() {
+  var 游戏版本=document.getElementById("游戏版本");
+  if (被选中的游戏列表项 >= 0) {
+    var 文本=总游戏列表[被选中的游戏列表项].game_ver;
+    文本 = "游戏版本：" + 文本;
+    游戏版本.textContent=文本;
+
+  }
+}
+</script>
+
+  <script>
+async function 刷新内容() {
+  总游戏列表 = [];
+  rom列表 = [];
+  当前分类总游戏数 = 0;
+  选择的游戏id = -1;
+  被选中的游戏列表项 = -1;
+  每页显示数量 = 24;
+  第几页 = 1;
+  避免重复加载监听事件 = false;
+  document.getElementById("导航列表").innerHTML="";
+  document.getElementById("游戏列表ul").innerHTML="";
+  await mtn_init();
+   sync_data();
+  document.getElementById("游戏列表").scrollTop=0;
+  return "";
+
+}
+</script>
+
+  <script>
+async function 显示游戏类型() {
+  var 游戏类型=document.getElementById("游戏类型");
+  if (被选中的游戏列表项 >= 0) {
+    var 文本=总游戏列表[被选中的游戏列表项].game_type;
+    文本 = "游戏类型：" + 文本;
+    游戏类型.textContent=文本;
+
+  }
+}
+</script>
+
+  <script>
+async function 开始淡入() {
+  if (是否播放视频) {
+    return "";
+
+
+  }
+  关闭右键菜单();
+  var 游戏列表=document.getElementById("游戏列表");
+  var 游戏资料=document.getElementById("游戏资料");
+  void 游戏列表.offsetWidth;
+  游戏列表.classList.add("淡出");
+  游戏资料.style.display="flex";
+  是否播放视频 = true;
+  播放视频();
+  显示游戏名();
+  显示图片();
+  显示游戏类型();
+  显示游戏版本();
+  显示游戏评分();
+  显示游戏简介();
+}
+</script>
+
+  <script>
+function get_sql_command(sql_value,sql_command,sql_value2){
+ var name_sql="";
+ if(sql_command=="LIKE"){
+ name_sql=sql_value +" "+ sql_command+ " '%"+sql_value2+"%'";
+  }else{
+if (typeof sql_value2 === "string") { name_sql=sql_value+" "+sql_command+" '"+sql_value2+"'";
+}else{
+ name_sql=sql_value+" "+sql_command+" "+sql_value2;
+}
+  }
+ return name_sql;
+}
+</script>
+
+  <script>
+async function 获取游戏列表(搜索命令, 数量, 开始行) {
+  var 搜索字符串="";
+  if (搜索命令 == "") {
+    搜索字符串 = get_sql_command("classify_id","=",webno);
+
+  } else {
+    搜索字符串 = get_sql_command("classify_id","=",webno) + " AND (" + get_sql_command("game_name","LIKE",搜索命令) + " OR  " + get_sql_command("pinyin","LIKE",搜索命令) + " OR  " + get_sql_command("pinyins","LIKE",搜索命令) + ")";
+
+  }
+  var 游戏=await await get_game_table(搜索字符串,数量,开始行,"ORDER BY pinyin ASC");
+  var 返回值=JSON.parse(游戏);
+  return 返回值;
+}
+</script>
+
+  <script>
+async function 搜索游戏() {
+  数据搜索 = document.getElementById("搜索框").value;
+  刷新内容();
+  return "";
+
+}
+</script>
+
+  <script>
+async function 设置MTN() {
+  await change_theme(0);
+  return "";
+
+}
+</script>
+
+  <script>
+async function 打开下载页面() {
+  document.getElementById("下载游戏").href=ispath("html/set_js/gamehtml/game_index.html");
+  return "";
+
+}
+</script>
+
+  <script>
+async function 打开帮助页面() {
+  await open_help_ui("/html/help/build/html/index.html");
+  return "";
+
+}
+</script>
+
+  <script>
+async function 打开论坛() {
+  await open_help_ui("http://ipv6.mtnhome.top:8890/pic/upload/forum.php");
+  return "";
+
+}
+</script>
+
+  <script>
+async function 全屏显示() {
+  await mtn_window_fullscreen(1);
+  return "";
+
+}
+</script>
+
+  <script>
+async function 窗口显示() {
+  await mtn_window_fullscreen(0);
+  return "";
+
+}
+</script>
+
+  <script>
+async function mtn_Started(){
+  游戏已启动 = false;
+  var ui界面=document.getElementById("ui界面");
+  ui界面.style.display="block";
+  var 启动游戏过度=document.getElementById("启动游戏过度");
+  启动游戏过度.style.display="none";
+  await new Promise(resolve => setTimeout(resolve, 100));
+}
+</script>
+
+  <script>
+async function 显示图片() {
+  var 图片元素=document.getElementById("图片");
+  if (被选中的游戏列表项 >= 0) {
+    var 缩略图路径=总游戏列表[被选中的游戏列表项].game_thumb_path;
+    缩略图路径 = ispath(缩略图路径);
+    if (await check_file_exist(缩略图路径)) {
+      图片元素.src=缩略图路径;
+
+    } else {
+      图片元素.src="file/logo.png";
+
+    }
+
+  }
+}
+</script>
+
+  <script>
+async function 启动游戏(x) {
+  await run_game(x);
+  await new Promise(resolve => setTimeout(resolve, 1000));
+  游戏已启动 = true;
+}
+</script>
+
+  <script>
+async function 显示游戏名() {
+  var 游戏名元素=document.getElementById("游戏名");
+  if (被选中的游戏列表项 >= 0) {
+    var 游戏名文件=总游戏列表[被选中的游戏列表项].game_name;
+    游戏名元素.textContent=游戏名文件;
+
+  }
+}
+</script>
+
+  <script>
+async function 播放视频() {
+  var 视频=document.getElementById("视频");
+  if (被选中的游戏列表项 >= 0) {
+    var 视频地址=ispath(总游戏列表[被选中的游戏列表项].game_video_path);
+    视频.src=视频地址;
+    if (await get_window_Activat()) {
+      视频.muted=false;
+
+    } else {
+      视频.muted=true;
+
+    }
+
+  }
+}
+</script>
+
+  <script>
+async function 显示游戏简介() {
+  var 简介=document.getElementById("简介");
+  if (被选中的游戏列表项 >= 0) {
+    var 文本=总游戏列表[被选中的游戏列表项].game_intro_path;
+    文本 = await read_text(文本);
+    简介.textContent=文本;
+
+  }
+}
+</script>
+
+  <script>
+async function 关闭声音() {
+  var 视频=document.getElementById("视频");
+  视频.muted=true;
+}
+</script>
+
+  <script>
+async function 启动淡入定时器() {
+  if (文本定时器) {
+    return "";
+
+
+  }
+  if (游戏已启动) {
+    return "";
+
+
+  }
+  文本定时器 = setInterval(function(){开始淡入()}, 4000);
+}
+</script>
+
+  <script>
+async function 取消淡入() {
+  var 游戏列表=document.getElementById("游戏列表");
+  var 游戏资料=document.getElementById("游戏资料");
+  if (文本定时器) {
+    clearInterval(文本定时器);
+    文本定时器 = null;
+
+  }
+  游戏列表.classList.remove("淡出");
+  游戏列表.style.display="block";
+  游戏资料.style.display="none";
+  是否播放视频 = false;
+  关闭声音();
+}
+</script>
+
+  <script>
+async function 滚动条向上移动(每个项目的高度) {
+  var 当前高度=document.getElementById("游戏列表").scrollTop;
+  var 每个项目的高度=(每个项目的高度 + 50);
+  if (当前高度 > 0 && 当前高度 - 每个项目的高度 >= 0) {
+    document.getElementById("游戏列表").scrollTop = document.getElementById("游戏列表").scrollTop - 每个项目的高度;
+
+  } else {
+    document.getElementById("游戏列表").scrollTop=0;
+
+  }
+}
+</script>
+
+  <script>
+async function 滚动条向下移动(每个项目的高度) {
+  var 当前高度=document.getElementById("游戏列表").scrollTop;
+  var 游戏列表高度=document.getElementById("游戏列表").clientHeight;
+  var 游戏列表总高度=document.getElementById("游戏列表").scrollHeight;
+  var 每个项目的高度=(每个项目的高度 + 50);
+  var 项目位置=(每个项目的高度 * 被选中的游戏列表项);
+  if (当前高度 + 游戏列表高度 < 游戏列表总高度 && 项目位置 > 游戏列表高度 - 每个项目的高度) {
+    document.getElementById("游戏列表").scrollTop = document.getElementById("游戏列表").scrollTop + 每个项目的高度;
+
+  }
+}
+</script>
+
+  <script>
+async function 鼠标滚轮翻页() {
+  var 游戏列表div=document.getElementById("游戏列表");
+  游戏列表div.addEventListener("mousewheel",async function(event){
+    var 滚动条=游戏列表div.scrollTop;
+    var 高度=游戏列表div.clientHeight;
+    var 滚动条高度=游戏列表div.scrollHeight;
+    var 鼠标滚轮值=event.deltaY;
+    if (滚动条 + 高度 >= 滚动条高度 - 600 && 鼠标滚轮值 > 0) {
+      if (当前分类总游戏数 > 每页显示数量 * 第几页) {
+        第几页 = 第几页 + 1;
+        rom列表 = await 获取游戏列表(数据搜索, 每页显示数量, 第几页);
+        创建游戏列表(rom列表);
+
+      }
+
+    }
+    取消淡入();
+
+  });
+}
+</script>
+
+  <script>
+async function 运行游戏() {
+  启动游戏(选择的游戏id);
+  return "";
+
+}
+</script>
+
+  <script>
+async function 打开路径() {
+  await open_file_path(总游戏列表[被选中的游戏列表项].game_rom_path);
+  return "";
+
+}
+</script>
+
+  <script>
+async function 设置游戏() {
+  await game_alter_web(选择的游戏id);
+  return "";
+
+}
+</script>
+
+  <script>
+async function 隐藏游戏() {
+  await hide_game(选择的游戏id);
+  return "";
+
+}
+</script>
+
+  <script>
+async function 鼠标右键列表() {
+  var 右键菜单=document.getElementById("右键菜单");
+  右键菜单.style.display="block";
+  右键菜单.style.top=window.event.clientY + "px";
+  右键菜单.style.left=window.event.clientX + "px";
+}
+</script>
+
+  <script>
+async function 关闭右键菜单() {
+  var 右键菜单=document.getElementById("右键菜单");
+  右键菜单.style.display="none";
+}
+</script>
+
+  <script>
+async function 选择游戏() {
+  var 游戏li=document.querySelectorAll(".游戏列表li");
+  for (var i = (0); i <= (游戏li.length - 1); i = i + (1)) {
+    游戏li[i].classList.remove("激活选择");
+  }
+  requestAnimationFrame(() => {
+       requestAnimationFrame(() => {
+
+            游戏li[被选中的游戏列表项].classList.add("激活选择");
+
+
+      });
+
+  });
+}
+</script>
+
+  <script>
+ async function keyvalue1(){
+  if (是否禁用键盘) {
+    取消淡入();
+    return "";
+
+  }
+  var 全部列表样式=document.querySelectorAll(".游戏列表li");
+  var 导航li=document.querySelectorAll(".导航li");
+  var 游戏列表ul=document.getElementById("游戏列表ul");
+  if (全部列表样式.length > 0) {
+    var 一个图片宽度=全部列表样式[0].offsetWidth;
+    一个图片宽度 = 一个图片宽度 + 80;
+    var 游戏列表宽度=document.getElementById("游戏列表ul").offsetWidth;
+    var 一行多少个块=Math.floor(游戏列表宽度 / 一个图片宽度);
+    var 当前有多少行=(全部列表样式.length / 一行多少个块);
+    var 移动到第几行=(Math.floor(被选中的游戏列表项 / 一行多少个块) + 1);
+    取消淡入();
+    if (被选中的游戏列表项 < 0) {
+      被选中的游戏列表项 = 0;
+      被选中的游戏id = Number(总游戏列表[被选中的游戏列表项].id);
+      选择游戏();
+      return "";
+
+    }
+    switch (mtn_key_value) {
+     case 键盘摇杆值表.keyboard_up:
+      if (被选中的游戏列表项 > 一行多少个块 - 1) {
+        被选中的游戏列表项 = 被选中的游戏列表项 - 一行多少个块;
+        被选中的游戏id = Number(总游戏列表[被选中的游戏列表项].id);
+        滚动条向上移动(全部列表样式[0].offsetHeight);
+        选择游戏();
+
+      }
+      break;
+     case 键盘摇杆值表.keyboard_down:
+      if (被选中的游戏列表项 < 全部列表样式.length - 一行多少个块) {
+        被选中的游戏列表项 = 被选中的游戏列表项 + 一行多少个块;
+        被选中的游戏id = Number(总游戏列表[被选中的游戏列表项].id);
+        滚动条向下移动(全部列表样式[0].offsetHeight);
+        选择游戏();
+        if (当前分类总游戏数 > 每页显示数量 * 第几页 && 移动到第几行 > 当前有多少行 - 4) {
+          第几页 = 第几页 + 1;
+          rom列表 = await 获取游戏列表(数据搜索, 每页显示数量, 第几页);
+          创建游戏列表(rom列表);
+
+        }
+
+      }
+      break;
+     case 键盘摇杆值表.keyboard_left:
+      if (被选中的游戏列表项 > 0) {
+        被选中的游戏列表项 = 被选中的游戏列表项 - 1;
+        被选中的游戏id = Number(总游戏列表[被选中的游戏列表项].id);
+        if ((被选中的游戏列表项) % (一行多少个块) == 0) {
+          移动一格 = 被选中的游戏列表项;
+          换行 = true;
+
+        }
+        if (被选中的游戏列表项 == 移动一格 - 1 && 换行) {
+          移动一格 = 0;
+          换行 = false;
+          滚动条向上移动(全部列表样式[0].offsetHeight);
+
+        }
+        选择游戏();
+
+      }
+      break;
+     case 键盘摇杆值表.keyboard_right:
+      if (被选中的游戏列表项 < 全部列表样式.length - 1) {
+        被选中的游戏列表项 = 被选中的游戏列表项 + 1;
+        被选中的游戏id = Number(总游戏列表[被选中的游戏列表项].id);
+        if ((被选中的游戏列表项) % (一行多少个块) == 0) {
+          移动一格 = 被选中的游戏列表项;
+          换行 = true;
+          滚动条向下移动(全部列表样式[0].offsetHeight);
+
+        }
+        选择游戏();
+        if (当前分类总游戏数 > 每页显示数量 * 第几页 && 移动到第几行 > 当前有多少行 - 4) {
+          第几页 = 第几页 + 1;
+          rom列表 = await 获取游戏列表(数据搜索, 每页显示数量, 第几页);
+          创建游戏列表(rom列表);
+
+        }
+
+      }
+      break;
+     case 键盘摇杆值表.keyboard_determine:
+      if (!游戏已启动) {
+        游戏已启动 = true;
+        启动游戏(被选中的游戏id);
+
+      }
+      break;
+     case 键盘摇杆值表.keyboard_button5:
+      if (激活的分类 > 0) {
+        激活的分类 = 激活的分类 - 1;
+        await change_theme(导航li[激活的分类].value);
+
+      }
+      break;
+     case 键盘摇杆值表.keyboard_button6:
+      if (激活的分类 < 导航li.length - 1) {
+        激活的分类 = 激活的分类 + 1;
+        await change_theme(导航li[激活的分类].value);
+
+      }
+      break;
+     case "F12":
+      await change_theme("0");
+      break;
+    }
+    mtn_key_value="kong";
+
+  } else {
+    switch (mtn_key_value) {
+     case 键盘摇杆值表.keyboard_button5:
+      if (激活的分类 > 0) {
+        激活的分类 = 激活的分类 - 1;
+        await change_theme(导航li[激活的分类].value);
+
+      }
+      break;
+     case 键盘摇杆值表.keyboard_button6:
+      if (激活的分类 < 导航li.length - 1) {
+        激活的分类 = 激活的分类 + 1;
+        await change_theme(导航li[激活的分类].value);
+
+      }
+      break;
+     case "F12":
+      await change_theme("0");
+      break;
+    }
+    mtn_key_value="kong";
+
+  }
+}
+</script>
+
+  <script>
+ async function joyvalue1(){
+  var 全部列表样式=document.querySelectorAll(".游戏列表li");
+  var 导航li=document.querySelectorAll(".导航li");
+  var 游戏列表ul=document.getElementById("游戏列表ul");
+  if (全部列表样式.length > 0) {
+    var 一个图片宽度=全部列表样式[0].offsetWidth;
+    一个图片宽度 = 一个图片宽度 + 80;
+    var 游戏列表宽度=document.getElementById("游戏列表ul").offsetWidth;
+    var 一行多少个块=Math.floor(游戏列表宽度 / 一个图片宽度);
+    var 当前有多少行=(全部列表样式.length / 一行多少个块);
+    var 移动到第几行=(Math.floor(被选中的游戏列表项 / 一行多少个块) + 1);
+    取消淡入();
+    if (被选中的游戏列表项 < 0) {
+      被选中的游戏列表项 = 0;
+      被选中的游戏id = Number(总游戏列表[被选中的游戏列表项].id);
+      选择游戏();
+      return "";
+
+    }
+    switch (mtn_joy_value) {
+     case 键盘摇杆值表.rocker_up:
+      if (被选中的游戏列表项 > 一行多少个块 - 1) {
+        被选中的游戏列表项 = 被选中的游戏列表项 - 一行多少个块;
+        被选中的游戏id = Number(总游戏列表[被选中的游戏列表项].id);
+        滚动条向上移动(全部列表样式[0].offsetHeight);
+        选择游戏();
+
+      }
+      break;
+     case 键盘摇杆值表.rocker_down:
+      if (被选中的游戏列表项 < 全部列表样式.length - 一行多少个块) {
+        被选中的游戏列表项 = 被选中的游戏列表项 + 一行多少个块;
+        被选中的游戏id = Number(总游戏列表[被选中的游戏列表项].id);
+        滚动条向下移动(全部列表样式[0].offsetHeight);
+        选择游戏();
+        if (当前分类总游戏数 > 每页显示数量 * 第几页 && 移动到第几行 > 当前有多少行 - 4) {
+          第几页 = 第几页 + 1;
+          rom列表 = await 获取游戏列表(数据搜索, 每页显示数量, 第几页);
+          创建游戏列表(rom列表);
+
+        }
+
+      }
+      break;
+     case 键盘摇杆值表.rocker_left:
+      if (被选中的游戏列表项 > 0) {
+        被选中的游戏列表项 = 被选中的游戏列表项 - 1;
+        被选中的游戏id = Number(总游戏列表[被选中的游戏列表项].id);
+        if ((被选中的游戏列表项) % (一行多少个块) == 0) {
+          移动一格 = 被选中的游戏列表项;
+          换行 = true;
+
+        }
+        if (被选中的游戏列表项 == 移动一格 - 1 && 换行) {
+          移动一格 = 0;
+          换行 = false;
+          滚动条向上移动(全部列表样式[0].offsetHeight);
+
+        }
+        选择游戏();
+
+      }
+      break;
+     case 键盘摇杆值表.rocker_right:
+      if (被选中的游戏列表项 < 全部列表样式.length - 1) {
+        被选中的游戏列表项 = 被选中的游戏列表项 + 1;
+        被选中的游戏id = Number(总游戏列表[被选中的游戏列表项].id);
+        if ((被选中的游戏列表项) % (一行多少个块) == 0) {
+          移动一格 = 被选中的游戏列表项;
+          换行 = true;
+          滚动条向下移动(全部列表样式[0].offsetHeight);
+
+        }
+        选择游戏();
+        if (当前分类总游戏数 > 每页显示数量 * 第几页 && 移动到第几行 > 当前有多少行 - 4) {
+          第几页 = 第几页 + 1;
+          rom列表 = await 获取游戏列表(数据搜索, 每页显示数量, 第几页);
+          创建游戏列表(rom列表);
+
+        }
+
+      }
+      break;
+     case 键盘摇杆值表.rocker_determine:
+      if (!游戏已启动) {
+        游戏已启动 = true;
+        启动游戏(被选中的游戏id);
+
+      }
+      break;
+     case 键盘摇杆值表.rocker_button5:
+      if (激活的分类 > 0) {
+        await set_custom_dict("鼠标激活了窗口","0");
+        激活的分类 = 激活的分类 - 1;
+        await change_theme(导航li[激活的分类].value);
+
+      }
+      break;
+     case 键盘摇杆值表.rocker_button6:
+      if (激活的分类 < 导航li.length - 1) {
+        await set_custom_dict("鼠标激活了窗口","0");
+        激活的分类 = 激活的分类 + 1;
+        await change_theme(导航li[激活的分类].value);
+
+      }
+      break;
+    }
+    mtn_joy_value="kong";
+
+  } else {
+    switch (mtn_joy_value) {
+     case 键盘摇杆值表.rocker_button5:
+      if (激活的分类 > 0) {
+        await set_custom_dict("鼠标激活了窗口","0");
+        激活的分类 = 激活的分类 - 1;
+        await change_theme(导航li[激活的分类].value);
+
+      }
+      break;
+     case 键盘摇杆值表.rocker_button6:
+      if (激活的分类 < 导航li.length - 1) {
+        await set_custom_dict("鼠标激活了窗口","0");
+        激活的分类 = 激活的分类 + 1;
+        await change_theme(导航li[激活的分类].value);
+
+      }
+      break;
+    }
+    mtn_joy_value="kong";
+
+  }
+}
+</script>
+
+</body>
+</html>

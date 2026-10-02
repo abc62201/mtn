@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" />
+	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	<link rel="stylesheet" type="text/css" href="bootstrap/css/gamerom.css">
+	<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
+	<script src="bootstrap/js/bootstrap.min.js"></script>
+	<script src="js/mtn_server.js"></script>
+</head>
+<body>
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-12 bg-primary text-center"><h4>上传文件到服务器</h4></div>
+	</div>
+	<div class="row">
+		<div class="col-md-2">
+			<h5>特别提醒上传主题UI的时候需要填写运行的首个页面的文件名例如index.html，另外为了不会被其他主题覆盖打包时最好
+				带上与自己的主题名一致文件夹一起打包，否则可能会被覆盖。
+			</h5>
+		</div>
+		<div class="col-md-8">
+			<div class="row">
+				<div class="col-md-2 text-center">
+					<h6>选择上传分类<h6>
+				</div>
+				<div class="col-md-2 text-center">
+					<select id="server_select" class="form-select" aria-label="Default select example">
+					</select>
+				</div>
+				<div class="col-md-2 text-center">
+					<h6>上传用户昵称<h6>
+				</div>
+				<div class="col-md-2 text-center">
+					<label id="author" for="author" class="form-label">Email address</label>
+				</div>
+				<div class="col-md-2 text-center">
+					<h6>下载费用<h6>
+				</div>
+				<div class="col-md-2 text-center">
+					<input id="pay_f" class="form-control form-control-lg" type="text" value="0">
+				</div>
+			</div>	
+			<div class="row">
+				<div class="col-md-2 text-center">
+					<h6>上传文件名<h6>
+				</div>
+				<div class="col-md-2 text-center">
+					<input id="file_name" class="form-control form-control-lg" type="text">
+				</div>
+				<div class="col-md-2 text-center">
+					<h6>上传文件<h6>
+				</div>
+				<div class="col-md-6">
+					<div class="input-group mb-3">					
+						<input id="up_file" type="text" class="form-control">
+						<button class="btn btn-outline-secondary" type="button" onclick="get_up_flie()">选择</button>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-2 text-center">
+					<h6>主题ui的文件名<h6>
+				</div>
+				<div class="col-md-2 text-center">
+					<input id="ui_name" class="form-control form-control-lg" type="text">
+				</div>
+				<div class="col-md-2 text-center">
+					<h6>缩略图<h6>
+				</div>
+				<div class="col-md-6">
+					<div class="input-group mb-3">					
+						<input id="up_thumbnail" type="text" class="form-control">
+						<button class="btn btn-outline-secondary" type="button" onclick="get_up_thumbnail()">选择</button>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-2 text-center">
+					<h6>作者留言<h6>
+				</div>
+				<div class="col-md-10 text-center">
+					<input id="author_intro" class="form-control form-control-lg" type="text">
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+				 <div class="progress" id="progress" style="display:none;;width: 30%;margin: 0 10px 0 10px;">
+						<span id="up-progress" class="sr-only">0% 已完成</span>
+					<div id="progress-bar"  style="height: 20px;width:0%;background-color: #5cb85c;"></div>
+				  </div>
+				</div>
+				<div class="col-md-12">
+					<button type="button" class="btn btn-default btn-lg bg-primary text-white" onclick="up_file()">上传</button>
+					<a href="game_index.html"><button type="button" class="btn btn-default btn-lg bg-primary text-white">返回</button></a>
+				</div>	
+			</div>
+		</div>
+
+		<div class="col-md-2"></div>
+	</div>
+</div>	
+
+<script src="js/mtn_up_file.js"></script>
+<script>
+</script>	
+</body>
+</html>
+<body>

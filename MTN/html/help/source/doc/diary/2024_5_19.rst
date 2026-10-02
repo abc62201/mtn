@@ -1,0 +1,29 @@
+2024_5_19
+=======================================================
+
+2024年5月19日
+
+blockly添加了选择本地文件的功能。分类中找到了错误。模拟器列表中的id使用并不能对应json数组中的索引。需要使用查找功能才可以找到。
+正确的方式应该是
+
+::
+
+    // 找到模拟器id下的模拟器对象
+    var emulator = mtn_emu_list.find(item => item.id === index);
+    // 显示模拟器图标
+    classify_core_ico_img.src = ispath(emulator['emu_ico']);
+
+
+修改正确后才能继续正常，还真奇怪程序错误居然有感觉。第二个错误是数据库中daohang列表中的emu_args模拟器参数没有准备添加外键而是使用模拟器参数的值。
+这里不使用外键的原因是希望模拟器参数改变时，daohang列表的参数不会改变让参数设置更加的灵活。第三我发现，网页中产生的错误都会记录到错误日记中，这样
+一些不会影响任何问题的错误就可以记录下来。那么日记文件会越来越胖所以也要及时处理。我找到了错误的产生处但是因为是浏览器插件没有提供禁止js错误报告
+的方法，只能是使用批处理文件来删除日记文件了。
+
+::
+
+    @echo off
+    tasklist | findstr MTN
+    taskkill /IM MTN.exe /F
+    taskkill /IM MTN.vshost.exe /F
+    if exist debug.log del /Q debug.log
+

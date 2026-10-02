@@ -1,0 +1,30 @@
+2024_4_24 
+=======================================================
+
+2024年4月24日今天添加了软件开发日记，使用的是Sphinx来生成的html。帮助目录为html/help
+
+::
+
+    安装sphinx
+    pip install sphinx
+    安装markdown支撑的模块
+    pip install sphinx-markdown-tables
+    pip install recommonmark
+    安装主题模板
+    pip install sphinx-pdj-theme
+    使用主题打开conf.py文件
+    添加
+    import sphinx_pdj_theme
+    html_theme = 'sphinx_pdj_theme'
+    html_theme_path = [sphinx_pdj_theme.get_html_theme_path()]
+    生成html页
+    1.cmd中切换到项目目录
+        sphinx-build -b html sourcedir builddir
+        sourcedir 是源目录 source directory , builddir 则是放置生成的文档的根目录. -b 是创建工具的选项;这个例子创建HTML文件.
+    2. make htm
+        创建 HTML 在设定好的目录里. 执行 make 将不需要任何参数.
+
+.. raw:: html
+
+   <a href="https://zh-sphinx-doc.readthedocs.io/en/latest/tutorial.html" target="_blank">Sphinx 使用手册</a>
+   

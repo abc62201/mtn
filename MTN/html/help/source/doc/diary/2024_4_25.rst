@@ -1,0 +1,370 @@
+2024_4_25
+=======================================================
+
+2024年4月25日
+    今天添加了数据上传的功能，暂时是情况mysql数据表来用ftp上传。 当前目录下的所有文件记录上传时间，上传文件相对路径，文件下载路径，文件md5值，是否更新下载
+    mtn_update表中
+    
+    updata_url=文件下载路径
+    
+    file_path=文件上传相对路径
+    
+    update_time=文件上传时间
+    
+    file_md5=文件md5值
+    
+    updata_dw_ft=是否更新下载
+    
+    updata_dir表单独记录文件夹目录
+    
+    mtn_make_dir=文件夹目录
+
+    ::
+
+        '登录ftp服务器，这里路径经常出错主要注意。
+        Public Function 登录ftp服务器(ByVal 上传路径 As String, ByVal 用户名 As String, ByVal 密码 As String)
+        Try
+
+            ftp请求对象 = CType(FtpWebRequest.Create(上传路径), FtpWebRequest)
+            ftp认证凭证 = New NetworkCredential(用户名, 密码)
+            ftp请求对象.Credentials = ftp认证凭证
+            Return 1
+        Catch ex As Exception
+            Console.WriteLine("2")
+
+            Return ex.Message
+        End Try
+        End Function
+        '获取ftp目录列表，检查目录是否已存在
+        Public Function ftp目录列表(ByVal 创建的目录 As String)
+        Dim st As Stream
+        Dim sr As StreamReader
+        Dim 目录列表 As String
+        Try
+            ftp请求对象.Method = WebRequestMethods.Ftp.ListDirectory
+            ftp响应对象 = CType(ftp请求对象.GetResponse, FtpWebResponse)
+            st = ftp响应对象.GetResponseStream
+            sr = New StreamReader(st, Encoding.UTF8)
+            目录列表 = sr.ReadToEnd
+            Dim 所有目录() As String = 目录列表.Split(vbCrLf.ToCharArray(), StringSplitOptions.RemoveEmptyEntries)'这里为修改内容
+            For Each 目录条目 As String In 所有目录
+                Dim 目录名 = 目录条目.Trim().Substring(目录条目.LastIndexOf("/") + 1).ToLower()'这里为修改内容
+                If 目录名 = 创建的目录.ToLower() Then
+                    Return "目录已存在"
+                End If
+            Next
+            ftp响应对象.Close()
+            Return "ok"
+        Catch ex As Exception
+            Return ex.Message
+        End Try
+        End Function
+        '创建文件夹，需要注意要注意路径
+        Public Function ftp创建目录(ByVal 要创建目录全路径 As String, ByVal 要创建的目录名 As String)
+
+        登录ftp服务器(要创建目录全路径, mtn用户名, mtn用户密码)
+        Dim 检查创建目录 As String = ftp目录列表(要创建的目录名)
+        If 检查创建目录 = "ok" Then
+            登录ftp服务器(要创建目录全路径 + "/" + 要创建的目录名, mtn用户名, mtn用户密码)
+            ftp请求对象.Method = WebRequestMethods.Ftp.MakeDirectory
+            ftp响应对象 = CType(ftp请求对象.GetResponse, FtpWebResponse) '发送、操作、并返回
+            ftp响应对象.Close()
+            Return "ok"
+        ElseIf (检查创建目录 = "目录已存在") Then
+            Return "目录已存在"
+        End If
+        Return "失败"
+        End Function
+
+MySQL数据库中的同步本地。数据库上没有的添加，多出来的删除。最简的方法就是先添加缺失的内容，然后遍历表格之后删除不存在的目录和文件
+1. 添加缺失的内容
+2. 遍历表格之后删除不存在的目录和文件
+测试上传新的路径
+::
+
+    '上传插入更改
+    Public Sub 检查并创建目录(ByVal mtn_dir As String)
+        Dim sql As String = ""
+        sql = "SELECT MAX(id) FROM updata_dir"
+        Dim 数据表 As DataTable = mysql数据库查询(sql)
+        If 数据表.Rows.Count > 0 Then
+            dirid = CInt(数据表.Rows(0)(0))
+        End If
+        ' 查询数据库中是否存在该目录
+        sql = "SELECT COUNT(*) FROM updata_dir WHERE mtn_make_dir = @mtn_make_dir"
+        Dim 参数 As New List(Of MySqlParameter)()
+        参数.Add(New MySqlParameter("@mtn_make_dir", mtn_dir))
+        数据表 = mysql数据库查询(sql, 参数.ToArray())
+        If 数据表.Rows.Count = 0 Then
+            dirid = dirid + 1
+            sql = "INSERT INTO updata_dir (id,mtn_make_dir) value (" _
+                    + "@id,@mtn_make_dir)"
+            参数.Add(New MySqlParameter("@id", dirid))
+            参数.Add(New MySqlParameter("@mtn_make_dir", mtn_dir))
+            mysql数据库非查询(sql, 参数.ToArray())
+        End If
+    End Sub
+
+出现问题，因为参数使用前需要清空参数，正确的程序应是
+
+::
+
+        '上传插入更改
+    Public Sub 检查并创建目录(ByVal mtn_dir As String)
+        Dim sql As String = ""
+        sql = "SELECT MAX(id) FROM updata_dir"
+        Dim 数据表 As DataTable = mysql数据库查询(sql)
+        If 数据表.Rows.Count > 0 Then
+            dirid = CInt(数据表.Rows(0)(0))
+        End If
+        ' 查询数据库中是否存在该目录
+        sql = "SELECT * FROM updata_dir WHERE mtn_make_dir = @mtn_make_dir"
+        Dim 参数 As New List(Of MySqlParameter)()
+        参数.Add(New MySqlParameter("@mtn_make_dir", mtn_dir))
+        数据表 = mysql数据库查询(sql, 参数.ToArray())
+
+        If 数据表.Rows.Count = 0 Then
+            dirid = dirid + 1
+            sql = "INSERT INTO updata_dir (id,mtn_make_dir) value (" _
+                    + "@id,@mtn_make_dir)"
+            参数.Clear() ' 清空参数列表，准备添加新的参数
+            参数.Add(New MySqlParameter("@id", dirid))
+            参数.Add(New MySqlParameter("@mtn_make_dir", mtn_dir))
+            mysql数据库非查询(sql, 参数.ToArray())
+        End If
+    End Sub
+
+删除不存在的路径测试
+
+::
+
+    Public Sub 检查删除数据库列表()
+        Dim sql As String = "SELECT * FROM updata_dir"
+        Dim 数据表 As DataTable = mysql数据库查询(sql)
+        For Each row In 数据表.Rows
+            If Not Directory.Exists(row("mtn_make_dir").ToString) Then
+                sql = "DELETE FROM updata_dir WHERE mtn_make_dir = @mtn_make_dir"
+                Dim 参数 As New List(Of MySqlParameter)()
+                参数.Add(New MySqlParameter("@mtn_make_dir", row("mtn_make_dir").ToString))
+                mysql数据库非查询(sql, 参数.ToArray())
+            End If
+        Next
+    End Sub
+
+这次没有出错
+最后测试，文件的上传，更新程序。这里需要多检测一个文件的md5值确保文件没有被修改。
+
+:: 
+
+     Private Sub 获取所有目录(directoryPath As String)
+        ' 获取目录下的所有文件
+        Dim 上传路径 As String = ""
+        Dim sql As String = ""
+        Dim 参数 As New List(Of MySqlParameter)()
+        Dim currentDateTime As DateTime = DateTime.Now
+        Dim formattedDateTime As String = currentDateTime.ToString("yyyy-MM-dd HH-mm-ss")
+        For Each fileFullPath As String In Directory.GetFiles(directoryPath, "*")
+            If directoryPath <> 当前路径 Then
+                上传路径 = directoryPath.Replace(当前路径 + "\", "").Replace("\", "/")
+            Else
+                上传路径 = directoryPath.Replace(当前路径, "").Replace("\", "/")
+            End If
+            上传路径 = webpath + "/" + 上传路径
+            ' Console.WriteLine(fileFullPath)
+            Dim upfielname = Path.GetFileName(fileFullPath)
+            Dim 文件路径 As String = fileFullPath.Replace(当前路径 + "\", "").Replace("\", "/")
+            sql = "SELECT MAX(id) FROM mtn_update"
+            Dim 数据表 As DataTable = mysql数据库查询(sql)
+            If 数据表.Rows.Count > 0 Then
+                fileid = CInt(数据表.Rows(0)(0))
+            End If
+            If upfielname <> "upfile.exe" Then
+                数据表.Clear()
+                sql = "SELECT * FROM mtn_update WHERE file_path = @file_path"
+                参数.Clear()
+                参数.Add(New MySqlParameter("@file_path", 文件路径))
+                数据表 = mysql数据库查询(sql, 参数.ToArray())
+                If 数据表.Rows.Count = 0 Then
+                    fileid = fileid + 1
+                    updatefile(上传路径, fileFullPath)
+                    sql = "INSERT INTO mtn_update (id,updata_url,file_path,update_time,file_md5,updata_dw_ft) value (" _
+                         + "@id,@updata_url,@file_path,@update_time,@file_md5,@updata_dw_ft)"
+                    参数.Clear()
+                    参数.Add(New MySqlParameter("@id", fileid))
+                    Dim 文件下载地址 As String = updataurl + fileFullPath.Replace(当前路径 + "\", "").Replace("\", "/")
+                    参数.Add(New MySqlParameter("@updata_url", 文件下载地址))
+                    参数.Add(New MySqlParameter("@file_path", 文件路径))
+
+                    参数.Add(New MySqlParameter("@update_time", formattedDateTime))
+                    参数.Add(New MySqlParameter("@file_md5", 计算文件MD5值(fileFullPath)))
+                    Select Case upfielname
+                        Case "database.db"
+                            参数.Add(New MySqlParameter("@updata_dw_ft", 0))
+                        Case Else
+                            参数.Add(New MySqlParameter("@updata_dw_ft", 1))
+                    End Select
+                    mysql数据库非查询(sql, 参数.ToArray())
+                ElseIf (计算文件MD5值(fileFullPath) <> 数据表(0)("file_md5").ToString) Then
+                    updatefile(上传路径, fileFullPath)
+                    sql = "UPDATE  mtn_update SET update_time=@update_time file_md5=@file_md5,  WHERE id = @id"
+                    参数.Clear()
+
+                    参数.Add(New MySqlParameter("@id", 数据表(0)("id").ToString))
+                    参数.Add(New MySqlParameter("@update_time", formattedDateTime))
+                    参数.Add(New MySqlParameter("@file_md5", 计算文件MD5值(fileFullPath)))
+                    mysql数据库非查询(sql, 参数.ToArray())
+                End If
+            End If
+        Next
+        ' 获取目录下的所有子目录
+        Dim directories As String() = Directory.GetDirectories(directoryPath)
+        For Each directory As String In directories
+            If directory <> 当前路径 Then
+                Dim 字典键 As String = directory.Replace(directoryPath + "\", "").Replace("\", "/")
+                Dim 递增目录 As String = directoryPath.Replace(当前路径, "").Replace("\", "/")
+                ' 更新的目录(字典键) = webpath + 字典键
+                ftp创建目录(webpath + 递增目录, 字典键)
+                Dim sql文件路径 As String = directory.Replace(当前路径 + "\", "").Replace("\", "/")
+                检查并创建目录(sql文件路径)
+            End If
+            获取所有目录(directory)
+        Next
+    End Sub
+
+测试结果具体不详，好像是成功了。出现了一个小问题就是计算分的线程结束的时候，由于使用了递归函数所以会多次返回结束
+解决方法是使用一个计算器，每次计算完就加一，然后判断计算器是否等于0，等于0就结束。
+其原理是。
+在原始方案中，您提到直接在递归函数的最后设置一个全局变量，如 判断线程 = True，来标记递归函数的结束。然而，这样的做法存在问题，因为递归函数可能会有多层嵌套调用。在递归过程中，每当进入一个递归层级时，都会执行一次设置 判断线程 = True 的操作。这意味着在递归尚未完全结束时，可能已经有一个或多个较浅层级的递归调用提前设置了 判断线程 为 True。这样，当您在外部检查这个变量时，可能看到的是某个中间状态，而非真正的递归结束状态。
+
+使用计数器的运行机制
+
+为了解决这个问题，我们引入了一个计数器 recursiveCallsCount，用于跟踪当前处于活动状态的递归调用数量。当递归函数开始执行时，计数器加1；当递归函数结束时，计数器减1。这样，计数器的值反映了当前有多少个递归层级还在执行中。
+
+具体过程如下：
+
+递归调用开始：
+
+当首次进入 获取所有目录 函数时，计数器从0开始，增加到1。这表示有一个递归调用正在进行。
+遍历当前目录下的文件并处理。
+遍历当前目录下的子目录，并对每个子目录再次调用 获取所有目录 函数。
+递归调用深入：
+
+对于每个子目录，计数器再次增加1，表示又有一个新的递归调用开始。
+子目录下的文件处理和子子目录递归调用重复上述过程。
+递归调用结束：
+
+当某个子目录的递归处理完成时，其对应的递归调用结束，计数器减少1。
+同理，当所有子目录的递归调用都结束时，当前目录的递归调用也结束，计数器再次减少1。
+递归完全结束：
+
+最终，当最初的递归调用（即最外层调用）结束时，计数器会减至0。此时，没有其他递归调用在进行中，说明递归函数已完全结束。
+在计数器减至0的时刻，更新 UI 文本和 判断线程 变量。
+总结来说，通过使用计数器，我们能够精确地跟踪递归调用的层次和状态，确保在所有递归调用都完成时才标记递归函数的结束。这样就避免了因递归过程中各层级提前设置变量而导致的误判问题。希望这个解释有助于您理解这个方法的工作机制。如果您还有疑问或需要进一步说明，请随时告知。
+那么最后的程序是
+
+::
+
+     Private Sub 获取所有目录(directoryPath As String)
+        recursiveCallsCount += 1
+        Label1.Text = "开始上传"
+        ' 获取目录下的所有文件
+        Dim 上传路径 As String = ""
+        Dim sql As String = ""
+        Dim 参数 As New List(Of MySqlParameter)()
+        Dim currentDateTime As DateTime = DateTime.Now
+        Dim formattedDateTime As String = currentDateTime.ToString("yyyy-MM-dd HH-mm-ss")
+        For Each fileFullPath As String In Directory.GetFiles(directoryPath, "*")
+            If directoryPath <> 当前路径 Then
+                上传路径 = directoryPath.Replace(当前路径 + "\", "").Replace("\", "/")
+            Else
+                上传路径 = directoryPath.Replace(当前路径, "").Replace("\", "/")
+            End If
+            上传路径 = webpath + "/" + 上传路径
+            ' Console.WriteLine(fileFullPath)
+            Dim upfielname = Path.GetFileName(fileFullPath)
+            Dim 文件路径 As String = fileFullPath.Replace(当前路径 + "\", "").Replace("\", "/")
+            sql = "SELECT MAX(id) FROM mtn_update"
+            Dim 数据表 As DataTable = mysql数据库查询(sql)
+            If 数据表.Rows.Count > 0 Then
+                fileid = CInt(数据表.Rows(0)(0))
+            End If
+            If upfielname <> "upfile.exe" Then
+                数据表.Clear()
+                sql = "SELECT * FROM mtn_update WHERE file_path = @file_path"
+                参数.Clear()
+                参数.Add(New MySqlParameter("@file_path", 文件路径))
+                数据表 = mysql数据库查询(sql, 参数.ToArray())
+                If 数据表.Rows.Count = 0 Then
+                    fileid = fileid + 1
+                    updatefile(上传路径, fileFullPath)
+                    sql = "INSERT INTO mtn_update (id,updata_url,file_path,update_time,file_md5,updata_dw_ft) value (" _
+                         + "@id,@updata_url,@file_path,@update_time,@file_md5,@updata_dw_ft)"
+                    参数.Clear()
+                    参数.Add(New MySqlParameter("@id", fileid))
+                    Dim 文件下载地址 As String = updataurl + fileFullPath.Replace(当前路径 + "\", "").Replace("\", "/")
+                    参数.Add(New MySqlParameter("@updata_url", 文件下载地址))
+                    参数.Add(New MySqlParameter("@file_path", 文件路径))
+
+                    参数.Add(New MySqlParameter("@update_time", formattedDateTime))
+                    参数.Add(New MySqlParameter("@file_md5", 计算文件MD5值(fileFullPath)))
+                    Select Case upfielname
+                        Case "database.db"
+                            参数.Add(New MySqlParameter("@updata_dw_ft", 0))
+                        Case Else
+                            参数.Add(New MySqlParameter("@updata_dw_ft", 1))
+                    End Select
+                    mysql数据库非查询(sql, 参数.ToArray())
+                ElseIf (计算文件MD5值(fileFullPath) <> 数据表(0)("file_md5").ToString) Then
+                    updatefile(上传路径, fileFullPath)
+                    sql = "UPDATE  mtn_update SET update_time=@update_time file_md5=@file_md5,  WHERE id = @id"
+                    参数.Clear()
+
+                    参数.Add(New MySqlParameter("@id", 数据表(0)("id").ToString))
+                    参数.Add(New MySqlParameter("@update_time", formattedDateTime))
+                    参数.Add(New MySqlParameter("@file_md5", 计算文件MD5值(fileFullPath)))
+                    mysql数据库非查询(sql, 参数.ToArray())
+                End If
+            End If
+        Next
+
+        ' 获取目录下的所有子目录
+        Dim directories As String() = Directory.GetDirectories(directoryPath)
+        For Each directory As String In directories
+            If directory <> 当前路径 Then
+                Dim 字典键 As String = directory.Replace(directoryPath + "\", "").Replace("\", "/")
+                Dim 递增目录 As String = directoryPath.Replace(当前路径, "").Replace("\", "/")
+                ' 更新的目录(字典键) = webpath + 字典键
+                ftp创建目录(webpath + 递增目录, 字典键)
+                Dim sql文件路径 As String = directory.Replace(当前路径 + "\", "").Replace("\", "/")
+                检查并创建目录(sql文件路径)
+            End If
+            获取所有目录(directory)
+        Next
+        recursiveCallsCount -= 1
+
+        ' 当递归调用计数器为0时，表示递归函数已完全结束
+        If recursiveCallsCount = 0 Then
+            Label1.Text = "开始上传结束"
+            判断线程 = True
+        End If
+    End Sub
+
+这样我放到时间控件里就可以判断线程是否结束了。那么最后就是删除本地不存在的文件了。我想这个应该是不会出错了。
+
+::
+
+    Public Sub 检查删除文件数据库列表()
+        Dim sql As String = "SELECT * FROM mtn_update"
+        Dim 数据表 As DataTable = mysql数据库查询(sql)
+        For Each row In 数据表.Rows
+            If Not File.Exists(row("file_path").ToString) Then
+                sql = "DELETE FROM mtn_update WHERE file_path = @file_path"
+                Dim 参数 As New List(Of MySqlParameter)()
+                参数.Add(New MySqlParameter("@file_path", row("file_path").ToString))
+                mysql数据库非查询(sql, 参数.ToArray())
+            End If
+        Next
+    End Sub
+
+那么到此软件自动就上传完成了，接下来开始处理自动下载的功能了。但是由于小文件较多，同步下载不如只做更新处理，首次下载的话最好还是使用rar或zip的压缩包格式
+

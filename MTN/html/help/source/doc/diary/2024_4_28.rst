@@ -1,0 +1,57 @@
+2024_4_28
+=======================================================
+
+2024年4月28日
+    今天来更新模拟器下载功能。在表mtn_dw_list下载列表中添加了一个save_type的字段用来区分是下载类型。
+    没有遇到太多问题，第一需要将最后的；去掉.ToString.TrimEnd(";")。剩下的就是下载的时候要等网页加载完成才可以执行。
+    否则会出现下载错误。
+    分线程下载没有任何问题，只是会阻碍添加新的下载记录，那么不知道新建一个form窗口会不会出现问题。研究老半晌添加一个全局变量解决
+    了所有问题。
+
+:: 
+
+     Public Function 下载模拟器(ByVal 列表行 As DataRow)
+        Dim sql As String = ""
+        Dim 下载文件名 As String = ""
+        Dim 下载状态 As String = "正在下载"
+        sql = String.Format("SELECT * FROM {0} WHERE id ={1} ", 列表行("sql_table_name").ToString, 列表行("sql_url_id").ToString)
+        Dim 数据表 As DataTable = mysql数据库查询(sql)
+        If 数据表.Rows.Count > 0 Then
+            下载文件名 = Path.GetFileName(数据表(0)("file_url").ToString).TrimEnd(";")
+            下载状态 = 下载文件(数据表(0)("file_url").ToString.TrimEnd(";"), 列表行("dw_path").ToString + "/" + 下载文件名, 列表行("dw_name").ToString)
+            下载状态 = "正在下载"
+            If 数据表(0)("emu_ico").ToString <> "" Then
+                文件处理.建立文件夹("emu/ico")
+                下载文件名 = Path.GetFileName(数据表(0)("emu_ico").ToString)
+                下载状态 = 下载文件(数据表(0)("emu_ico").ToString, "emu/ico/" + 下载文件名, 列表行("dw_name").ToString)
+            End If
+            下载状态 = "正在下载"
+            If 数据表(0)("emu_img").ToString <> "" Then
+                文件处理.建立文件夹("emu/emu_img")
+                下载文件名 = Path.GetFileName(数据表(0)("emu_img").ToString)
+                下载状态 = 下载文件(数据表(0)("emu_img").ToString, "emu/emu_img/" + 下载文件名, 列表行("dw_name").ToString)
+            End If
+            下载状态 = "正在下载"
+            If 数据表(0)("emu_txt").ToString <> "" Then
+                文件处理.建立文件夹("emu/emu_intro")
+                下载文件名 = Path.GetFileName(数据表(0)("emu_txt").ToString)
+                下载状态 = 下载文件(数据表(0)("emu_txt").ToString, "emu/emu_intro/" + 下载文件名, 列表行("dw_name").ToString)
+            End If
+
+        End If
+
+        If 下载状态 = "完成" Then
+            Using cmd As New SQLiteCommand With {.Connection = 数据库对象}
+                cmd.CommandText = "DELETE FROM mtn_dw_list WHERE id = @dw_id"
+                cmd.Parameters.AddWithValue("@dw_id", 列表行("id").ToString)
+                cmd.ExecuteNonQuery()
+            End Using
+        End If
+
+        是否开始下载 = True
+        Return "ok"
+    End Function
+
+    接下来是将压缩包解压到指定的路径中。测试 ok
+    再来就是添加到模拟器列表中。
+

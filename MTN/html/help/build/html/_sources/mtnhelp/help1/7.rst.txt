@@ -1,0 +1,28 @@
+基础设置-下载列表
+=====================================================
+
+上传模拟器文件UI路径：html/mtn_set.html和html/set_js/mtn_set_content17.js
+
+当有文件下载时这里会以列表的形式进行显示。
+
+但是要注意一点，为了降低资源占用和刷新次数每下载30个文件后都会刷新一次。
+
+也可以切换选项来显示全部下载的文件。
+
+数据库中相关表格。
+
+::
+
+    表mtn_dw_list
+    字段dw_name 文件名
+    字段sql_url_id 服务数据库表id
+    字段sql_table_name 服务数据库表名
+    字段run_file_name  运行文件名
+    字段unzip_path 解压路径
+    字段zip_ft 是否需要解压
+    字段dw_path 下载路径
+    字段file_md5 文件md5
+    字段file_size 文件大小
+    字段save_type 下载类型
+    字段ips_rom  游戏补丁文件
+    字段classfy_id 本地分类id

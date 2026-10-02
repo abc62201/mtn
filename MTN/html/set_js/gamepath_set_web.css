@@ -1,0 +1,84 @@
+.mtn_gamepath_select {
+    position: absolute; /* 改为绝对定位 */
+    top: 130px; /* 根据需要调整距离顶部的距离 */
+    left: 50%; /* 相对于父容器水平居中 */
+    transform: translateX(-50%); /* 微调，确保完全居中 */
+    width: 100%; /* 使下拉菜单宽度自适应其父容器 */
+    max-width: 300px; /* 设置最大宽度以限制过大显示 */
+    background-color: #ffffff; /* 背景颜色 */
+    border: 1px solid #ced4da; /* 边框样式 */
+    border-radius: 4px; /* 圆角效果 */
+    overflow: hidden; /* 隐藏溢出内容，保持外观整洁 */
+  }
+  
+  .mtn_gamepath_select select {
+    width: 100%; /* 保证select元素填满整个容器 */
+    height: 35px; /* 设置固定高度，可根据需要调整 */
+    padding: 0.5rem 2rem 0.5rem 1rem; /* 为箭头留出空间 */
+    background-color: transparent; /* 透明背景，让背景色透出 */
+    border: none; /* 移除select自身的边框 */
+    outline: none; /* 移除焦点时的轮廓 */
+    appearance: none; /* 移除默认样式 */
+    -webkit-appearance: none; /* 针对Webkit内核 */
+    -moz-appearance: none; /* 针对Firefox */
+    cursor: pointer; /* 更改鼠标指针为手型 */
+  }
+  
+  /* 添加下拉箭头 */
+  .mtn_gamepath_select::after {
+    content: "\25BC"; /* 下拉箭头字符 */
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    pointer-events: none; /* 确保点击箭头不会影响select操作 */
+    color: #6c757d; /* 箭头颜色 */
+  }
+
+
+.input-group {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+    }
+
+.input-field {
+            flex: 1;
+            padding: 0.5rem;
+            border: 1px solid #228a14;
+            border-radius: 4px;
+            outline: none;
+            font-size: 1rem;
+            width: 100%;
+            box-sizing: border-box;
+            background-color: #000000; /* 背景颜色 */
+            color: #ffffff;
+            text-align: left;
+            resize: none;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+}
+        .input-button {
+            margin-left: 0.5rem;
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 4px;
+            background-color: #007bff;
+            color: #fff;
+            font-size: 1rem;
+            cursor: pointer;
+            outline: none;
+        }
+
+        .group-row {
+            display: flex;
+            flex-wrap: wrap;
+            margin-bottom: 1rem;
+        }
+
+        .group-col {
+            flex: 1;
+            max-width: 50%;
+            padding: 0 1rem;
+        }

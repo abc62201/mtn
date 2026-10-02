@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" />
+	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	<link rel="stylesheet" type="text/css" href="bootstrap/css/gamerom.css">
+	<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
+	<script src="bootstrap/js/bootstrap.min.js"></script>
+	<script src="js/mtn_server.js"></script>
+</head>
+<body>
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-12 bg-primary text-center"><h4>上传前端可启动的游戏到服务器</h4></div>
+	</div>
+	<div class="row">	
+		<div class="col-md-2">
+			<div class="text-center"><h6>请选择分类</h6></div>
+			<div>
+				<select id="game_select" class="form-select" aria-label="Default select example">
+				</select>
+			</div>
+		<div class="card">
+			<div class="card-header">
+			本地游戏列表
+			</div>
+			<div class="input-group">
+				<input id="Search_gamename" type="text" class="form-control">
+				<button class="btn btn-outline-secondary" type="button" onclick="Search_game()">搜索</button>
+			</div>
+			<ul id='game_list_group' class="list-unstyled overflow-auto vh-100">
+			</ul>
+		</div>
+		</div>
+		<div class="col-md-10">
+			<div class="row">
+				<div class="col-md-4">
+					<div class="card">
+						<div class="card-header">
+							请选择服务器上的分类
+						</div>
+						<div class="card-body">
+							<select id="server_select" class="form-select" aria-label="Default select example">
+							</select>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="card">
+						<div class="card-header">
+							游戏名称
+						</div>
+						<div class="card-body">
+							<input id="ch_name" class="form-control form-control-lg" type="text">
+						</div>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="card">
+						<div class="card-header">
+							上传游戏的用户昵称
+						</div>
+						<div class="card-body">
+							<label id="author" for="author" class="form-label">Email address</label>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-4">
+					<div class="card">
+						<div class="card-header">
+							上传游戏文件
+						</div>
+						<div class="card-body">
+							<label for="formFile" class="form-label">游戏运行文件</label>
+							<div class="input-group mb-3">
+								<input id="game_run_file" type="text" class="form-control">
+								<button class="btn btn-outline-secondary" type="button" onclick="get_game_run()">选择</button>
+							</div>
+							<label for="formFile" class="form-label">游戏压缩包不需要不填</label>
+							<div class="input-group mb-3">
+								<input id="game_zip_file" type="text" class="form-control">
+								<button class="btn btn-outline-secondary" type="button" onclick="get_game_zip()">选择</button>
+							</div>
+							<label for="formFile" class="form-label">选择游戏补丁ips文件</label>
+							<div class="input-group mb-3">
+								<input id="game_ips_file" type="text" class="form-control">
+								<button class="btn btn-outline-secondary" type="button" onclick="get_game_ips()">选择</button>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="card">
+						<div class="card-header">
+							选择模拟器服务器上没有请先上传模拟器
+						</div>
+						<div class="card-body">
+							<div><label id="local_emu" for="formFile" class="form-label"></label></div>
+							<label for="formFile" class="form-label">选择模拟器</label>
+							<div class="input-group mb-3">
+								<select id="server_emu" class="form-select" >
+								</select>
+							</div>
+							<div><label id="local_core" for="formFile" class="form-label"></label></div>
+							<label for="formFile" class="form-label">选择模拟器核心</label>
+							<div class="input-group mb-3">
+								<select id="server_emu_core" class="form-select" >
+								</select>
+							</div>
+							<label for="formFile" class="form-label">添加启动参数</label>
+							<div class="input-group mb-3">
+								<input id="emu_args" type="text" class="form-control">
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="card">
+						<div class="card-header">
+							添加缩略图
+							<div><img id="thumbnail" class="card-img-top"></div>
+						</div>
+						<div class="card-body">						
+							<button class="btn-default btn-lg bg-primary text-white " 
+							type="button" onclick="get_game_thumbnail()">选择</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-4">
+					<div class="card">
+						<div class="card-header">
+							添加卡带图
+							<div><img id="cassette" class="card-img-top"></div>
+						</div>
+						<div class="card-body">						
+							<button class="btn-default btn-lg bg-primary text-white " 
+							type="button" onclick="get_game_cassette()">选择</button>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="card">
+						<div class="card-header">
+							添加视频
+							<div><video id="video" class="card-img-top" controls autoplay muted loop></div>
+						</div>
+						<div class="card-body">						
+							<button class="btn-default btn-lg bg-primary text-white " 
+							type="button" onclick="get_game_video()">选择</button>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="card">
+						<div class="card-header">
+							添加游戏背景图
+							<div><img id="ui_bj" class="card-img-top"></div>
+						</div>
+						<div class="card-body">						
+							<button class="btn-default btn-lg bg-primary text-white " 
+							type="button" onclick="get_game_ui_bj()">选择</button>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-md-4">
+					<div class="card">
+						<div class="card-header">
+							资费与说明
+						</div>
+						<div class="card-body">
+							<label for="formFile" class="form-label">下载费用</label>
+							<input id="pay_f" class="form-control form-control-lg" type="text" value="0">
+							<label for="formFile" class="form-label">文件md5值</label>
+							<input id="file_md5" class="form-control form-control-lg" disabled type="text">
+							<label for="formFile" class="form-label">作者说明</label>
+							<input id="author_m" class="form-control form-control-lg" type="text">
+						</div>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="card">
+						<div class="card-header">
+							游戏文本资料
+						</div>
+						<div class="card-body">
+							<div class="row">
+								<div id="game_type_txt" class="col-md-4 bg-light dashed-border text-muted">标签</div>
+								<div id="game_type" class="col-md-8 bg-light dashed-border" contenteditable="true">
+								</div>
+								<div id="game_ver_txt" class="col-md-4 bg-light dashed-border text-muted">版本</div>
+								<div id="game_ver" class="col-md-8 bg-light dashed-border" contenteditable="true">
+								</div>
+								<div id="game_score_txt" class="col-md-4 bg-light dashed-border text-muted">评分</div>
+								<div id="game_score" class="col-md-8 bg-light dashed-border" contenteditable="true">
+								</div>
+								<div id="game_players_txt" class="col-md-4 bg-light dashed-border text-muted">游玩人数</div>
+								<div id="game_players" class="col-md-8 bg-light dashed-border" contenteditable="true">
+								</div>
+								<div id="game_issuing_date_txt" class="col-md-4 bg-light dashed-border text-muted">发售日期</div>
+								<div id="game_issuing_date" class="col-md-8 bg-light dashed-border" contenteditable="true">
+								</div>
+								<div id="game_developer_txt" class="col-md-4 bg-light dashed-border text-muted">开发商</div>
+								<div id="game_developer" class="col-md-8 bg-light dashed-border" contenteditable="true">
+								</div>
+								<div id="game_publisher_txt" class="col-md-4 bg-light dashed-border text-muted">发行商</div>
+								<div id="game_publisher" class="col-md-8 bg-light dashed-border" contenteditable="true">
+								</div>
+								<div id="game_language_txt" class="col-md-4 bg-light dashed-border text-muted">语言</div>
+								<div id="game_language" class="col-md-8 bg-light dashed-border" contenteditable="true">
+								</div>
+								<div class="col-md-4 bg-light dashed-border text-muted">地区</div>								
+								<div class="col-md-8 bg-light dashed-border" data-bs-toggle="modal" data-bs-target="#modal_flag">
+									<img id="flagImage" src="" class="national_flag">
+							    </div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="card">
+						<div class="card-header">
+							添加游戏简介
+						</div>
+						<div class="card-body">						
+							<div id="game_intro_path" class="bg-dark text-light" contenteditable="true"
+							onblur="write_game_intro()">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-md-4">
+					<div class="card">
+						<div class="card-header">
+							添加游戏截图
+							<div><img id="game_screenshot_path" class="card-img-top"></div>
+						</div>
+						<div class="card-body">						
+							<button class="btn-default btn-lg bg-primary text-white " 
+							type="button" onclick="get_game_screenshot()">选择</button>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="card">
+						<div class="card-header">
+							添加游戏封面
+							<div><img id="game_cover_path" class="card-img-top"></div>
+						</div>
+						<div class="card-body">						
+							<button class="btn-default btn-lg bg-primary text-white " 
+							type="button" onclick="get_game_cover()">选择</button>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="card">
+						<div class="card-header">
+							添加游戏电路板
+							<div><img id="game_circuit_path" class="card-img-top"></div>
+						</div>
+						<div class="card-body">						
+							<button class="btn-default btn-lg bg-primary text-white " 
+							type="button" onclick="get_circuit_path()">选择</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-4">
+					<div class="card">
+						<div class="card-header">
+							添加游戏包装盒
+							<div><img id="game_box_path" class="card-img-top"></div>
+						</div>
+						<div class="card-body">						
+							<button class="btn-default btn-lg bg-primary text-white " 
+							type="button" onclick="get_game_box()">选择</button>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="card">
+						<div class="card-header">
+							添加游戏宣传海报
+							<div><img id="game_poster_path" class="card-img-top"></div>
+						</div>
+						<div class="card-body">						
+							<button class="btn-default btn-lg bg-primary text-white " 
+							type="button" onclick="get_game_poster()">选择</button>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="card">
+						<div class="card-header">
+							添加游戏logo
+							<div><img id="game_logo_path" class="card-img-top"></div>
+						</div>
+						<div class="card-body">						
+							<button class="btn-default btn-lg bg-primary text-white " 
+							type="button" onclick="get_game_logo()">选择</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-4">
+					<div class="card">
+						<div class="card-header">
+							添加游戏角色
+							<div><img id="game_role_paht" class="card-img-top"></div>
+						</div>
+						<div class="card-body">						
+							<button class="btn-default btn-lg bg-primary text-white " 
+							type="button" onclick="get_game_role()">选择</button>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="card">
+						<div class="card-header">
+							添加游戏杂志
+							<div>
+								<object id="game_magazine" type="application/pdf" data="" class="card-img-top"></object> 
+							</div>
+						</div>
+						<div class="card-body">						
+							<button class="btn-default btn-lg bg-primary text-white " 
+							type="button" onclick="get_game_magazine()">选择</button>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="card">
+						<div class="card-header">
+							添加游戏标题
+							<div><img id="game_title_path" class="card-img-top"></div>
+						</div>
+						<div class="card-body">						
+							<button class="btn-default btn-lg bg-primary text-white " 
+							type="button" onclick="get_game_title()">选择</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-4">
+					<div class="card">
+						<div class="card-header">
+							添加游戏图标
+							<div><img id="game_ico" class="card-img-top"></div>
+						</div>
+						<div class="card-body">						
+							<button class="btn-default btn-lg bg-primary text-white " 
+							type="button" onclick="get_game_ico()">选择</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+				 <div class="progress" id="progress" style="display:none;;width: 30%;margin: 0 10px 0 10px;">
+						<span id="up-progress" class="sr-only">0% 已完成</span>
+					<div id="progress-bar"  style="height: 20px;width:0%;background-color: #5cb85c;"></div>
+				  </div>
+				</div>
+				<div class="col-md-12">
+					<button type="button" class="btn btn-default btn-lg bg-primary text-white"
+					onclick="up_game_rom()">上传资料</button>
+					<a href="game_index.html"><button type="button" class="btn btn-default btn-lg bg-primary text-white">返回</button></a>
+				</div>	
+			</div>
+		</div>
+	</div>
+</div>
+<!-- 模态框 -->  
+<div class="modal fade" id="modal_flag" tabindex="-1" aria-labelledby="modal_flag" aria-hidden="true">  
+	<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">  
+	  <div class="modal-content">  
+		<div class="modal-header">  
+		  <h5 class="modal-title" id="centeredScrollableModalLabel">选择国旗</h5>  
+		  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>  
+		</div>  
+		<div class="modal-body">  
+		  <div class="container-fluid">
+			  <div class="row">
+				  <div class="col-md-3">
+				  <img src="../../../theme/national_flag/cn.png" class="img-thumbnail rounded flag-option" style="height: 64px;" alt="中国">
+				  </div>
+				  <div class="col-md-3">
+				  <img src="../../../theme/national_flag/jp.png" class="img-thumbnail rounded flag-option" style="height: 64px;" alt="日本">
+				  </div>
+				  <div class="col-md-3">
+				  <img src="../../../theme/national_flag/eu.png" class="img-thumbnail rounded flag-option" style="height: 64px;" alt="欧洲">
+				  </div>
+				  <div class="col-md-3">
+				  <img src="../../../theme/national_flag/wd.jpeg" 
+				  class="img-thumbnail rounded flag-option" style="height: 64px;" alt="世界">
+				  </div>
+				  </div>
+			  
+				  <div class="row">
+				  <div class="col-md-3">
+				  <img src="../../../theme/national_flag/us.png" class="img-thumbnail rounded flag-option" style="height: 64px;" alt="美国">
+				  </div>
+				  <div class="col-md-3">
+				  <img src="../../../theme/national_flag/mf.png" class="img-thumbnail rounded flag-option" style="height: 64px;" alt="法国">
+				  </div>
+				  <div class="col-md-3">
+				  <img src="../../../theme/national_flag/as.png" class="img-thumbnail rounded flag-option" style="height: 64px;" alt="亚洲">
+				  </div>
+				  <div class="col-md-3">
+				  <img src="../../../theme/national_flag/kr.png" class="img-thumbnail rounded flag-option" style="height: 64px;" alt="韩国">
+				  </div>
+				  </div>
+				  <div class="row">
+				  <div class="col-md-3">
+				  <img src="../../../theme/national_flag/br.png" class="img-thumbnail rounded flag-option" style="height: 64px;" alt="巴西">
+				  </div>
+				  <div class="col-md-3">
+				  <img src="../../../theme/national_flag/gb.png" class="img-thumbnail rounded flag-option" style="height: 64px;" alt="英国">
+				  </div>
+				  <div class="col-md-3">
+				  <img src="../../../theme/national_flag/au.png" class="img-thumbnail rounded flag-option" style="height: 64px;" alt="澳大利亚">
+				  </div>
+				  <div class="col-md-3">
+				  <img src="../../../theme/national_flag/ru.png" class="img-thumbnail rounded flag-option" style="height: 64px;" alt="俄罗斯">
+				  </div>
+				  </div>
+		  </div>
+		<div class="modal-footer">  
+		  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">关闭</button>    
+		</div>  
+	  </div>  
+	</div>  
+  </div>  
+  </div>
+<script src="js/mtn_up_game.js"></script>
+<script src="js/game_updata.js"></script>
+<script src="js/game_set_txt.js"></script>
+<script>
+	document.addEventListener('DOMContentLoaded', function () {  
+		// 为每个国旗图片添加点击事件监听器  
+		var flagOptions = document.querySelectorAll('.flag-option');  
+		flagOptions.forEach(function (flag) {  
+		  flag.addEventListener('click', function () {  
+			var flagImage = document.getElementById('flagImage');  
+			flagImage.src = this.src; 
+			//src_str= decodeURIComponent(flagImage.src)
+			// parsedResult[0].national_flag=getRelativePath(src_str); 	   
+		  // 关闭模态框  
+		  var modal = bootstrap.Modal.getInstance(document.getElementById('modal_flag'));  
+		  if (modal) {  
+			 modal.hide();  
+		  }  
+		  });  
+		});  
+	  });
+</script>	
+</body>
+</html>
+<body>

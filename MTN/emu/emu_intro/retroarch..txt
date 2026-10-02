@@ -1,0 +1,14 @@
+RetroArch是一款非常强大的经典游戏模拟器，其可以支持包括fc、sfc、md、gbc、gba、ps1、n64、ss、MAME、Nebula等在内的众多经典游戏，
+switch版同样适应这些游戏，并且拥有相当不错的帧数和游戏兼容性表现，对于喜欢游玩经典游戏的玩家来说，这款模拟器可以说是必备的一款电脑内置软件。
+
+RetroArch是模拟器、游戏引擎和媒体播放器的前端。
+
+它使您能够通过其灵活的图形界面在各种计算机和控制台上运行经典游戏。设置也是统一的，所以配置是一次性完成的。
+
+RetroArch有先进的功能，如着色器，netplay，复卷，下一帧响应时间，和更多!
+
+RetroArch可以在Windows、Mac OS X和Linux等常用平台上运行，但它的独特之处在于，它可以支持更多平台。
+
+我们支持的操作系统甚至连微软和苹果自己都不支持了，比如PowerPC mac上的macOS X，以及早在Windows 95上就可以在Windows os上使用的RetroArch。
+
+除此之外，RetroArch还可以运行在iOS和Android的平板电脑和手机上，以及PS3、PSP、PS Vita、Wii、Wii U、Switch等游戏机上!

@@ -1,0 +1,85 @@
+基础设置-启动设置
+=====================================================
+基础设置文件UI路径：html/mtn_set.html和html/set_js/mtn_set_content11.js
+
+1 打开软件时是否启动视频：
+
+选择是之后启动软件时会先播放一段视频默认路径是theme/strar_video可以自定义。多个视频会随机选择一个播放。
+注意并不是所有视频编码全部支持，仅支持h265的不支持。
+视频播放UI页面路径html/video.html
+
+2 进入设置页面是否播放背景音乐：
+
+进入设置页面后鼠标点击才会播放音乐（现在的浏览器都禁用了直接播放）其他的同上。
+播放背景音乐UI设置html/mtn_set.html
+
+中的
+::
+   
+   <body onclick="int_music()">
+    <audio id="backgroundMusic" controls style="display:none;">
+        您的浏览器不支持 audio 元素。
+    </audio>
+
+3 开机是否自启动:
+
+选择是之后打开电脑MTN软件会自动运行。
+这里需要有电脑管理员权限才能使用，这里是对win注册表的run键值添加了MTN.EXE没有win的管理员用户权限的电脑无法添加
+
+4 窗口是否最大化:
+
+选择是之后以最大话启动
+
+5 窗口是否总在最前不被遮挡:
+
+选择是之后不会被其他窗口遮挡
+
+6 是否全屏启动:
+
+选择是之后将隐藏标题栏和任务栏
+
+7 下载时是否使用服务器分类:
+
+选择是将游戏按照服务器的分类自动添加到本地，选择否需要手动选择已添加的游戏分类。
+
+8 设置下载临时文件夹:
+
+由于部分游戏，模拟器，文件等需要解压。下载的默认位置在这里选择注意随时清理已完成压缩包来释放硬盘空间。
+
+9 是否自启动php服务器
+
+启用一个php服务器后可自己编辑web页面给与其他设备共享资源。注意这里的web页面需要自己编写才行。
+
+10 设置主题的文本支持:
+
+暂时只能使用中文简体。繁体和英文并未启用。文本地址。msg文件夹
+
+::
+
+    表config
+    字段simulator 通过MTN软件启动（运行，打开）的文件进程名
+    字段loadBg    载入窗口时的背景图片
+    字段page      载入的UI页面
+    字段strar_class_name 启动（运行，打开）的分类名，暂时未用到
+    字段webserver_ip  如果启动php服务器的web页面的ip地址
+    字段webserver_php_ip 如果启动php服务器的php的ip地址
+    字段webserver_path   如果启动php服务器的路径
+    字段nginx_port       如果启动php服务器的web端口号
+    字段php_port   如果启动php服务器的php端口号
+    字段nginx_ip   如果启动php服务器的web页面的ip地址
+    字段rootdir    MTN软件的根目录
+    字段strar_video 载入窗口的启动视频文件地址
+    字段strar_video_ft 是否在载入窗前播放视频0不播放，1播放
+    字段strar_server   是否启动php服务器0不启动，1启动
+    字段msg            字体0中文简体，1繁体，2英文  注意暂时只有0其他没办法使用
+    字段no_web         使用UI的id，0代表是设置页面
+    字段Self_starting  是否开机启动0不是，1是
+    字段Front_window   窗口是否不被遮挡0不是，1是
+    字段Full_screen    窗口是否全屏0不是，1是
+    字段start_gameid   启动的游戏id
+    字段windows_max    窗口是否最大化0不是，1是
+    字段dw_path        默认下载路径
+    字段set_music_ft   是否启动背景音乐0不是，1是
+    字段set_music_path 背景音乐文件夹路径
+    字段DefDwnlCat     是否在下载时自动按照服务上的分类添加本地的分类0不是，1是
+

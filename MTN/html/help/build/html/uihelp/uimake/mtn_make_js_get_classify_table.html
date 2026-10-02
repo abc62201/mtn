@@ -1,0 +1,365 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xml:lang="" lang="" version="-//W3C//DTD XHTML 1.1//EN" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="">
+    <link rel="icon" type="image/x-icon" href="">
+
+  
+  <title>获取分类列表脚本 &mdash; MTN_help MTN_HELP 文档</title>
+  
+
+  
+
+  
+
+    <link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'/>
+
+
+  <link rel="stylesheet" href="../../_static/css/img.css" type="text/css"/>
+  
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  
+    <link rel="stylesheet" href="../../_static/css/pdj.css" type="text/css" />
+  
+
+  
+
+  <link rel="stylesheet" href="../../_static/css/darker.css" type="text/css" media="(prefers-color-scheme: dark)"/>
+        <link rel="index" title="索引"
+              href="../../genindex.html"/>
+        <link rel="search" title="搜索" href="../../search.html"/>
+    <link rel="top" title="MTN_help MTN_HELP 文档" href="../../index.html"/>
+        <link rel="up" title="梦童年UI制作帮助文档" href="../uimake.html"/>
+        <link rel="next" title="获取主题列表脚本" href="mtn_make_js_get_ui_table.html"/>
+        <link rel="prev" title="获取解析后的数据长度脚本" href="mtn_make_js_get_json_length.html"/>
+
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta http-equiv="cache-control" content="public" />
+    <meta name="robots" content="follow, all" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Add jQuery library -->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+    <script type="module" src="https://googlechromelabs.github.io/dark-mode-toggle/src/dark-mode-toggle.mjs"></script>
+
+  </head>
+
+  <body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+	
+        <a href="../../index.html" class="fa fa-home"> MTN_help </a>
+	
+	
+        <div role="search">
+	  
+	  <form id ="rtd-search-form" class="wy-form"
+		action="../../search.html" method="get">
+	    <input type="text" name="q" placeholder="Search docs" />
+	    <input type="hidden" name="check_keywords" value="yes" />
+	    <input type="hidden" name="area" value="default" />
+	  </form>
+	  
+	</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	
+          
+          
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../mtnhelp/mtnh.html">梦童年软件使用文档</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../mtnhelp/help1/1.html">基础设置-启动设置</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../mtnhelp/help1/2.html">基础设置-模拟器设置</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../mtnhelp/help1/3.html">基础设置-启动参数设置</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../mtnhelp/help1/4.html">基础设置-下载模拟器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../mtnhelp/help1/5.html">基础设置-上传模拟器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../mtnhelp/help1/6.html">基础设置-用户登录设置</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../mtnhelp/help1/7.html">基础设置-下载列表</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../mtnhelp/help1/21.html">基础设置-分类设置</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../mtnhelp/help1/22.html">基础设置-设置游戏路径</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../mtnhelp/help1/23.html">基础设置-设置扫描设置</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../mtnhelp/help1/31.html">游戏设置—本地游戏</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../mtnhelp/help1/32.html">游戏设置—模拟器游戏下载</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../mtnhelp/help1/33.html">游戏设置—其他下载</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../mtnhelp/help1/34.html">游戏设置—修改服务器资料</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../mtnhelp/help1/41.html">基础设置-主题管理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../mtnhelp/help1/51.html">基础设置-制作主题</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../mtnhelp/help1/61.html">基础设置-设置键盘摇杆</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../doc/diary.html">梦童年第三版软件开发日记</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../doc/diary/2024_4_24.html">2024_4_24</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../doc/diary/2024_4_25.html">2024_4_25</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../doc/diary/2024_4_26.html">2024_4_26</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../doc/diary/2024_4_28.html">2024_4_28</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../doc/diary/2024_4_29.html">2024_4_29</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../doc/diary/2024_5_1.html">2024_5_1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../doc/diary/2024_5_14.html">2024_5_14</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../doc/diary/2024_5_16.html">2024_5_16</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../doc/diary/2024_5_19.html">2024_5_19</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../doc/diary/2024_5_24.html">2024_5_24</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../doc/diary/2024_5_25.html">2024_5_25</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../doc/diary/2024_5_26.html">2024_5_26</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../doc/diary/2024_5_27.html">2024_5_27</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../doc/diary/2024_6_10.html">2024_6_10</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../doc/diary/2024_6_15.html">2024_6_15</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../doc/diary/2024_6_28.html">2024_6_28</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../doc/diary/2024_7_23.html">2024_7_23</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../doc/diary/2024_7_24.html">2024_7_24</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../doc/diary/2024_7_25.html">2024_7_25</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../doc/diary/2024_7_30.html">2024_7_30</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../doc/diary/2024_10_24.html">2024_10_24</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../doc/diary/2024_10_30.html">2024_10_30</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../doc/diary/2024_11_5.html">2024_11_5</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../doc/diary/2024_11_9.html">2024_11_9</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../doc/diary/2024_11_15.html">2024_11_15</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../doc/diary/2024_12_5.html">2024_12_5</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../doc/diary/2024_12_23.html">2024_12_23</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../doc/diary/2025_1_28.html">2025_1_28</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="../uimake.html">梦童年UI制作帮助文档</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="mtn_make_html.html">网页内容块</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtn_make_style.html">全部样式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtn_make_body.html">网页整体样式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="make_class.html">元素样式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="make_hover.html">鼠标经过样式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="css_malke_bgcolor.html">背景颜色</a></li>
+<li class="toctree-l2"><a class="reference internal" href="css_malke_width.html">宽度 高度 最大最小 宽度 高度</a></li>
+<li class="toctree-l2"><a class="reference internal" href="css_make_position.html">位置属性</a></li>
+<li class="toctree-l2"><a class="reference internal" href="css_malke_top.html">顶端距离 左侧距离</a></li>
+<li class="toctree-l2"><a class="reference internal" href="css_malke_overflow.html">内容溢出</a></li>
+<li class="toctree-l2"><a class="reference internal" href="css_malke_z_index.html">层叠顺序</a></li>
+<li class="toctree-l2"><a class="reference internal" href="css_malke_bgimage.html">背景图片</a></li>
+<li class="toctree-l2"><a class="reference internal" href="css_malke_bgattachment.html">固定的背景图像</a></li>
+<li class="toctree-l2"><a class="reference internal" href="css_malke_bgrepeat.html">背景图像重复</a></li>
+<li class="toctree-l2"><a class="reference internal" href="css_malke_bgsize.html">背景图像大小</a></li>
+<li class="toctree-l2"><a class="reference internal" href="css_malke_bgposition.html">背景图像位置</a></li>
+<li class="toctree-l2"><a class="reference internal" href="css_malke_color.html">字体颜色</a></li>
+<li class="toctree-l2"><a class="reference internal" href="css_malke_direction.html">文本方向</a></li>
+<li class="toctree-l2"><a class="reference internal" href="css_malke_letter_spacing.html">字符间距</a></li>
+<li class="toctree-l2"><a class="reference internal" href="css_malke_line_height.html">行间距</a></li>
+<li class="toctree-l2"><a class="reference internal" href="css_malke_text_wrap.html">文本是否自动换行</a></li>
+<li class="toctree-l2"><a class="reference internal" href="css_malke_text_align.html">文本对齐方式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="css_malke_text_decoration_line.html">文本修饰</a></li>
+<li class="toctree-l2"><a class="reference internal" href="css_malke_text_indent.html">首行缩进</a></li>
+<li class="toctree-l2"><a class="reference internal" href="css_malke_text_shadow.html">文本阴影</a></li>
+<li class="toctree-l2"><a class="reference internal" href="css_malke_text_transform.html">元素中的字母</a></li>
+<li class="toctree-l2"><a class="reference internal" href="css_malke_font_family.html">元素中的字体</a></li>
+<li class="toctree-l2"><a class="reference internal" href="css_malke_font_style.html">字体 粗体斜体</a></li>
+<li class="toctree-l2"><a class="reference internal" href="css_malke_font_size.html">字体大小</a></li>
+<li class="toctree-l2"><a class="reference internal" href="css_malke_list_style_type.html">列表标记</a></li>
+<li class="toctree-l2"><a class="reference internal" href="css_malke_list_style_position.html">列表标记位置</a></li>
+<li class="toctree-l2"><a class="reference internal" href="css_malke_list_style_image.html">列表标记的图像</a></li>
+<li class="toctree-l2"><a class="reference internal" href="css_malke_border_style.html">边框</a></li>
+<li class="toctree-l2"><a class="reference internal" href="css_malke_border_width.html">边框宽度</a></li>
+<li class="toctree-l2"><a class="reference internal" href="css_malke_border_color.html">边框颜色</a></li>
+<li class="toctree-l2"><a class="reference internal" href="css_malke_border_radius.html">边框圆角</a></li>
+<li class="toctree-l2"><a class="reference internal" href="css_malke_margin.html">边距</a></li>
+<li class="toctree-l2"><a class="reference internal" href="css_malke_padding.html">内边距</a></li>
+<li class="toctree-l2"><a class="reference internal" href="css_malke_display.html">显示</a></li>
+<li class="toctree-l2"><a class="reference internal" href="css_malke_visibility.html">可见性</a></li>
+<li class="toctree-l2"><a class="reference internal" href="css_malke_float.html">浮动</a></li>
+<li class="toctree-l2"><a class="reference internal" href="css_malke_clear.html">清除浮动</a></li>
+<li class="toctree-l2"><a class="reference internal" href="css_malke_opacity.html">透明度</a></li>
+<li class="toctree-l2"><a class="reference internal" href="css_malke_box_shadow.html">添加阴影</a></li>
+<li class="toctree-l2"><a class="reference internal" href="css_malke_transform.html">2d3d变换</a></li>
+<li class="toctree-l2"><a class="reference internal" href="css_malke_transition.html">过度动画</a></li>
+<li class="toctree-l2"><a class="reference internal" href="css_make_animation_name.html">动画</a></li>
+<li class="toctree-l2"><a class="reference internal" href="css_malke_column_count.html">要分割的列数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="css_malke_column_width.html">多列按宽度分</a></li>
+<li class="toctree-l2"><a class="reference internal" href="css_malke_column_gap.html">列与列间的间隙</a></li>
+<li class="toctree-l2"><a class="reference internal" href="css_malke_column_rule_style.html">列边框样式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="css_malke_filter.html">图片滤镜</a></li>
+<li class="toctree-l2"><a class="reference internal" href="css_make_flex_direction.html">弹性盒子方向对齐</a></li>
+<li class="toctree-l2"><a class="reference internal" href="css_malke_justify_content.html">弹性盒子方向对齐</a></li>
+<li class="toctree-l2"><a class="reference internal" href="css_malke_align_items.html">弹性盒子方向对齐</a></li>
+<li class="toctree-l2"><a class="reference internal" href="css_malke_flex_wrap.html">弹性盒子子元素超出父容器时是否换行</a></li>
+<li class="toctree-l2"><a class="reference internal" href="css_malke_align_content.html">弹性盒子设置行对齐</a></li>
+<li class="toctree-l2"><a class="reference internal" href="css_malke_flex_grow.html">弹性盒子设置行对齐</a></li>
+<li class="toctree-l2"><a class="reference internal" href="css_malke_flex_order.html">弹性盒子的子元素排列顺序</a></li>
+<li class="toctree-l2"><a class="reference internal" href="css_malke_align_self.html">弹性盒子的子元素排列顺序</a></li>
+<li class="toctree-l2"><a class="reference internal" href="css_malke_cursor.html">鼠标移动到元素上的形状</a></li>
+<li class="toctree-l2"><a class="reference internal" href="css_malke_resize.html">允许户调整大小</a></li>
+<li class="toctree-l2"><a class="reference internal" href="html_make_div.html">div网页图层</a></li>
+<li class="toctree-l2"><a class="reference internal" href="html_namke_text.html">网页文本</a></li>
+<li class="toctree-l2"><a class="reference internal" href="html_make_obj.html">网页标签属性和事件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="html_make_h.html">网页标签标题</a></li>
+<li class="toctree-l2"><a class="reference internal" href="html_make_a.html">网页超链接</a></li>
+<li class="toctree-l2"><a class="reference internal" href="html_make_ul.html">网页列表和列表项</a></li>
+<li class="toctree-l2"><a class="reference internal" href="html_make_iframe.html">网页框架</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtn_make_js.html">js脚本</a></li>
+<li class="toctree-l2"><a class="reference internal" href="js_make_init.html">打开主题后运行</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtn_make_key.html">键盘和摇杆输入脚本</a></li>
+<li class="toctree-l2"><a class="reference internal" href="text_join.html">连接文本脚本</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtn_make_js_init.html">刷新脚本</a></li>
+<li class="toctree-l2"><a class="reference internal" href="controls_delay.html">延时脚本</a></li>
+<li class="toctree-l2"><a class="reference internal" href="controls_timer.html">定时器脚本</a></li>
+<li class="toctree-l2"><a class="reference internal" href="controls_timer_stop.html">清除定时器脚本</a></li>
+<li class="toctree-l2"><a class="reference internal" href="controls_for.html">按次数进行重复执行脚本</a></li>
+<li class="toctree-l2"><a class="reference internal" href="controls_whileUntil.html">重复执行脚本</a></li>
+<li class="toctree-l2"><a class="reference internal" href="controls_if.html">如果否则脚本</a></li>
+<li class="toctree-l2"><a class="reference internal" href="controls_switch_case.html">多分枝脚本</a></li>
+<li class="toctree-l2"><a class="reference internal" href="math_array_push.html">向列表中添加新数据脚本</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtn_make_js_get_wait.html">等待执行完成脚本</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtn_make_js_get_json_parse.html">解析获取的表数据脚本</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtn_make_js_get_json_length.html">获取解析后的数据长度脚本</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">获取分类列表脚本</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtn_make_js_get_ui_table.html">获取主题列表脚本</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mtn_make_js_get_game_table.html">获取游戏列表脚本</a></li>
+</ul>
+</li>
+</ul>
+
+          
+        
+
+      </div>
+      &nbsp;
+    </nav>
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      <nav class="wy-nav-top" id="barra-mobile" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="#">MTN_help </a>
+      </nav>
+
+      <div class="wy-nav-content">
+	<div class="fundo-claro">
+	</div>
+	<div class="fundo-escuro">
+	</div>
+
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+	    
+	    <!-- <ul class="wy-breadcrumbs"> -->
+	    <!--   <li><a href="#">Docs</a> &raquo;</li> -->
+
+	    <!--   <li>Features</li> -->
+	    <!--   <li class="wy-breadcrumbs-aside"> -->
+
+	    <!-- 	<a href="_sources/index.txt" rel="nofollow"> View page source</a> -->
+
+	    <!--   </li> -->
+	    <!-- </ul> -->
+	    <!-- <hr/> -->
+	  </div>
+          <div role="main" class="">
+
+	    <div id="content" class="hfeed entry-container hentry">
+      	<div id="dark-mode-toggle-container">
+	  <dark-mode-toggle appearance="toggle" dark="switch to light mode" light="switch to dark mode">
+	  </dark-mode-toggle>
+	</div>
+  <section id="id1">
+<h1>获取分类列表脚本<a class="headerlink" href="#id1" title="此标题的永久链接">¶</a></h1>
+<img alt="../../_images/139.png" src="../../_images/139.png" />
+<p>使用MTN软件将数据库中的daohang表发送给UI使用。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">body</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="n">script</span><span class="o">&gt;</span>
+    <span class="k">async</span> <span class="n">function</span> <span class="n">mtn_init</span><span class="p">(){</span>
+    <span class="o">//</span><span class="n">MTN初始化函数</span>
+    <span class="k">await</span> <span class="n">mtn_init</span><span class="p">();</span>
+    <span class="n">var</span> <span class="n">分类</span><span class="o">=</span><span class="k">await</span> <span class="n">get_classify_table</span><span class="p">();</span>
+    <span class="n">var</span> <span class="n">分类列表</span><span class="o">=</span><span class="n">JSON</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">分类</span><span class="p">);</span>
+    <span class="n">var</span> <span class="n">分类长度</span><span class="o">=</span><span class="n">分类列表</span><span class="o">.</span><span class="n">length</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="p">}</span>
+<span class="o">&lt;/</span><span class="n">script</span><span class="o">&gt;</span>
+
+<span class="o">&lt;/</span><span class="n">body</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>js教程请参考</p>
+<p><a href="https://www.w3school.com.cn/js/index.asp" target="_blank">w3school</a></p>
+<p><a href="https://www.runoob.com/js/js-tutorial.html" target="_blank">菜鸟教程</a></p></section>
+
+
+	    </div>
+            <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="mtn_make_js_get_ui_table.html" class="btn btn-neutral float-right" title="获取主题列表脚本">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="mtn_make_js_get_json_length.html" class="btn btn-neutral" title="获取解析后的数据长度脚本"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2024, www.mtnhome.top.
+    </p>
+  </div>
+
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/jucacrispim/sphinx_pdj_theme">theme</a> provided by <a href="https://poraodojuca.dev">Porão do Juca</a>.
+
+</footer>
+	</div>
+	</div>
+	  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'MTN_HELP',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+    <script type="text/javascript" src="../../_static/documentation_options.js">
+
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js">
+
+    </script>
+    <script type="text/javascript" src="../../_static/underscore.js">
+
+    </script>
+    <script type="text/javascript" src="../../_static/_sphinx_javascript_frameworks_compat.js">
+
+    </script>
+    <script type="text/javascript" src="../../_static/doctools.js">
+
+    </script>
+    <script type="text/javascript" src="../../_static/sphinx_highlight.js">
+
+    </script>
+    <script type="text/javascript" src="../../_static/translations.js">
+
+    </script>
+
+  
+
+   <script type="text/javascript"
+           src="../../_static/js/theme.js"></script>
+
+   <script type="text/javascript"
+           src="../../_static/js/pdj.js"></script>
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+  </body>
+</html>

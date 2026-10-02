@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="author" content="OrcasThemes">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+<title>game</title>
+<link href="css/bootstrap.css" rel="stylesheet">
+<link rel="stylesheet" href="css/screen.css">
+<link rel="stylesheet" href="css/animation.css">
+<link rel="stylesheet" href="css/font-awesome.css">
+<link href="css/lity.css" rel="stylesheet">
+<script src="js/mtn_server.js"></script>
+</head>
+<body>
+<!-- HOME 1 -->
+<div id="home1" class="container-fluid standard-bg">
+ <!-- HEADER -->
+ <div class="row header-top">
+ </div>
+ <!-- MENU -->
+ <div class="row home-mega-menu ">
+	<div class="col-md-12">
+	   <nav class="navbar navbar-default">
+		  <div class="collapse navbar-collapse js-navbar-collapse megabg dropshd ">
+			 <ul class="nav navbar-nav">				
+				<li><a href="../../mtn_set.html">返回设置</a></li>
+				<li><a onclick="add_bookmark_categories()">添加分类</a></li>
+				<li><a onclick="modify_bookmark_categories()">修改分类</a></li>
+				<li><a  onclick="del_bookmark_categories()">删除分类</a></li>
+				<li><a  onclick="bookmarks_show()">添加内容</a></li>
+			 </ul>
+			 <div class="search-block">
+				<form>
+				   <div><input id='rom_sch' type="search" placeholder="Search" onkeypress="handleKeyPress(event)">		   
+				   <button type="button" class="btn btn-link" onclick="
+				   game_so()
+				   ">搜索</button>
+				   </div>
+				</form>
+				
+			 </div>
+		  </div>
+		  <!-- /.nav-collapse -->
+	   </nav>
+	</div>
+ </div>
+ <!-- CORE -->
+ <div class="row">
+	<!-- SIDEBAR -->
+	<div class="col-lg-2 col-md-4 hidden-sm hidden-xs">
+	   <aside class="dark-bg">
+		  <article>
+			 <h2 class="icon"><i class="fa fa-flash" aria-hidden="true"></i>分类</h2>
+			 <ul id="SIDEBAR" class="sidebar-links">
+			 </ul>
+		  </article>
+		  <div class="clearfix spacer"></div>
+		  <article id="sidebar_tags">
+		  <div>
+			 <h2 class="icon"><i class="fa fa-gears" aria-hidden="true"></i>标签</h2>
+		</div>			 
+		  </article>
+		  <div class="clearfix spacer"></div>
+	   </aside>
+	</div>
+	<!-- HOME MAIN POSTS -->	
+	<div class="col-lg-10 col-md-8">
+	   <section id="home-main">
+		  <h2 id="page_game_title" class="icon"><i class="fa fa-television" aria-hidden="true"></i>
+		</h2>
+		  <div class="row">
+			 <!-- ARTICLES -->
+			 <div class="col-lg-12 col-md-12 col-sm-12">
+				<div id="game_rows" class="row auto-clear">
+	
+				</div>
+				
+			 </div>
+			 <!-- RIGHT ASIDE -->
+
+<div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+  <div id="game_page" class="btn-group me-2" role="group" aria-label="First group">
+</div>
+  </div>
+		  </div>
+	   </section>
+	</div>
+ </div>
+ 
+</div>
+<div id="customContextMenu" class="custom-context-menu" style="display: none; position: absolute;">
+	<ul>
+	<li id="menuItempath1" onclick="open_bookmarks(currentGameId)">打开</li>
+	<li id="menuItempath2" onclick="showEditModal()">修改</li>
+	<li id="menuItempath3" onclick="bookmarks_del(currentGameId)">删除</li>
+	<li id="menuItempath3" onclick="">取消</li>
+</ul></div>
+
+<!-- 自定义模态框 -->
+<div id="customModal" class="custom-modal">
+
+</div>
+<audio id="backgroundMusic" controls style="display:none;">
+	您的浏览器不支持 audio 元素。
+</audio>
+<script src="js/user_bookmarks_menu.js"></script>
+<script src="js/bookmarks_function.js"></script>
+<script src="js/user_bookmarks_function2.js"></script>
+<script src="js/user_bookmarks_function3.js"></script>
+<script src="js/user_bookmarks_function4.js"></script>
+<script src="js/user_bookmarks_function5.js"></script>
+<script src="js/bookmarks_rows.js"></script>
+
+<script>
+	var int_music_value = 0;
+function handleKeyPress(event) {
+    if (event.keyCode === 13) { 
+    	 event.preventDefault(); // 阻止默认的表单提交行为// 如果按下的是回车键
+        game_so();
+    }
+}
+
+</script>
+
+</body>
+</html>
+<body>

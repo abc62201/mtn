@@ -1,0 +1,329 @@
+ * {
+    box-sizing: border-box;
+}
+/* 整体口容器 */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+/* 导航，左侧菜单，主要内容，容器 */
+.container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* 这里的vh是视窗高度单位，一般不会转为像素 */
+}
+/* 导航菜单，logo容器 */
+.header {
+    background-color: #f8f9fa;
+    padding: 16px; /* 修改为像素值 */
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+/* logo单容器 */
+.logo {
+    width: 100px; /* logo 图片宽度本身就是像素单位 */
+    height: auto;
+}
+/* 导航菜单容器 */
+.nav {
+    display: flex;
+    justify-content: center; /* 水平居中 */
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+/* 单个导航菜单容器 */
+.nav li {
+	 cursor: pointer; /* 鼠标悬停时显示指针形状 */
+    padding: 8px; /* 修改为像素值 */
+    margin-right: 16px; /* 修改为像素值 */
+}
+/* 单个导航菜单容器 */
+.nav div {
+    color: black;
+    text-decoration: none;
+}
+/* 左侧菜单和主要内容的容器 */
+.content-container {
+    display: flex;
+    flex-direction: row-reverse;
+    flex-grow: 1;
+    padding: 16px; /* 修改为像素值 */
+}
+/* 左侧菜单的容器 */
+.sidebar {
+    background-color: #e9ecef;
+    width: 10%; /* 这里的宽度也是像素单位 */
+    order: 1; /* 无需单位 */
+    overflow-y: none;
+}
+/* 左侧菜单容器 */
+.NavList_submenu{
+	list-style-type: none;
+}
+/* 左侧菜单单个容器 */
+.NavList_submenu li{
+	cursor: pointer;
+}
+/* 主要内容的容器 */
+.main-content {
+    width: 90%; 
+    flex-grow: 1;
+    padding: 0px; /* 修改为像素值 */
+    background-color: #d1cece;
+    overflow-y: none;
+}
+/* 底部内容的容器 */
+.footer {
+    background-color: #f8f9fa;
+    padding: 1px; /* 修改为像素值 */
+    text-align: center;
+    height: 40px; /* 已经是像素单位 */
+}
+/* 小屏幕效果 */
+@media (max-width: 768px) {
+    .content-container {
+        flex-direction: column;
+    }
+    
+    .sidebar,
+    .main-content {
+        width: 100%; /* 百分比单位 */
+    }
+}
+/* 标题样式 */
+h2{
+    margin: 0 0 0 20px;
+    height: 5%;
+}
+/* 文本框标题样式 */
+.setting-label {
+        display: block;
+        margin: 10px 0 10px 20px; /* 上间距10px，右间距0，下间距20px，左间距0 */
+		font-weight: bold; /* 将字体设置为粗体 */
+    }
+/* 文本框样式 */
+.inline-radio-group {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+		 margin: 10px 0 10px 20px; /* 上间距10px，右间距0，下间距20px，左间距0 */
+    }
+	/* 按钮样式 */
+.input-with-button {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin: 0 0 0 20px;
+    }
+    /* 提交按钮样式 */
+.savebutton{
+		margin: 20px 0 0 20px; /* 上间距10px，右间距0，下间距20px，左间距0 */
+	}
+      /* 模拟器表单图层容器 */
+.emu_set_form{
+    display:none;
+	margin: 0 0 10px 0;
+	width:auto;
+    height: 20%;
+	border: 2px solid #f00; /* 为表单设置灰色实线边框 */
+    border-radius: 4px; /* 圆角边框，使得边角圆润 */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); /* 阴影效果，增加立体感 */
+	background-color: #ffffff;
+}
+/* 模拟器显示图层容器 */
+.emu_div{
+      /* 设置为块级元素以允许自动换行 */
+  display: block;
+  
+  /* 防止图片溢出其容器 */
+  max-width: 100%;
+    width: auto;
+    height: 95%;
+    background-color: #7e3232;
+    
+    background-repeat:no-repeat;
+    background-size: 100% 100%;
+}
+/* 模拟器表单容器 */
+.form-item {
+    display: flex;
+    align-items: center;
+    margin: 5px 0 0 0;
+    width: calc(33.33% - 10px); /* 调整宽度以适应每行3个元素 */
+    padding-right: 10px;
+}
+/* 模拟器表单按钮容器 */
+.emu_button{
+    display: flex;
+}
+/* 模拟器表单按钮 */
+.emu_button button {
+    font-size: 12pt;
+    margin: 20px 20px 0 5px;
+    border-radius: 5px; /* 设置圆角为1rem，使按钮变为圆形 */
+    background-color: #f8f2f2; /* 更改为浅灰色背景 */
+    cursor: pointer;  /* 鼠标变成手的形状 */
+}
+
+ /* 图标容器样式 */
+.emu_div_item {
+    position: relative;
+    display: inline-block;
+    margin: 10px;
+    text-align: center;
+    cursor: pointer;  /* 鼠标变成手的形状 */
+  }
+   /* 图标容器鼠标经过样式 */
+  .emu_div_item:hover{
+    background-color:#e7e2e2; /* 示例：绿色背景 */
+    border: 2px solid #007BFF; /* 示例：蓝色边框，宽度为 2px，实线 */
+    border-radius: 4px; /* 示例：圆角为 4px，可按需调整 */
+  }
+  /*图标容器选中后的效果*/
+.emu_div_item.selected {
+    background-color:#f8f8f8; /* 示例：绿色背景 */
+    border: 2px solid #007BFF; /* 示例：蓝色边框，宽度为 2px，实线 */
+    border-radius: 4px; /* 示例：圆角为 4px，可按需调整 */
+}
+/* 图标图片容器样式 */
+  .emu_div_item_img {
+    border-radius: 10px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+   /*  background-color: #f8f8f8;*/
+    padding: 5px;
+  }
+  
+/* 图片样式 */
+  .emu_div_item_img > img {
+    /* max-width: 60px;*/
+   /*  max-height: 60px;*/
+    object-fit: contain;
+  }
+  
+ /* 图标下方文字样式 */
+  .emu_div_item_txt {
+    font-size: 14px;
+    color: #333;
+    line-height: 1.5;
+    padding-top: 5px;
+  }
+
+      /* 右键菜单整体容器 */
+      .custom-context-menu {
+        background-color: #fff;
+        border: 1px solid #ccc;
+        box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+        padding: 10px;
+        z-index: 1000; /* 确保菜单在其它元素之上 */
+    }
+ /* 右键菜单整体ul容器 */
+    .custom-context-menu ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+    }
+/* 右键菜单每一行 */
+    .custom-context-menu ul li {
+        cursor: pointer;
+        padding: 8px 12px;
+        border-bottom: 1px solid #eee;
+    }
+/* 右键菜单每一行鼠标经过样式 */
+    .custom-context-menu ul li:hover {
+        background-color: #dddada;
+    }
+/* 选择参数文本 */
+    .emu_args_text {
+        position: relative;
+        font-size: 14px;
+        color: #566df0;
+        display: inline-block;
+        margin: 10px;
+        text-align: center;
+        cursor: pointer;  /* 鼠标变成手的形状 */
+      }
+      /* 参数设置页整体容器 */
+      .emu_args_form{
+        margin: 20px 0 0 20px; /* 上间距10px，右间距0，下间距20px，左间距0 */
+      }
+      .div_iframe{
+        width: 100%;
+        height: 100%;
+      }
+      #website {
+        border: 0;
+        width: 100%; /* 替换为实际宽度 */
+        height: 100%; /* 替换为实际高度 */
+      }
+      /* 下载页整体容器 */
+      .emu_dw_div{
+        display: block;
+        /* 防止图片溢出其容器 */
+        max-width: 100%;
+          width: auto;
+          height: 95%;
+      }
+      .emu_dw_div_item{
+        position: relative;
+        display: inline-block;
+        margin: 10px;
+        text-align: center;
+        cursor: pointer;  /* 鼠标变成手的形状 */
+      }
+      .emu_dw_div_item_img{
+        border-radius: 10px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+       /*  background-color: #f8f8f8;*/
+        padding: 5px;
+      }
+      .emu_dw_div_item_img > img {
+        width: 200px;
+       height: 200px;
+      }
+
+      .emu_dw_div_item_txt {
+        font-size: 14px;
+        color: #333;
+        line-height: 1.5;
+        padding-top: 5px;
+      }
+      /* 基本样式 */
+.mtn_gamepath_buttons {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.gamepath_button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    background-color: #f0f0f0;
+    cursor: pointer;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+.gamepath_button:hover {
+    background-color: #e0e0e0;
+    border-color: #999;
+}
+
+.gamepath_button.active {
+    background-color: #007bff;
+    color: white;
+    border-color: #0056b3;
+}
+
+/* 其他样式 */
+.mtn_gamepath_set_div {
+    margin-top: 20px;
+}
+
+.classify_down {
+    margin-top: 20px;
+}

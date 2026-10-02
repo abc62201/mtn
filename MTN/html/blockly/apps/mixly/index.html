@@ -1,0 +1,1736 @@
+<html manifest=node.manifest>
+<head>
+  <meta charset="utf-8">
+  <title>MTNmakeUI</title>
+  <script type="text/javascript" src="../../blockly_compressed.js"></script>
+  <script type="text/javascript" src="../../core/variables.js"></script>
+  <script type="text/javascript" src="../../core/procedures.js"></script>
+  <script type="text/javascript" src="../../core/blockly.js"></script>
+  <script type="text/javascript" src="../../core/events.js"></script>
+  <script type="text/javascript" src="../../core/field_textarea.js"></script>
+ <script type="text/javascript" src="../../arduino.js"></script>
+ <script type="text/javascript" src="company_pin.js"></script> 
+  <script type="text/javascript" src="js/drag.js"></script>
+  <script type="text/javascript" src="js/code.js"></script>
+  <script type="text/javascript" src="digitalPinToInterrupt.js"></script>
+  <script type="text/javascript" src="js/Blob.js"></script>
+  <script type="text/javascript" src="spin.js"></script>
+  <script type="text/javascript" src="js/FileSaver.min.js"></script>
+  <script type="text/javascript" src="js/blockly_helper.js"></script>
+  <script type="text/javascript" src="jquery-1.11.3.min.js"></script>
+  <script src="js/lib/ace/ace.js" type="application/javascript"></script>
+  <script src="js/lib/ace/ext-language_tools.js" type="application/javascript"></script>
+  <script type="text/javascript" src="mtn_server.js"></script>
+
+  <script type="text/javascript" src="../../generators/text.js"></script>
+  <script type="text/javascript" src="../../generators/math.js"></script>
+  <script type="text/javascript" src="../../blocks/arduino/text.js"></script>
+   <script type="text/javascript" src="../../blocks/arduino/math.js"></script>
+
+
+ 
+    <!-- 加入自定义代码 -->
+  <script type="text/javascript" src="generators/mtn_zt_class.js"></script>
+  <script type="text/javascript" src="generators/mtn_zt_html.js"></script>
+  <script type="text/javascript" src="generators/mtn_zt_js_init.js"></script>
+  <script type="text/javascript" src="generators/mtn_zt_js_id_io.js"></script>
+  <script type="text/javascript" src="generators/mtn_zt_js_variables.js"></script>
+  <script type="text/javascript" src="generators/mtn_zt_js_procedures.js"></script>
+  <script type="text/javascript" src="generators/mtn_zt_js_getdata.js"></script>
+  <script type="text/javascript" src="generators/mtn_zt_js_control.js"></script>
+  <script type="text/javascript" src="generators/mtn_zt_js_math.js"></script>
+  <script type="text/javascript" src="generators/mtn_zt_js_logic.js"></script>
+  <script type="text/javascript" src="generators/mtn_zt_keyjoy.js"></script>
+  <script type="text/javascript" src="generators/mtn_zt_js_svg.js"></script>
+  <script type="text/javascript" src="generators/file.js"></script>
+  <script type="text/javascript" src="generators/tools.js"></script>
+
+  <!-- 结束自定义代码 -->
+   <!-- 加入自定义模块外观 -->
+   
+  <script type="text/javascript" src="blocks/mtn_zt_class.js"></script>
+  <script type="text/javascript" src="blocks/mtn_zt_class_2.js"></script>
+  <script type="text/javascript" src="blocks/mtn_zt_html.js"></script>
+  <script type="text/javascript" src="blocks/mtn_zt_js_init.js"></script>
+  <script type="text/javascript" src="blocks/mtn_zt_js_id_io.js"></script>
+  <script type="text/javascript" src="blocks/mtn_zt_js_variables.js"></script>
+  <script type="text/javascript" src="blocks/mtn_zt_js_procedures.js"></script>
+  <script type="text/javascript" src="blocks/mtn_zt_js_getdata.js"></script>
+  <script type="text/javascript" src="blocks/mtn_zt_js_control.js"></script>
+  <script type="text/javascript" src="blocks/mtn_zt_js_math.js"></script>
+  <script type="text/javascript" src="blocks/mtn_zt_js_logic.js"></script>
+  <script type="text/javascript" src="blocks/mtn_zt_keyjoy.js"></script>
+  <script type="text/javascript" src="blocks/mtn_zt_js_svg.js"></script>
+  <script type="text/javascript" src="blocks/tools.js"></script>
+  <script type="text/javascript" src="blocks/file.js"></script>
+  <script type="text/javascript" src="blocks/mtn_dict.js"></script>
+  <!-- 结束自定义 -->
+    <!-- 加入自定义字体 -->
+  <script type="text/javascript" src="../../mdrobot/language/mdrobot/zh-hans.js"></script>
+  
+  <!-- 结束自定义 -->
+  <script src = "init.js"></script>
+  <link rel="stylesheet" type="text/css" href="css/color.css"/>
+  <link rel="stylesheet" type="text/css" href="css/ACEfont.css"/>
+  <link rel="stylesheet" type="text/css" href="css/up_ui.css"/>
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="mtn_ai_char_roast.css">
+</head>
+<body onload="init()">
+  <table height="100%" width="100%" id="table_whole">
+    <tr>
+      <td colspan=3>
+        <table width="100%">
+          <tr id="tabRow" height="1em">
+            <td style="vertical-align: center;" id="tab_blocks" class="tabon" onclick="tabClick('blocks')">
+             <img style="vertical-align:middle" width="25" src="media/blocks.png"/>
+             <span id="span_blocks">Blocks</span>
+           </td>
+           <td class="tabmin">&nbsp;</td>
+           <td style="vertical-align: center;text-align:center;" id="tab_arduino" class="taboff" onclick="tabClick('arduino')">
+             <span id="span_arduino">Code</span>
+           </td>
+            <td style="vertical-align: center;text-align:center;" id="tab_html" class="taboff" onclick="tabClick('html')">
+             <span id="span_html">html</span>
+           </td>
+           <td class="tabmin">&nbsp;</td>
+           <td style="vertical-align: center;text-align:center;display:none;" id="tab_xml" class="taboff" onclick="tabClick('xml')">XML</td>
+           <td style="vertical-align: center;text-align:center;" id="tab_openxml" class="taboff">
+            <button id="fakeload1" onclick='openxmlfile()'>打开文件</button> 
+            </td>
+            <td style="vertical-align: center;text-align:center;" id="tab_savexml" class="taboff">
+              <button id="fakeload2" onclick='savexmlfile()'>保存编辑</button> 
+              </td>
+              <td style="vertical-align: center;text-align:center;" id="tab_savehtml" class="taboff">
+                <button id="fakeload3" onclick='savehtmlfile()'>生成主题</button> 
+                </td>
+          <td style="vertical-align: center;text-align:center;" id="tab_apphtml" class="taboff">
+            <button id="fakeload4" onclick='apphtmlfile()'>应用主题</button> 
+          </td>
+          <td style="vertical-align: center;text-align:center;" id="tab_uphtml" class="taboff">
+            <button id="fakeload5" onclick='uphtmlfile()'>上传主题</button> 
+          </td>
+          <td style="vertical-align: center;text-align:center;" id="tab_upxml" class="taboff">
+            <button id="fakeload6" onclick='upxmlfile()'>上传源码</button> 
+          </td>
+      
+
+
+          <td class="tabmin">
+           <input onclick="Blockly.mainWorkspace.undo(0);" name="undo" type="image" title="undo(ctrl+z)"  src="media/undo.png" style="padding:5px;" onmouseover="this.src='media/undo1.png'" onmousedown="this.src='media/undo2.png'" onmouseup="this.src='media/undo1.png'" onmouseout="this.src='media/undo.png'" width="20" height="20" border="0">
+         </td>
+         <td class="tabmin">
+           <input onclick="Blockly.mainWorkspace.undo(1);" name="redo" type="image" title="redo(ctrl+y)"  src="media/redo.png" style="padding:5px" onmouseover="this.src='media/redo1.png'" onmousedown="this.src='media/redo2.png'" onmouseup="this.src='media/redo1.png'" onmouseout="this.src='media/redo.png'" width="20" height="20" border="0">
+         </td>
+         <td class="tabmin"style="padding-right:20px">
+          <input onclick="JSFuncs.openUrlInBrowser('/html/help/build/html/uihelp/uimake.html')" name="help" type="image" src="media/help.png" style="padding:5px" onmouseover="this.src='media/help1.png'" onmousedown="this.src='media/help2.png'" onmouseup="this.src='media/help1.png'" onmouseout="this.src='media/help.png'" width="20" height="20" border="0">
+        </td>
+
+        <td class="tabmin">
+          <select id="languageMenu"></select>
+        </td>
+        <td class="tabmin">
+          <select id="aceTheme" style="width:100px; height:23px; margin-left: 10px;">
+           <optgroup label="代码区亮色主题">
+            <option value="ace/theme/chrome">Chrome</option>
+            <option value="ace/theme/clouds">Clouds</option>
+            <option value="ace/theme/crimson_editor">Crimson Editor</option>
+            <option value="ace/theme/dawn">Dawn</option>
+            <option value="ace/theme/dreamweaver">Dreamweaver</option>
+            <option value="ace/theme/eclipse">Eclipse</option>
+            <option value="ace/theme/github">GitHub</option>
+            <option value="ace/theme/iplastic">IPlastic</option>
+            <option value="ace/theme/solarized_light">Solarized Light</option>
+            <option value="ace/theme/textmate">TextMate</option>
+            <option value="ace/theme/tomorrow">Tomorrow</option>
+            <option value="ace/theme/xcode">XCode</option>
+            <option value="ace/theme/kuroir">Kuroir</option>
+            <option value="ace/theme/katzenmilch">KatzenMilch</option>
+            <option value="ace/theme/sqlserver">SQL Server</option>
+          </optgroup>
+          <optgroup label="代码区暗色主题">
+            <option value="ace/theme/ambiance">Ambiance</option>
+            <option value="ace/theme/chaos">Chaos</option>
+            <option value="ace/theme/clouds_midnight">Clouds Midnight</option>
+            <option value="ace/theme/dracula">Dracula</option>
+            <option value="ace/theme/cobalt">Cobalt</option>
+            <option value="ace/theme/gruvbox">Gruvbox</option>
+            <option value="ace/theme/gob">Green on Black</option>
+            <option value="ace/theme/idle_fingers">idle Fingers</option>
+            <option value="ace/theme/kr_theme">krTheme</option>
+            <option value="ace/theme/merbivore">Merbivore</option>
+            <option value="ace/theme/merbivore_soft">Merbivore Soft</option>
+            <option value="ace/theme/mono_industrial">Mono Industrial</option>
+            <option value="ace/theme/monokai">Monokai</option>
+            <option value="ace/theme/pastel_on_dark">Pastel on dark</option>
+            <option value="ace/theme/solarized_dark">Solarized Dark</option>
+            <option value="ace/theme/terminal">Terminal</option>
+            <option value="ace/theme/tomorrow_night">Tomorrow Night</option>
+            <option value="ace/theme/tomorrow_night_blue">Tomorrow Night Blue</option>
+            <option value="ace/theme/tomorrow_night_bright">Tomorrow Night Bright</option>
+            <option value="ace/theme/tomorrow_night_eighties">Tomorrow Night 80s</option>
+            <option value="ace/theme/twilight">Twilight</option>
+            <option value="ace/theme/vibrant_ink">Vibrant Ink</option>
+          </optgroup>
+        </select>
+      </td>
+      <script>
+	  // 定义JSFuncs对象及openUrlInBrowser方法  
+var JSFuncs = {  
+    openUrlInBrowser: function(url) { 
+      open_help_ui(url);
+    }  
+};
+       document.getElementById('span_blocks').textContent = MSG['tab_blocks'];
+       document.getElementById('span_arduino').textContent = MSG['tab_arduino'];
+       document.getElementById('span_html').textContent = MSG['tab_html'];
+     </script>
+   </tr>
+ </table>
+</td>
+</tr>
+<tr>
+  <td height="100%" width="75%" id="content_area"></td>
+  <td style="display:none;height:100%;width:0.3%;background: #ddd;cursor: w-resize;" id="mid_td"></td>
+  <td width="25%" style="background-color:#eee;display:none;" id="side_code_parent">
+    <div id="side_code" wrap="off" readonly></div>
+  </td>
+  <div id="sidebar" class="right-top" onclick="sidecodeClick()"></div>
+</tr>
+</table>
+<div id="content_blocks" class="content"></div>
+<div id="content_arduino" class="content" wrap="off" ></div>
+<textarea id="content_xml" class="content" wrap="off" readonly></textarea>
+<div id="content_html" class="content" wrap="off" >
+  <iframe id="website"></iframe>
+
+</div>
+<div id="up_ui_file" class="up_ui_file">
+
+</div>
+<xml id="toolbox" style="display: none">
+<!-- 加入自定义菜单 -->
+<category name="样式" colour="100">
+  <category name="主要" colour="101">
+    <block type="mtn_make_style">
+    </block>
+	<block type="mtn_make_body">
+    </block>
+    <block type="make_class">
+      <value name="make_class_name">
+        <shadow type="math_number">
+          <field name="NUM">classname</field>
+        </shadow>
+      </value>
+    </block>
+    <block type="make_hover">
+      <value name="make_hover_name">
+        <shadow type="math_number">
+          <field name="NUM">classname</field>
+        </shadow>
+      </value>
+    </block>
+<block type="mtn_make_fonts">
+  <statement name="fonts_value_css">
+    <block type="make_add_font_class">
+      <value name="make_add_font_class_value1">
+        <shadow type="text">
+          <field name="TEXT">fontname</field>
+        </shadow>
+      </value>
+      <value name="make_add_font_class_value2">
+        <shadow type="text">
+          <field name="TEXT">fontpath</field>
+        </shadow>
+      </value>
+    </block>
+  </statement>
+</block>
+    <block type="make_diy_css_class">
+      <value name="make_diy_css_class_value">
+        <shadow type="math_number">
+          <field name="NUM">class="style"</field>
+        </shadow>
+      </value>
+    </block>
+        <block type="make_add_font_class">
+      <value name="make_add_font_class_value1">
+        <shadow type="text">
+          <field name="TEXT">fontname</field>
+        </shadow>
+      </value>
+      <value name="make_add_font_class_value2">
+        <shadow type="text">
+          <field name="TEXT">fontpath</field>
+        </shadow>
+      </value>
+    </block>
+  </category>
+  <category name="背景" colour="101">
+    <block type="css_malke_bgcolor">
+    </block>
+    <block type="css_malke_gradient_background">
+    </block>
+    <block type="css_malke_gradient_opacity">
+    </block>
+    <block type="css_malke_gradient_combined">
+    </block>
+    <block type="css_malke_bgimage">
+      <value name="make_class_bgimage">
+        <shadow type="text">
+          <field name="TEXT">图片地址</field>
+        </shadow>
+      </value>
+    </block>
+    <block type="css_malke_bgattachment">
+    </block>
+	<block type="css_malke_bgrepeat">
+    </block>
+	<block type="css_malke_bgsize">
+    </block>
+	<block type="css_malke_bgposition">
+    </block>
+  </category>
+  <category name="文本" colour="101">
+     <block type="css_malke_color">
+    </block>
+	<block type="css_malke_direction">
+    </block>
+	<block type="css_malke_letter_spacing">
+    </block>
+	<block type="css_malke_line_height">
+    </block>
+	<block type="css_malke_text_align">
+    </block>
+    <block type="css_malke_text_wrap">
+    </block>
+	<block type="css_malke_text_decoration_line">
+    </block>
+    <block type="css_malke_text_indent">
+    </block>
+    <block type="css_malke_text_shadow">
+    </block>
+    <block type="css_malke_text_transform">
+    </block>
+    <block type="css_malke_font_family">
+    </block>
+    <block type="css_malke_font_style">
+    </block>
+    <block type="css_malke_font_size">
+    </block>
+    <block type="css_malke_font_weight">
+    </block>
+   </category>
+   <category name="列表" colour="101">
+    <block type="css_malke_list_style_type">
+    </block>
+    <block type="css_malke_list_style_position">
+    </block>
+    <block type="css_malke_list_style_image">
+      <value name="malke_list_image">
+        <shadow type="text">
+          <field name="TEXT">图片地址</field>
+        </shadow>
+      </value>
+    </block>
+  </category>
+  <category name="大小" colour="101">
+    <block type="css_malke_width">
+    </block>
+    <block type="css_malke_height">
+    </block>
+    <block type="css_malke_max_width">
+    </block>
+    <block type="css_malke_min_width">
+    </block>
+    <block type="css_malke_max_height">
+    </block>
+    <block type="css_malke_min_height">
+    </block>
+</category>
+<category name="边框" colour="101">
+  <block type="css_malke_border_style">
+  </block>
+  <block type="css_malke_border_width">
+  </block>
+  <block type="css_malke_border_color">
+  </block>
+  <block type="css_malke_border_radius">
+  </block>
+</category>
+  <category name="位置" colour="101">
+    <block type="css_make_position">      
+    </block>
+    <block type="css_malke_z_index">
+    </block>
+    <block type="css_malke_top">
+    </block>
+    <block type="css_malke_left">
+    </block>
+    <block type="css_malke_overflow">
+    </block>
+    <block type="css_malke_margin">
+    </block>
+    <block type="css_malke_padding">
+    </block>
+    <block type="css_malke_display">
+    </block>
+    <block type="css_malke_visibility">
+    </block>
+    <block type="css_malke_float">
+    </block>
+    <block type="css_malke_clear">
+    </block>
+  </category>
+  <category name="变换" colour="101">
+   <block type="css_malke_opacity">
+   </block>
+   <block type="css_malke_box_shadow">
+   </block>
+   <block type="css_malke_transform">
+   </block>
+   <block type="css_malke_translate">
+   </block>
+    <block type="css_malke_scale">
+   </block>
+   <block type="css_malke_skew">
+   </block>
+   <block type="css_malke_translate3d">
+   </block>
+   <block type="css_malke_scale3d">
+   </block>
+   <block type="css_malke_rotate3d">
+   </block>
+   <block type="css_malke_filter">
+  </block>
+  <block type="css_malke_filter_blur">
+  </block>
+  <block type="css_malke_filter_brightness">
+  </block>
+  <block type="css_malke_filter_contrast">
+  </block>
+  <block type="css_malke_filter_grayscale">
+  </block>
+  <block type="css_malke_filter_hue_rotate">
+  </block>
+  <block type="css_malke_filter_invert">
+  </block>
+  <block type="css_malke_filter_opacity">
+  </block>
+  <block type="css_malke_filter_saturate">
+  </block>
+  <block type="css_malke_filter_sepia">
+  </block>
+  <block type="css_malke_cursor"></block>
+  <block type="css_malke_resize"></block>
+  </category>
+  <category name="动画" colour="101">
+    <block type="css_malke_transition">
+    </block>
+
+    <block type="css_transition_value">
+    </block>
+
+    <block type="css_make_animation_name">
+      <value name="css_make_animation_name_value">
+        <shadow type="math_number">
+          <field name="NUM">myfirst</field>
+        </shadow>
+      </value>
+    </block>
+
+    <block type="css_make_animation_duration">
+    </block>
+
+    <block type="css_make_animation_timing_function">
+    </block>
+    
+    <block type="css_make_animation_iteration_count">
+    </block>
+    <block type="css_make_animation_delay">
+    </block>
+    <block type="css_make_animation">
+      <value name="css_make_animation_value">
+        <shadow type="math_number">
+          <field name="NUM">myfirst</field>
+        </shadow>
+      </value>
+    </block>
+    <block type="css_make_animation_key">
+    </block>
+</category>
+<category name="多列" colour="101">
+  <block type="css_malke_column_count">
+  </block>
+  <block type="css_malke_column_width">
+  </block>
+  <block type="css_malke_column_gap">
+  </block>
+  <block type="css_malke_column_rule_style">
+  </block>
+  <block type="css_malke_column_rule_width">
+  </block>
+  <block type="css_malke_column_rule_color">
+  </block>
+</category>
+<category name="弹性盒子" colour="101">
+  <block type="css_make_flex_direction">
+  </block>
+  <block type="css_malke_justify_content">
+  </block>
+  <block type="css_malke_align_items">
+  </block>
+  <block type="css_malke_flex_wrap">
+  </block>
+  <block type="css_malke_align_content">
+  </block>
+  <block type="css_malke_flex_grow">
+  </block>
+  <block type="css_malke_flex_order">
+  </block>
+  <block type="css_malke_align_self">
+  </block>
+</category>
+</category>
+
+<category name="主题元素" colour="100">
+<category name="元素" color="101">
+  <block type="mtn_make_html">
+  </block>
+  <block type="html_make_div">
+    <value name="html_id_div_name">
+      <shadow type="math_number">
+        <field name="NUM">id_name</field>
+      </shadow>
+    </value>
+    <value name="html_class_div_name">
+      <shadow type="math_number">
+        <field name="NUM">classname</field>
+      </shadow>
+    </value>
+  </block>
+
+  <block type="html_make_h">
+    <value name="html_id_h_name">
+      <shadow type="math_number">
+        <field name="NUM">id_name</field>
+      </shadow>
+    </value>
+    <value name="html_class_h_name">
+      <shadow type="math_number">
+        <field name="NUM">classname</field>
+      </shadow>
+    </value>
+  </block>
+
+  <block type="html_make_p">
+    <value name="html_id_p_name">
+      <shadow type="math_number">
+        <field name="NUM">id_name</field>
+      </shadow>
+    </value>
+    <value name="html_class_p_name">
+      <shadow type="math_number">
+        <field name="NUM">classname</field>
+      </shadow>
+    </value>
+  </block>
+
+  <block type="html_make_a">
+    <value name="html_id_a_name">
+      <shadow type="math_number">
+        <field name="NUM">id_name</field>
+      </shadow>
+    </value>
+    <value name="html_class_a_name">
+      <shadow type="math_number">
+        <field name="NUM">classname</field>
+      </shadow>
+    </value>
+  </block>
+
+  <block type="html_make_img">
+    <value name="html_id_img_name">
+      <shadow type="math_number">
+        <field name="NUM">id_name</field>
+      </shadow>
+    </value>
+    <value name="html_class_img_name">
+      <shadow type="math_number">
+        <field name="NUM">classname</field>
+      </shadow>
+    </value>
+    <value name="html_make_img_url">
+      <shadow type="text">
+        <field name="TEXT">图片地址</field>
+      </shadow>
+    </value>
+  </block>
+
+  <block type="html_make_video">
+    <value name="html_id_video_name">
+      <shadow type="math_number">
+        <field name="NUM">id_name</field>
+      </shadow>
+    </value>
+    <value name="html_class_video_name">
+      <shadow type="math_number">
+        <field name="NUM">classname</field>
+      </shadow>
+    </value>
+  </block>
+  
+  <block type="html_make_audio">
+    <value name="html_id_audio_name">
+      <shadow type="math_number">
+        <field name="NUM">id_name</field>
+      </shadow>
+    </value>
+    <value name="html_class_audio_name">
+      <shadow type="math_number">
+        <field name="NUM">classname</field>
+      </shadow>
+    </value>
+  </block>
+
+  <block type="html_make_ul">
+    <value name="html_id_ul_name">
+      <shadow type="math_number">
+        <field name="NUM">id_name</field>
+      </shadow>
+    </value>
+    <value name="html_class_ul_name">
+      <shadow type="math_number">
+        <field name="NUM">classname</field>
+      </shadow>
+    </value>
+  </block>
+
+  <block type="html_make_li">
+    <value name="html_id_li_name">
+      <shadow type="math_number">
+        <field name="NUM">id_name</field>
+      </shadow>
+    </value>
+    <value name="html_class_li_name">
+      <shadow type="math_number">
+        <field name="NUM">classname</field>
+      </shadow>
+    </value>
+  </block>
+
+  <block type="html_make_input">
+    <value name="html_id_input_name">
+      <shadow type="math_number">
+        <field name="NUM">id_name</field>
+      </shadow>
+    </value>
+    <value name="html_class_input_name">
+      <shadow type="math_number">
+        <field name="NUM">classname</field>
+      </shadow>
+    </value>
+    <value name="html_name_input_name">
+      <shadow type="text">
+        <field name="TEXT">input_name</field>
+      </shadow>
+    </value>
+  </block>
+
+  <block type="html_make_select">
+    <value name="html_id_select_name">
+      <shadow type="math_number">
+        <field name="NUM">id_name</field>
+      </shadow>
+    </value>
+    <value name="html_class_select_name">
+      <shadow type="math_number">
+        <field name="NUM">classname</field>
+      </shadow>
+    </value>
+    <value name="html_name_select_name">
+      <shadow type="text">
+        <field name="TEXT">select_name</field>
+      </shadow>
+    </value>
+    <value name="html_make_select_value">
+      <block type="html_make_option">
+        <value name="html_class_option_name">
+          <shadow type="math_number">
+            <field name="NUM">classname</field>
+          </shadow>
+        </value>
+        <value name="html_name_option_text">
+          <shadow type="math_number">
+            <field name="NUM">option_text</field>
+          </shadow>
+        </value>
+  </block>
+    </value>
+  </block>
+
+  <block type="html_make_option">
+    <value name="html_class_option_name">
+      <shadow type="math_number">
+        <field name="NUM">classname</field>
+      </shadow>
+    </value>
+    <value name="html_name_option_text">
+      <shadow type="math_number">
+        <field name="NUM">option_text</field>
+      </shadow>
+    </value>
+  </block>
+
+  <block type="html_make_button">
+    <value name="html_class_button_id">
+      <shadow type="math_number">
+        <field name="NUM">id_name</field>
+      </shadow>
+    </value>
+    <value name="html_class_button_name">
+      <shadow type="math_number">
+        <field name="NUM">classname</field>
+      </shadow>
+    </value>
+    <value name="html_name_button_text">
+      <shadow type="math_number">
+        <field name="NUM">按钮</field>
+      </shadow>
+    </value>
+  </block>
+
+  <block type="html_make_iframe">
+    <value name="html_id_iframe_name">
+      <shadow type="math_number">
+        <field name="NUM">id_name</field>
+      </shadow>
+    </value>
+    <value name="html_class_iframe_name">
+      <shadow type="math_number">
+        <field name="NUM">classname</field>
+      </shadow>
+    </value>
+    <value name="html_name_iframe_src">
+      <shadow type="text">
+        <field name="TEXT">网站地址</field>
+      </shadow>
+    </value>
+  </block>
+  <block type="make_diy_html">
+    <value name="make_diy_html_value">
+      <shadow type="math_number">
+        <field name="NUM">&lt;tag&gt;&lt;/tag&gt;</field>
+      </shadow>
+    </value>
+  </block>
+  <block type="html_make_diy_label">
+    <value name="html_make_diy_label_name">
+      <shadow type="math_number">
+        <field name="NUM">div</field>
+      </shadow>
+    </value>
+    <value name="html_make_diy_label_id_name">
+      <shadow type="math_number">
+        <field name="NUM">id_name</field>
+      </shadow>
+    </value>
+    <value name="html_make_diy_label_class_name">
+      <shadow type="math_number">
+        <field name="NUM">classname</field>
+      </shadow>
+    </value>
+  </block>
+</category>
+<category name="属性和事件" color="101">
+<block type="html_make_obj">
+</block>
+<block type="html_make_obj_draggable">
+</block>
+<block type="html_make_obj_contenteditable">
+</block>
+<block type="html_make_obj_event">
+</block>
+<block type="html_make_obj_href">
+  <value name="html_make_obj_href_url">
+    <shadow type="text">
+      <field name="TEXT">链接地址</field>
+    </shadow>
+  </value>
+</block>
+<block type="html_make_obj_title">
+  <value name="html_make_obj_title_value">
+    <shadow type="text">
+      <field name="TEXT">提示文本</field>
+    </shadow>
+  </value>
+</block>
+<block type="html_make_obj_src">
+  <value name="html_make_obj_src_url">
+    <shadow type="text">
+      <field name="TEXT">视频，音频，框架等(src)地址</field>
+    </shadow>
+  </value>
+</block>
+<block type="html_make_obj_mp3mp4"></block>
+
+<block type="html_make_obj_value">
+  <value name="html_make_obj_value_text">
+    <shadow type="text">
+      <field name="TEXT">text</field>
+    </shadow>
+  </value>
+</block>
+<block type="html_make_obj_checked">
+</block>
+
+<block type="html_make_diy_obj">
+  <value name="html_make_diy_obj_name">
+    <shadow type="math_number">
+      <field name="NUM">name</field>
+    </shadow>
+  </value>
+</block>
+<block type="mtn_make_html">
+</block>
+
+
+
+</category>
+<category name="输入文本" color="101">
+  <block type="html_namke_text">
+  </block>
+</category>
+</category>
+
+<category name="脚本" colour="100">
+  <category name="开始" colour="100">
+    <block type="mtn_make_js">
+    </block>
+    <block type="js_make_init">
+    </block>
+    <block type="mtn_make_key">
+    </block>
+    <block type="mtn_make_joy">
+    </block>
+    <block type="js_make_Maozi">
+    </block>
+    <block type="mtn_make_js_init">
+    </block>
+    <block type="async_then_catch_block">
+    </block>
+  </category>
+  <category name="控制" colour="100">
+    <block type="controls_if">
+    </block>
+    <block type="controls_switch_case">
+    </block>
+    <block type="controls_for">
+      <value name="FROM">
+       <shadow type="math_number">
+         <field name="NUM">0</field>
+       </shadow>
+     </value>
+     <value name="TO">
+       <shadow type="math_number">
+         <field name="NUM">9</field>
+       </shadow>
+     </value>
+     <value name="STEP">
+       <shadow type="math_number">
+         <field name="NUM">1</field>
+       </shadow>
+     </value>
+     </block>
+
+     <block type="controls_whileUntil">
+      <value name="BOOL">
+        <shadow type="logic_boolean">
+        </shadow>
+      </value>
+    </block>
+    <block type="controls_delay">
+      <value name="DELAY_TIME">
+        <shadow type="math_number">
+          <field name="NUM">1000</field>
+        </shadow>
+      </value>
+    </block>
+    <block type="controls_timer">
+      <value name="timer_count">
+        <shadow type="math_number">
+          <field name="NUM">1000</field>
+        </shadow>
+      </value>
+    </block>
+    <block type="controls_timer_stop">
+    </block>
+    <block type="controls_window_fullscreen">
+    </block>
+
+    <block type="js_make_audio_play">
+      <value name="js_make_audio_play_file">
+            <shadow type="text">
+              <field name="TEXT">音乐路径</field>
+            </shadow>
+      </value>
+      <value name="js_make_audio_play_time">
+        <shadow type="math_number">
+          <field name="NUM">0</field>
+        </shadow>
+      </value>
+      </block>
+      <block type="mtn_request_css">
+      </block>
+      <block type="divdrag">
+        <value name="div_id">
+          <shadow type="math_number">
+            <field name="NUM">div_id</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="digital_clock_create">
+        <value name="ELEMENT_ID">
+          <shadow type="text">
+            <field name="TEXT">my_clock</field>
+          </shadow>
+    </value>
+    <value name="COLOR">
+    <block type="file_value_color">
+    </block>
+    </value>
+    <value name="FONT_RATIO">
+      <shadow type="math_number">
+        <field name="NUM">0.5</field>
+      </shadow>
+</value>
+      </block>
+      
+  </category>
+  <category name="运算" colour="100">
+    <block type="math_arithmetic">
+      <value name="A">
+        <shadow type="math_number">
+          <field name="NUM">1</field>
+        </shadow>
+      </value>
+      <value name="B">
+        <shadow type="math_number">
+          <field name="NUM">1</field>
+        </shadow>
+      </value>
+    </block>
+    <block type="variables_operation">
+      <value name="data">
+        <shadow type="math_number">
+          <field name="NUM">1</field>
+        </shadow>
+      </value>
+      <value name="variables">
+        <shadow type="math_number">
+          <field name="NUM">item</field>
+        </shadow>
+      </value>
+    </block>
+    <block type="logic_compare">
+    </block>
+    <block type="logic_operation">
+    </block>
+    <block type="logic_negate">
+    </block>
+    <block type="logic_boolean">
+    </block>
+    <block type="logic_true_or_false">
+    </block>
+    
+ 
+  <block type="text_join">
+ <value name="A">
+  <shadow type="text">
+    <field name="TEXT">Hello</field>
+  </shadow>
+</value>
+<value name="B">
+  <shadow type="text">
+    <field name="TEXT">Mixly</field>
+  </shadow>
+</value>
+</block>
+<block type="math_to_int">
+</block>
+<block type="math_max_min">
+  <value name="A">
+    <shadow type="math_number">
+      <field name="NUM">1</field>
+    </shadow>
+  </value>
+  <value name="B">
+    <shadow type="math_number">
+      <field name="NUM">2</field>
+    </shadow>
+  </value>
+</block>
+<block type="math_random_int">
+  <value name="FROM">
+   <shadow type="math_number">
+     <field name="NUM">1</field>
+   </shadow>
+ </value>
+ <value name="TO">
+   <shadow type="math_number">
+     <field name="NUM">100</field>
+   </shadow>
+ </value>
+</block>
+<block type="math_trig">
+</block>
+<block type="math_auto_add_or_minus_to_string">
+</block>
+<block type="math_format_number">
+  <value name="math_format_value">
+   <shadow type="math_number">
+     <field name="NUM">1</field>
+   </shadow>
+ </value>
+ <value name="math_format_no">
+   <shadow type="math_number">
+     <field name="NUM">3</field>
+   </shadow>
+ </value>
+</block>
+<block type="math__alert">
+</block>
+
+<block type="math_string_split">
+  <value name="math_string_split_value1">
+    <shadow type="text">
+      <field name="TEXT">字-符-串</field>
+    </shadow>
+  </value>
+  <value name="math_string_split_value2">
+    <shadow type="text">
+      <field name="TEXT">-</field>
+    </shadow>
+  </value>
+</block>
+<block type="math_string_replace">
+  <value name="math_string_replace_value1">
+    <shadow type="text">
+      <field name="TEXT">字符串1</field>
+    </shadow>
+  </value>
+  <value name="math_string_replace_value2">
+    <shadow type="text">
+      <field name="TEXT">1</field>
+    </shadow>
+  </value>
+  <value name="math_string_replace_value3">
+    <shadow type="text">
+      <field name="TEXT">2</field>
+    </shadow>
+  </value>
+</block>
+  </category>
+  <category name="获取数据" colour="100">
+    <category name="游戏相关" colour="100">
+      <block type="mtn_make_js_get_classify_table">
+      </block>
+      <block type="mtn_make_js_get_classify_field">
+      </block>
+      <block type="mtn_make_js_get_game_table">
+        <value name="sql_value">
+          <shadow type="text">
+            <field name="TEXT">classify_id=1</field>
+          </shadow>
+        </value>
+        <value name="tab_page1">
+          <shadow type="math_number">
+            <field name="NUM">0</field>
+          </shadow>
+        </value>
+        <value name="tab_page2">
+          <shadow type="math_number">
+            <field name="NUM">1</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="mtn_make_js_get_game_field1">
+      </block>
+      <block type="mtn_make_js_get_game_field2">
+      </block>
+      <block type="mtn_make_js_get_game_tags_all">
+        <value name="get_game_tags_all_value">
+          <shadow type="math_number">
+            <field name="NUM">1</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="mtn_make_js_get_classify_game_no">
+        <value name="get_classify_game_no_value">
+          <shadow type="math_number">
+            <field name="NUM">1</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="mtn_make_js_get_run_game">
+        <value name="run_game_value">
+          <shadow type="text">
+            <field name="TEXT">1</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="mtn_make_js_hide_game">
+        <value name="hide_game_value">
+          <shadow type="math_number">
+            <field name="NUM">game_id</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="js_make_game_alter_web">  
+        <value name="game_id">
+          <shadow type="math_number">
+            <field name="NUM">1</field>
+          </shadow>
+        </value>  
+      </block>
+      <block type="math_array_push">
+        <value name="math_array_push_value1">
+          <shadow type="math_number">
+            <field name="NUM">数据表1</field>
+          </shadow>
+        </value>
+        <value name="math_array_push_value2">
+          <shadow type="math_number">
+            <field name="NUM">数据表2</field>
+          </shadow>
+        </value>
+      </block>
+    </category>
+
+    <category name="收藏相关" colour="100">
+      <block type="mtn_make_js_get_fav_menu">
+      </block>
+      <block type="mtn_make_js_get_bookmarks_table">
+        <value name="sql_value">
+          <shadow type="text">
+            <field name="TEXT">category_id=1</field>
+          </shadow>
+        </value>
+        <value name="tab_page1">
+          <shadow type="math_number">
+            <field name="NUM">0</field>
+          </shadow>
+        </value>
+        <value name="tab_page2">
+          <shadow type="math_number">
+            <field name="NUM">1</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="mtn_make_js_get_fav_field">
+      </block>
+      <block type="mtn_make_js_get_bookmarks_field">
+      </block>
+      <block type="mtn_make_js_get_bookmarks_tags_all">
+        <value name="get_bookmarks_tags_all_value">
+          <shadow type="math_number">
+            <field name="NUM">1</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="mtn_make_js_get_fav_list_count">
+        <value name="get_fav_list_count_value">
+          <shadow type="math_number">
+            <field name="NUM">1</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="mtn_make_js_open_bookmarks">
+        <value name="open_bookmarks_value">
+          <shadow type="text">
+            <field name="TEXT">1</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="mtn_make_js_bookmarks_show">
+      </block>
+    </category>
+    <category name="主题相关" colour="100">
+      <block type="mtn_make_js_get_ui_table">
+      </block>
+      <block type="mtn_make_js_get_ui_field">
+      </block>
+      <block type="mtn_make_js_get_change_theme">
+        <value name="change_theme_value">
+          <shadow type="text">
+            <field name="TEXT">1</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="mtn_make_js_get_change_ui">
+        <value name="change_ui_value">
+          <shadow type="text">
+            <field name="TEXT">1</field>
+          </shadow>
+        </value>
+        <value name="change_theme_value">
+          <shadow type="text">
+            <field name="TEXT">1</field>
+          </shadow>
+        </value>
+      </block>
+    </category>
+    <category name="数据与处理" colour="100">
+      <block type="mtn_make_js_get_wait">
+      </block>
+      <block type="mtn_make_js_get_json_parse">
+      </block>
+      <block type="mtn_make_js_get_json_length">
+      </block>
+      <block type="mtn_make_js_get_parse_value">
+        <value name="get_parse_value1">
+          <shadow type="math_number">
+            <field name="NUM">mytable</field>
+          </shadow>
+        </value>
+        <value name="get_parse_value2">
+          <shadow type="math_number">
+            <field name="NUM">0</field>
+          </shadow>
+        </value>
+        <value name="get_parse_value3">
+          <shadow type="math_number">
+            <field name="NUM">id</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="mtn_make_js_get_data_sort">
+        <value name="get_data_sort_value">
+          <shadow type="math_number">
+            <field name="NUM">id</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="mtn_make_js_get_sql_command">
+        <value name="get_sql_command_value1">
+          <shadow type="math_number">
+            <field name="NUM">classify_id</field>
+          </shadow>
+        </value>
+        <value name="get_sql_command_value3">
+          <shadow type="math_number">
+            <field name="NUM">0</field>
+          </shadow>
+        </value>
+      </block>
+    </category>
+    <category name="文件操作" colour="100">
+      <block type="mtn_make_js_get_file_pathfull">
+        <value name="get_file_pathfull_value">
+          <shadow type="math_number">
+            <field name="NUM">filepath</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="mtn_make_js_get_intro_text">
+        <value name="get_intro_text_value">
+          <shadow type="text">
+            <field name="TEXT">信息路径</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="mtn_make_js_open_file_path">
+        <value name="open_file_path_value">
+          <shadow type="text">
+            <field name="TEXT">文件路径</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="mtn_make_js_check_file_exist">
+        <value name="check_file_exist_path">
+          <shadow type="text">
+            <field name="TEXT">文件路径</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="mtn_make_js_get_file_paht">
+      </block>
+
+      <block type="get_img_base64">
+        <value name="file_img_paht">
+          <shadow type="text">
+            <field name="TEXT">图片路径</field>
+          </shadow>
+        </value>
+      </block>
+    </category>
+    <category name="控制与交互" colour="100">
+      <block type="mtn_make_js_mouse_click_ds">
+        <value name="mouse_click_ds_x">
+          <shadow type="math_number">
+            <field name="NUM">0</field>
+          </shadow>
+        </value>
+        <value name="mouse_click_ds_y">
+          <shadow type="math_number">
+            <field name="NUM">0</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="mtn_make_js_mtn_Started">
+      </block>
+      <block type="mtn_make_js_get_window_Activat">
+      </block>
+      <block type="mtn_make_js_open_new_window">
+        <value name="open_new_window">
+          <shadow type="text">
+            <field name="TEXT">网站地址</field>
+          </shadow>
+        </value>
+      </block> 
+      <block type="mtn_make_js_roast_toggle">
+        <value name="mtn_make_js_roast_toggle_md5">
+          <shadow type="text">
+            <field name="TEXT">38B0C0143F60B32EE9C42C388A69EBB7</field>
+          </shadow>
+        </value>
+      </block>  
+    </category>
+  </category>
+  <category name="网页元素控制" colour="100">
+    <category name="元素操作类" colour="100">
+      <block type="js_make_createElement">    
+      </block>
+      <block type="js_make_add_element">
+        <value name="js_make_add_element_value1">
+        <shadow type="math_number">
+         <field name="NUM">object</field>
+          </shadow>
+          </value>
+        <value name="js_make_add_element_value2">
+          <shadow type="text">
+            <field name="TEXT">object</field>
+              </shadow>
+        </value>
+      </block>
+      <block type="js_make_add_event">
+        <value name="js_make_add_element_name">
+          <shadow type="math_number">
+            <field name="NUM">object</field>
+              </shadow>
+        </value>
+      </block>
+      <block type="js_make_removeChild">
+        <value name="element_name">
+          <shadow type="math_number">
+            <field name="NUM">element_name</field>
+          </shadow>
+        </value>
+      </block>
+      <block type="js_make_get_all_style">
+        <value name="style_name">
+          <shadow type="text">
+            <field name="TEXT">.style_name</field>
+              </shadow>
+        </value>
+      </block>
+      <block type="math_search_array">
+        <value name="array">
+          <shadow type="math_number">
+            <field name="NUM">all_style</field>
+          </shadow>
+        </value>
+        <value name="Attribute_name">
+          <shadow type="text">
+            <field name="TEXT">Attribute_name</field>
+          </shadow>
+        </value>
+        <value name="value">
+          <shadow type="math_number">
+            <field name="NUM">value</field>
+          </shadow>
+        </value>
+      </block>
+    </category>
+    <category name="元素属性与样式" colour="100">
+      <block type="js_make_getElementById">
+        <value name="js_make_getElementById_id">
+          <shadow type="text">
+            <field name="TEXT">id_name</field>
+          </shadow>
+        </value>
+        </block>
+        <block type="js_make_in_Element">
+          <value name="js_make_in_Element_value">
+            <block type="js_make_getElementById">
+              <value name="js_make_getElementById_id">
+                <shadow type="text">
+                  <field name="TEXT">id_name</field>
+                </shadow>
+              </value>
+              </block>
+          </value>
+          <value name="js_make_in_obj_value">
+            <shadow type="math_number">
+              <field name="NUM">obj_name</field>
+            </shadow>
+          </value>
+          </block>
+          <block type="js_make_getElementById_obj">
+          </block>
+          <block type="js_make_in_getComputedStyle">
+            <value name="js_make_in_getComputedStyle_value">
+              <block type="js_make_getElementById">
+                <value name="js_make_getElementById_id">
+                  <shadow type="text">
+                    <field name="TEXT">id_name</field>
+                  </shadow>
+                </value>
+                </block>
+            </value>
+            </block>      
+            <block type="js_make_getElementById_style">
+              <value name="js_make_getElementById_style_value">
+                <shadow type="math_number">
+                  <field name="NUM">style_obj_name</field>
+                </shadow>
+              </value>
+            </block>
+            <block type="js_make_getElementById_stylec">
+            </block>
+            <block type="js_make_value">
+              <value name="js_make_value1">
+                <shadow type="math_number">
+                  <field name="NUM">value1</field>
+                </shadow>
+              </value>
+              <value name="js_make_value2">
+                <shadow type="math_number">
+                  <field name="NUM">value2</field>
+                </shadow>
+              </value>
+              </block>
+        <block type="js_make_style_value">
+          <value name="js_make_style_value1">
+          <shadow type="math_number">
+           <field name="NUM">value1</field>
+            </shadow>
+            </value>
+          <value name="js_make_style_value2">
+            <shadow type="text">
+              <field name="TEXT">value2</field>
+                </shadow>
+          </value>
+        </block>
+        <block type="js_make_setAttribute">
+          <value name="element_name">
+            <shadow type="math_number">
+              <field name="NUM">element_name</field>
+            </shadow>
+          </value>
+          <value name="Attribute_name">
+            <shadow type="text">
+              <field name="TEXT">Attribute_name</field>
+            </shadow>
+          </value>
+          <value name="value">
+            <shadow type="math_number">
+              <field name="NUM">value</field>
+            </shadow>
+          </value>
+        </block>
+        <block type="js_make_add_classList">
+          <value name="element_name">
+            <shadow type="math_number">
+              <field name="NUM">element_name</field>
+            </shadow>
+          </value>
+          <value name="class_name">
+            <shadow type="text">
+              <field name="TEXT">class_name</field>
+            </shadow>
+          </value>
+        </block>
+        <block type="js_make_del_classList">
+          <value name="element_name">
+            <shadow type="math_number">
+              <field name="NUM">element_name</field>
+            </shadow>
+          </value>
+          <value name="class_name">
+            <shadow type="text">
+              <field name="TEXT">class_name</field>
+            </shadow>
+          </value>
+        </block>
+        <block type="js_make_get_Attribute">
+          <value name="element_name">
+            <shadow type="math_number">
+              <field name="NUM">element_name</field>
+            </shadow>
+          </value>
+          <value name="Attribute_name">
+            <shadow type="text">
+              <field name="TEXT">Attribute_name</field>
+            </shadow>
+          </value>
+        </block>
+    </category>
+    <category name="特殊功能类" colour="100">
+      <block type="js_make_mousexy">    
+      </block>
+      <block type="js_make_bg_img">  
+        <value name="js_make_bg_img_value">
+          <shadow type="text">
+            <field name="TEXT">图片地址</field>
+          </shadow>
+        </value>  
+      </block>
+      <block type="bilibili_pc_player"> 
+        <value name="iframe_id">
+          <shadow type="text">
+            <field name="TEXT">my_iframe_id</field>
+          </shadow>
+        </value>  
+        <value name="bvid_id">
+          <shadow type="math_number">
+            <field name="NUM">BV1vrZCB4EBk</field>
+          </shadow>
+        </value>  
+      </block> 
+      <block type="bilibili_mobile_player"> 
+        <value name="iframe_id">
+          <shadow type="text">
+            <field name="TEXT">my_iframe_id</field>
+          </shadow>
+        </value>  
+        <value name="bvid_id">
+          <shadow type="math_number">
+            <field name="NUM">BV1vrZCB4EBk</field>
+          </shadow>
+        </value>  
+      </block> 
+    </category>  
+  </category>
+  <category id="catVar" colour="100" custom="VARIABLE">
+  </category>
+
+  <category id="catFun" custom="PROCEDURE" colour="100">
+  </category>
+  <category name="键盘和摇杆" colour="100">
+    <block type="mtn_make_js_joy_enable"></block>
+    <block type="mtn_make_js_get_joy_table"></block>
+    <block type="mtn_make_js_get_key_value"></block>
+    <block type="mtn_make_js_get_joy_value"></block>
+    <block type="mtn_make_js_key_value_kong"></block>
+    <block type="mtn_make_js_joy_value_kong"></block>
+    <block type="mtn_make_js_key_set_kong"></block>
+    <block type="mtn_make_js_joy_set_kong"></block>
+    <block type="mtn_make_js_get_parse_keyjoy_value">
+      <value name="parse_keyjoy_value1">
+        <shadow type="math_number">
+          <field name="NUM">键盘摇杆解析表</field>
+        </shadow>
+      </value>
+      <value name="gparse_keyjoy_value2">
+        <shadow type="math_number">
+          <field name="NUM">按键名称</field>
+        </shadow>
+      </value>
+    </block>
+    <block type="mtn_make_js_get_keyboard_keyname"></block>
+    <block type="mtn_make_js_get_rocker_keyname"></block>
+    <block type="mtn_ui_KeyPress">
+      <value name="key_name">
+        <shadow type="text">
+          <field name="TEXT">`</field>
+        </shadow>
+      </value>
+    </block>
+  </category>
+  <category name="cvg图片" colour="100">
+    <block type="mtn_make_js_svg_create">
+      <value name="svg_width_value">
+        <shadow type="math_number">
+          <field name="NUM">100</field>
+        </shadow>
+      </value>
+      <value name="svg_height_value">
+        <shadow type="math_number">
+          <field name="NUM">100</field>
+        </shadow>
+      </value>
+    </block>
+    <block type="mtn_make_js_svg_bgcolor">
+      <value name="svg_bgcolor_value">
+        <shadow type="math_number">
+          <field name="NUM">#000000</field>
+        </shadow>
+      </value>
+    </block>
+    <block type="mtn_make_js_svg_effects">
+      <value name="svg_effects_value1">
+        <shadow type="math_number">
+          <field name="NUM">0</field>
+        </shadow>
+      </value>
+    </block>
+    <block type="mtn_make_js_svg_text">
+      <value name="svg_text_x">
+        <shadow type="math_number">
+          <field name="NUM">0</field>
+        </shadow>
+      </value>
+      <value name="svg_text_y">
+        <shadow type="math_number">
+          <field name="NUM">0</field>
+        </shadow>
+      </value>
+      <value name="svg_text_color">
+        <shadow type="math_number">
+          <field name="NUM">#FFFFFF</field>
+        </shadow>
+      </value>
+      <value name="svg_text_size">
+        <shadow type="math_number">
+          <field name="NUM">20</field>
+        </shadow>
+      </value>
+      <value name="svg_text_value">
+        <shadow type="text">
+          <field name="TEXT">梦童年</field>
+        </shadow>
+      </value>
+    </block>
+  </category>
+</category>
+
+<category name="值" colour="100">
+  <button text="添加图片" callbackKey="blockly_add_img"></button>
+  <button text="获取图片Base64码" callbackKey="blockly_add_img_b6"></button>
+  <button text="添加视频" callbackKey="blockly_add_video"></button>
+  <button text="添加音乐" callbackKey="blockly_add_music"></button>
+  <button text="添加脚本" callbackKey="blockly_add_script"></button>
+  <button text="添加字体" callbackKey="blockly_add_font"></button>
+  <block type="file_img">
+   <value name="file_img_paht">
+     <shadow type="text">
+       <field name="TEXT">imgpath</field>
+     </shadow>
+   </value>
+ </block>
+ <block type="file_img_base64">
+  <value name="img_base64">
+    <shadow type="math_number">
+      <field name="NUM">data:image/*;base64,...</field>
+    </shadow>
+  </value>
+</block>
+ <block type="file_video">
+  <value name="file_video_paht">
+    <shadow type="text">
+      <field name="TEXT">videopath</field>
+    </shadow>
+  </value>
+</block>
+<block type="file_music">
+  <value name="file_music_paht">
+    <shadow type="text">
+      <field name="TEXT">musicpath</field>
+    </shadow>
+  </value>
+</block>
+
+<block type="file_script">
+  <value name="file_script_paht">
+    <shadow type="math_number">
+      <field name="NUM">&lt;script src="file/myscript.js"&gt;&lt;/script&gt;</field>
+    </shadow>
+  </value>
+</block>
+<block type="file_font">
+  <value name="file_font_paht">
+    <shadow type="text">
+      <field name="TEXT">fontpath</field>
+    </shadow>
+  </value>
+</block>
+<block type="file_text">
+  <value name="file_text_value">
+    <shadow type="math_number">
+      <field name="NUM">text</field>
+    </shadow>
+  </value>
+</block>
+
+<block type="file_class_name">
+</block>
+<block type="file_obj_id">
+</block>
+<block type="file_value_px">
+</block>
+<block type="file_value_percent">
+</block>
+<block type="file_value_pt">
+</block>
+<block type="file_value_number">
+</block>
+<block type="file_value_text">
+</block>
+<block type="file_value_event">
+</block>
+<block type="file_value_color">
+</block>
+<block type="file_array_item">
+  <value name="array_name">
+    <shadow type="math_number">
+      <field name="NUM">array_name</field>
+    </shadow>
+  </value>
+  <value name="array_item">
+    <shadow type="math_number">
+      <field name="NUM">0</field>
+    </shadow>
+  </value>
+</block>
+<block type="file_value_webno">
+</block>
+<block type="factory_notes">
+</block>
+<block type="file_set_dict">
+  <value name="dict_key">
+    <shadow type="text">
+      <field name="TEXT">key_name</field>
+    </shadow>
+  </value>
+  <value name="dict_value">
+    <shadow type="text">
+      <field name="TEXT">value</field>
+    </shadow>
+  </value>
+</block>
+<block type="file_get_dict">
+  <value name="dict_key">
+    <shadow type="text">
+      <field name="TEXT">key_name</field>
+    </shadow>
+  </value>
+</block>
+<block type="flie_run_value">
+</block>
+</category>
+<category name="例子" colour="100">
+  <button text="导入例子" callbackKey="blockly_add_example"></button>
+  <button text="保存例子" callbackKey="blockly_server_example"></button>
+  </category>
+</xml>
+<script>
+
+</script>
+<script src = "zizhikuai.js"></script>
+<script src = "app_html_file.js"></script>
+<script src = "up_html_file.js"></script>
+<script src = "up_xml_file.js"></script>
+<script src = "mtn_ai_char_roast.js"></script>
+</body>
+</html>

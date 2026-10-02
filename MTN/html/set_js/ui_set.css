@@ -1,0 +1,168 @@
+.ui_set{
+  display:flex;
+  width:100%;
+  flex-direction:row;
+  padding: 15px;
+  border-bottom: 1px solid #ddd;
+  background-color: white;
+  margin-bottom: 10px;
+}
+.ui_input{
+margin:20px 5px 5px 5px;  
+align-items: center;
+}
+.ui_path{
+width:300px;
+}
+/* 缩略图 */
+.ui_thumb {
+  width: 80px;
+  height: 60px;
+  border: 1px solid #ddd;
+}
+
+/* 按钮样式 */
+.ui_button {
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  cursor: pointer;
+  margin-left: 10px;
+  border-radius: 4px;
+}
+
+.ui_button:hover {
+  background-color: #0056b3;
+}
+
+/* 标签 */
+.ui_label {
+  margin-right: 10px;
+  font-weight: bold;
+}
+
+/* 输入框 */
+.ui_txt {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.joytokey {
+  display:flex;
+  width:100%;
+  height: 5%;
+  flex-direction:row;
+  padding: 0px;
+  border-bottom: 1px solid #ddd;
+  background-color: white;
+  margin-bottom: 10px;
+}
+
+.joytokey_row {
+  display:flex;
+  justify-content: center;
+  align-items: center; /* 添加垂直居中 */
+  text-align: center;
+  flex-basis: calc(33.333% - 10px);
+}
+.active{
+  color: white;
+  background-color: #0667ce;
+}
+.joystick_select {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  background-color: #ffffff;
+  border: 1px solid #cccccc;
+  border-radius: 5px;
+  appearance: none; /* 移除默认箭头 */
+  -webkit-appearance: none; /* 移除默认箭头（Webkit 浏览器） */
+  -moz-appearance: none; /* 移除默认箭头（Firefox 浏览器） */
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="12" height="8" viewBox="0 0 12 8"><path fill="%23cccccc" d="M1,1 L1,6 L7,6 L7,8 L5,8 L5,6 L11,6 L11,1 Z M5,1 L1,6 L5,6 Z M7,1 L11,6 L7,6 Z"/></svg>');
+  background-position: right 10px center;
+  background-repeat: no-repeat;
+  background-size: 12px 8px;
+  cursor: pointer;
+}
+
+.弹窗 {
+  position: absolute;
+  z-index: 999;
+  top: 30%;
+  left: 40%;
+  width: 500px;
+  max-height:600px;
+  display: none;
+  background-color: #ffffff;
+  border-style: solid solid solid solid;
+  border-width: 5px 5px 5px 5px;
+  border-radius: 5px 5px 5px 5px;
+  border-color: #000000 #000000 #333333 #000000;
+  box-shadow: 10px 10px 5px #888888;
+  opacity: 0;
+  padding: 0px;
+  transition: opacity 0.3s ease-in-out;
+  overflow-y: auto;
+}
+
+.弹窗.show {
+  display: flex;
+  opacity: 1;
+}
+.弹窗表{
+  list-style-type:none;
+  display:flex;
+  margin: 0px;
+  padding: 0px;
+  flex-direction:row;
+  justify-content:flex-start;
+  flex-wrap:wrap;
+}
+.弹窗表项 {
+  padding: 5px;
+  margin: 5px;
+  width:100px;
+  display: flex;
+  align-items: flex-end; /* 纵轴底部对齐 */
+  justify-content: center; /* 横轴居中对齐 */
+}
+.弹窗模拟器表项 {
+  padding: 5px;
+  margin: 5px;
+  width:100px;
+  display: flex;
+  align-items: flex-end; /* 纵轴底部对齐 */
+  justify-content: center; /* 横轴居中对齐 */
+}
+.弹窗表项 div {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  white-space: normal; /* 允许换行 */
+  word-break: break-all; /* 在任何字符处换行，防止长单词导致溢出 */
+  max-width: 80px; /* 设置最大宽度，根据实际需求调整 */
+}
+.弹窗表图标{
+  width:100px;
+  height:80px;
+  margin-right: 10px; /* 图片和标题之间的间距 */
+}
+.弹窗模拟器图标{
+  width:100px;
+  height:80px;
+  margin-right: 10px; /* 图片和标题之间的间距 */
+}
+.close-btn {
+  position: absolute;
+  top: 0px;
+  right: 10px;
+  background-color: #4d68ff;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
